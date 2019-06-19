@@ -91,8 +91,8 @@ USER app
 EXPOSE 8000
 
 # run server
-#since wsgi.py resides inside blogoauth2 folder and the application service is started from level outside
+#since wsgi.py resides inside dashboard folder and the application service is started from level outside
 # that is from the location where manage.py is located in such cases --chdir must be used
 # define the default command to run when starting the container
-#CMD ["gunicorn", "--chdir", "blogoauth2", "--bind", ":8000", "blogoauth2.wsgi:application"]
-CMD ["gunicorn", "--bind", ":8000", "blogoauth2.wsgi:application"]
+#CMD ["gunicorn", "--chdir", "dashboard", "--bind", ":8000", "dashboard.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "dashboard.wsgi:application"]

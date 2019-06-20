@@ -3,6 +3,7 @@ from django.urls import path, include
 from rest_framework import routers
 from blog.api.viewsets import PostViewSet, CommentViewSet, CategoryViewSet, TagViewSet
 from users.api.viewsets import ProfileViewSet, UserViewSet
+from dash.views import TestViewSet
 
 router = routers.DefaultRouter()
 router.register('posts', PostViewSet)
@@ -11,6 +12,7 @@ router.register('comments', CommentViewSet)
 router.register('users', UserViewSet)
 router.register('profile', ProfileViewSet)
 router.register('tags', TagViewSet)
+router.register('dash', TestViewSet, basename='Test')
 
 urlpatterns = [
     path('v1/', include(router.urls)),

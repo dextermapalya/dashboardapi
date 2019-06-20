@@ -17,3 +17,4 @@ gunicorn
 mysqlclient
 psycopg2
 django-cors-headers
+mysql-connector-python

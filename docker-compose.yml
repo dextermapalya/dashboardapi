@@ -34,9 +34,10 @@ services:
 
   #mysql service
   mysqldb:
-    build:
-      context: ./services/mysql
-      dockerfile: Dockerfile
+    #build:
+    #  context: ./services/mysql
+    #  dockerfile: Dockerfile
+    image: mysql:5
     container_name: mysqldb
     restart: unless-stopped
     tty: true

@@ -1,3 +1,6 @@
+import logging
+stdlogger = logging.getLogger(__name__)
+
 #this class is for handingly multiple databases in a single django app
 class DatabaseRouter:
     """
@@ -8,24 +11,24 @@ class DatabaseRouter:
         """
         Attempts to read user models go to users_db.
         """
-        if model._meta.app_label == 'mysql_data':
-            return 'mysql_data'
+        if model._meta.app_label == 'db2':
+            return 'sample'
         return None
 
     def db_for_write(self, model, **hints):
         """
         Attempts to write user models go to users_db.
         """
-        if model._meta.app_label == 'mysql_data':
-            return 'mysql_data'
+        if model._meta.app_label == 'db2':
+            return 'sample'
         return None
 
     def allow_relation(self, obj1, obj2, **hints):
         """
         Allow relations if a model in the user app is involved.
         """
-        if obj1._meta.app_label == 'mysql_data' or \
-           obj2._meta.app_label == 'mysql_data':
+        if obj1._meta.app_label == 'db2' or \
+           obj2._meta.app_label == 'sample':
            return True
         return None
 
@@ -34,6 +37,8 @@ class DatabaseRouter:
         Make sure the auth app only appears in the 'users_db'
         database.
         """
-        if app_label == 'mysql_data':
-            return db == 'mysql_data'
+        stdlogger.info("Running migration  {} ** {}".format(app_label, db) )
+        if app_label == 'db2':
+            stdlogger.info("Running migration for db2........")
+            return db == 'sample'
         return None

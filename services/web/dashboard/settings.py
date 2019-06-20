@@ -51,10 +51,10 @@ INSTALLED_APPS = [
     'rest_framework', # <-- add this 3rd party module
     'oauth2_provider', # <-- add this 3rd party module
     'corsheaders', # <-- add this 3rd party module
-    '
-blog', # <-- add this module name created using python manage.py startapp blog
+    'blog', # <-- add this module name created using python manage.py startapp blog
     'users', # <-- add this module name created using python manage.py startapp users
-    'api' # <-- add this module name created using python manage.py startapp api
+    'api', # <-- add this module name created using python manage.py startapp api
+    'dash' # <-- add this module name created using python manage.py startapp dash
 ]
 
 MIDDLEWARE = [
@@ -98,25 +98,34 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
-DATABASE_ROUTERS = ['blog.databaserouter.DatabaseRouter']
-DATABASE_APPS_MAPPING = {'mysql_data': 'mysql_data'}
+#DATABASE_ROUTERS = ['dash.databaserouter.DatabaseRouter']
+DATABASE_APPS_MAPPING = {'db2':'sample'}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_env_variable('MYSQL_DB'),
-        'USER': get_env_variable('MYSQL_USER'),
-        'PASSWORD': get_env_variable('MYSQL_PASSWORD'),
-        'HOST': get_env_variable('MYSQL_HOST'),
-        'PORT': get_env_variable('MYSQL_PORT'),
+        'NAME': 'dashboard',
+        'USER': 'django',
+        'PASSWORD': 'djangosEcrEt',
+        'HOST': 'mysqldb',
+        'PORT': 3306,
     },
-    'mysql_data': {
+    #'db1': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': get_env_variable('MYSQL_DB'),
+    #    'USER': get_env_variable('MYSQL_USER'),
+    #    'PASSWORD': get_env_variable('MYSQL_PASSWORD'),
+    #    'HOST': get_env_variable('MYSQL_HOST'),
+    #    'PORT': get_env_variable('MYSQL_PORT'),
+    #},
+    'sample': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_env_variable('MYSQL_DB'),
-        'USER': get_env_variable('MYSQL_USER'),
-        'PASSWORD': get_env_variable('MYSQL_PASSWORD'),
-        'HOST': get_env_variable('MYSQL_HOST'),
-        'PORT': get_env_variable('MYSQL_PORT'),
+        'NAME': 'sample',
+        'USER': 'django',
+        'PASSWORD': 'djangosEcrEt',
+        'HOST': 'mysqldb',
+        'PORT': 3306,
     }
+
 }
 
 # Password validation

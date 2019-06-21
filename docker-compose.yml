@@ -70,7 +70,7 @@ services:
       #check the dockerfile inside web folder it contains an env variable called APP_HOME
       # the same value must be set here also by using ./:/home/project/web any changes to files on the host system
       # is immediately reflected inside the container
-      - ./:/home/project/web
+      - ./services/web/:/home/project/web
       #- ./static:/static    
     #  - ./:/home/app
     #  - ./webservices/nginx/conf.d/:/etc/nginx/conf.d/

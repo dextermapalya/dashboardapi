@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import action
 from rest_framework import generics, permissions, viewsets
-from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
+#from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 from api.permissions import (
     IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
 )
@@ -25,15 +25,21 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    #below code is for oauth2 uncomment when required
+    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+    #                      IsSameUserAllowEditionOrReadOnly, TokenHasReadWriteScope)
+    # this is for jwt auth
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                          IsSameUserAllowEditionOrReadOnly, TokenHasReadWriteScope)
+                          IsSameUserAllowEditionOrReadOnly)
 
 #API CALL TO RETURN LOGGED IN USER PROFILE
 class ProfileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that returns logged in user profile.
     """
-    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    #below code is for oauth2 uncomment when required
+    #permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     #queryset = User.objects.all().order_by('-date_joined')

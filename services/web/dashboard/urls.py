@@ -26,6 +26,8 @@ admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    #path('', views.home, kwargs=None, name=None),
+    path('', views.home, kwargs=None, name=None),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    #path('activesubscription/<int:id>/', views.activesubscriptions, )
+
 ]

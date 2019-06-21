@@ -1,20 +1,23 @@
 #from django.conf.urls import url, include
 from django.urls import path, include
+from django.conf.urls import url
+
 from rest_framework import routers
-from blog.api.viewsets import PostViewSet, CommentViewSet, CategoryViewSet, TagViewSet
 from users.api.viewsets import ProfileViewSet, UserViewSet
-from dash.views import TestViewSet
+#from dash.api.viewsets import  ActiveSubscriptionViewset
+from dash.viewset import TestViewSet, SubscriptionViewSet
+from dash import urls as dashboard_urls
 
 router = routers.DefaultRouter()
-router.register('posts', PostViewSet)
-router.register('categories', CategoryViewSet)
-router.register('comments', CommentViewSet)
 router.register('users', UserViewSet)
 router.register('profile', ProfileViewSet)
-router.register('tags', TagViewSet)
 router.register('dash', TestViewSet, basename='Test')
+router.register('dashboard/activesubscriptions', SubscriptionViewSet, basename='Subscription')
+
 
 urlpatterns = [
     path('v1/', include(router.urls)),
     path('admin/', include('rest_framework.urls')),
+    path('auth/', include('rest_auth.urls')),
+    path('v1.1/', include(dashboard_urls)),
 ]

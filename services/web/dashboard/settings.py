@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
-from blog.databaserouter import DatabaseRouter
+import os, datetime
+from dash.databaserouter import DatabaseRouter
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APPEND_SLASH = True
@@ -51,7 +51,10 @@ INSTALLED_APPS = [
     'rest_framework', # <-- add this 3rd party module
     'oauth2_provider', # <-- add this 3rd party module
     'corsheaders', # <-- add this 3rd party module
-    'blog', # <-- add this module name created using python manage.py startapp blog
+
+    'rest_framework.authtoken', # Add this line for JWT
+    'rest_auth',                # Add this line for JWT
+
     'users', # <-- add this module name created using python manage.py startapp users
     'api', # <-- add this module name created using python manage.py startapp api
     'dash' # <-- add this module name created using python manage.py startapp dash
@@ -103,7 +106,7 @@ DATABASE_APPS_MAPPING = {'db2':'sample'}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dashboard',
+        'NAME': 'SUNNXT_CHARGING_DB',
         'USER': 'django',
         'PASSWORD': 'djangosEcrEt',
         'HOST': 'mysqldb',
@@ -117,9 +120,9 @@ DATABASES = {
     #    'HOST': get_env_variable('MYSQL_HOST'),
     #    'PORT': get_env_variable('MYSQL_PORT'),
     #},
-    'sample': {
+    'myplex_service': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sample',
+        'NAME': 'myplex_service',
         'USER': 'django',
         'PASSWORD': 'djangosEcrEt',
         'HOST': 'mysqldb',
@@ -171,9 +174,9 @@ REST_FRAMEWORK = {
    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10, # <!-- if pagination is used set the default value here
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        #'rest_framework.authentication.BasicAuthentication',
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-
+        'rest_framework.authentication.BasicAuthentication',
+        #'oauth2_provider.contrib.rest_framework.OAuth2Authentication', #uncomment when oauth is required
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
     ),
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -182,6 +185,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
 
     ]
+    
 }
 
 OAUTH2_PROVIDER = {
@@ -272,3 +276,16 @@ LOGGING = {
         },
     }
 }
+
+
+###JWT SETTINGS
+JWT_AUTH = {
+ 
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+ 
+}
+
+REST_USE_JWT = True

@@ -3,7 +3,7 @@ from rest_framework import serializers
 #serializers
 #from users.api.serializers import ProfileSerializer, UserSerializer
 #models
-from dash.models import Test
+from dash.models import Test, Subscription
 #import logging
 #stdlogger = logging.getLogger(__name__)
 
@@ -25,8 +25,16 @@ class TestSerializer(serializers.ModelSerializer):
         fields = ('id','title', 'test1_title', 'tasktitle', 'status', 'description', 'priority', 'start_date', 'due_date')
 
 
-class RawSerializer(serializers.ModelSerializer):
+
+
+class ActiveSubscriptionSerializer(serializers.ModelSerializer):
+
+    #cdate = serializers.DateField()
+    #active_subs = serializers.IntegerField()
+    
     class Meta:
 
-        model = Test
+        model = Subscription
+        depth=3
         fields = '__all__'
+        #fields = ('cdate', 'active_subs')

@@ -179,3 +179,6 @@ If there was no error then you should receive a response similar to : {"id":1,"c
 ```
 curl   -H "Authorization: Bearer T8ppcqd8U3BFrvONyd6Hxi8FzMLYxh"  http://localhost/api/v1/comments/
 ```
+
+#### How to setup djangoframework-jwt
+https://medium.com/@apogiatzis/create-a-restful-api-with-users-and-jwt-authentication-using-django-1-11-drf-part-2-eb6fdcf71f45

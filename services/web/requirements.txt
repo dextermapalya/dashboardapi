@@ -18,3 +18,5 @@ mysqlclient
 psycopg2
 django-cors-headers
 mysql-connector-python
+djangorestframework-jwt
+django-rest-auth

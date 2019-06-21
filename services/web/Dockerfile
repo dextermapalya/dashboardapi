@@ -95,4 +95,6 @@ EXPOSE 8000
 # that is from the location where manage.py is located in such cases --chdir must be used
 # define the default command to run when starting the container
 #CMD ["gunicorn", "--chdir", "dashboard", "--bind", ":8000", "dashboard.wsgi:application"]
+#CMD ["gunicorn", "--bind", ":8000", "--error-logfile","=./logs/gunicorn.log", "dashboard.wsgi:application"]
 CMD ["gunicorn", "--bind", ":8000", "dashboard.wsgi:application"]
+#CMD ["python", "manage.py", "runserver"]

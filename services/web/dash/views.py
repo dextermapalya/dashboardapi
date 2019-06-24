@@ -56,7 +56,7 @@ def jsonifysubscriptions(resultset):
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
-def activesubscriptions(request, id=-1, date = date.today() ):
+def activesubscriptions(request, id, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
             status_code = 200
@@ -67,10 +67,12 @@ def activesubscriptions(request, id=-1, date = date.today() ):
                 return JsonResponse({"message": "Got some data!", "data": request.data})
             
             else: 
-                params = {'id': id, 'dt_query':date}
+                params = {'id': id, 'dt_query':dt_query}
                 print(params)
                 validator = SubscriptionSerializer( data = params )
-                print(validator.is_valid())
+                print()
+                if validator.is_valid() == False:
+                    raise Exception("Invalid rest Arguments")
                 #query = "select * from test"    
                 #cursor = connections['myplex_service'].cursor() #this is for multiple databases
                 cursor =  connection.cursor() #this is for default database

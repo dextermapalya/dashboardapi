@@ -76,8 +76,12 @@ def activesubscriptions(request, id=-1, date = date.today() ):
                 cursor =  connection.cursor() #this is for default database
                 cursor.execute( get_subscriptionquery() )
                 #query the db and jsonify the results
-                jsondata = jsonifysubscriptions (  cursor.fetchall() )
-                response = {"code": status_code, "data": jsondata }
+                r = [dict((cursor.description[i][0], value) \
+                  for i, value in enumerate(row)) for row in cursor.fetchall()]
+                cursor.connection.close()
+
+                #jsondata = jsonifysubscriptions (  cursor.fetchall() )
+                response = {"code": status_code, "data": r[0] }
                 
         except Exception as e:
             #return an exception

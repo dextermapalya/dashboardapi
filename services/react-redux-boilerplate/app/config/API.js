@@ -1,5 +1,5 @@
 const API  = {
-    baseURL:  'http://localhost/api/v1.1/',
+    baseURL:  'http://localhost/api/',
     authorization: 'Authorization: Bearer '
 }
 

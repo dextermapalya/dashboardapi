@@ -4,6 +4,8 @@ temp.toUTCString();
 min: Date.UTC(temp.getUTCFullYear(), temp.getUTCMonth(), temp.getUTCDate(), 0, 0, 0),
 max: Date.UTC(temp.getUTCDate(), temp.getUTCMonth(), temp.getUTCDate(), 0, 0, 0),
 */
+const hours = [12,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+
 const RegistrationOptions = {
     chart: {
         scrollablePlotArea: {
@@ -39,8 +41,7 @@ const RegistrationOptions = {
         title: {
             text: "Time"
         },
-        categories: ['12', '1', '2', '3', '4', '5',
-           '6', '7', '8', '9', '10', '11']
+        categories: hours
      },
 
     yAxis: [{ // left y axis

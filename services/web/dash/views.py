@@ -16,13 +16,13 @@ def get_subscriptionquery():
         SELECT  CURRENT_DATE() as cdate ,COUNT(DISTINCT a.cp_customer_id) as active_subs
         FROM(
         SELECT  p.cp_customer_id AS cp_customer_id
-        FROM SUNNXT_CHARGING_DB.subscription s
-        INNER JOIN SUNNXT_CHARGING_DB.payment p
+        FROM  subscription s
+        INNER JOIN  payment p
         ON s.cp_customer_id=p.cp_customer_id
         AND s.order_id = p.order_id 
-        INNER JOIN SUNNXT_CHARGING_DB.package_def t
+        INNER JOIN  package_def t
         ON s.package_id=t.package_id 
-        INNER JOIN SUNNXT_CHARGING_DB.package_rate r
+        INNER JOIN  package_rate r
         ON r.package_id=s.package_id
         AND CAST(p.received_date AS DATE) BETWEEN CAST(r.start_date AS DATE) 
         AND CAST(CASE WHEN r.end_date IS NULL THEN '2099-12-31' ELSE r.end_date END AS DATE)
@@ -32,7 +32,7 @@ def get_subscriptionquery():
         GROUP BY 1
         UNION all
         SELECT  cp_customer_id
-        FROM SUNNXT_CHARGING_DB.revenue_transaction_details
+        FROM  revenue_transaction_details
         WHERE payment_type IN('Purchase','Renewal') AND transaction_status ='Posted' AND
         DATE(validity_end_date)>=CONVERT_TZ(NOW(),'GMT','Asia/Kolkata') AND cancellation_date IS NULL
         GROUP BY 1
@@ -74,7 +74,7 @@ def activesubscriptions(request, id, dt_query ):
                 if validator.is_valid() == False:
                     raise Exception("Invalid rest Arguments")
                 #query = "select * from test"    
-                #cursor = connections['myplex_service'].cursor() #this is for multiple databases
+                #cursor = connections['remote'].cursor() #this is for multiple databases
                 cursor =  connection.cursor() #this is for default database
                 cursor.execute( get_subscriptionquery() )
                 #query the db and jsonify the results

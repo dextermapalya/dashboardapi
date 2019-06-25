@@ -1,0 +1,1000 @@
+ 1023  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login/
+ 1024  docker-compose restart djangoapp
+ 1025  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login/
+ 1026  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTAxODA0NywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.KwqHunxZU6iDXjv6BQzTyAEnUINgD6n_t8G3yJxbYtM"  http://localhost/api/v1/dash/
+ 1027  curl http://localhost/api/v1/dash/
+ 1028  curl -H "Authorization: Bearer "asdfsdaf" http://localhost/api/v1/dash/
+ 1029  curl -H "Authorization: Bearer asdfsdaf" http://localhost/api/v1/dash/
+ 1030  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTAxODA0NywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.KwqHunxZU6iDXjv6BQzTyAEnUINgD6n_t8G3yJxbYtM"  http://localhost/api/v1/dash/
+ 1031  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTAxODA0NywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.KwqHunxZU6iDXjv6BQzTyAEnUINgD6n_t8G3yJxbYtM"  http://localhost/api/v1/users/
+ 1032  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTAxODA0NywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.KwqHunxZU6iDXjv6BQzTyAEnUINgD6n_t8G3yJxbYtM\\\\"  http://localhost/api/v1/users/
+ 1033  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTAxODA0NywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.KwqHunxZU6iDXjv6BQzTyAEnUINgD6n_t8G3yJxbYtM\\\\"  http://localhost/api/v1/dash/
+ 1034  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTAxODA0NywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.KwqHunxZU6iDXjv6BQzTyAEnUINgD6n_t8G3yJx"  http://localhost/api/v1/dash/
+ 1035  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTAxODA0NywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.KwqHunxZU6iDXjv6BQzTyAEnUINgD6n_t8G3yJxb"  http://localhost/api/v1/users/
+ 1036  curl http://localhost/api/v1/users/
+ 1037  curl http://localhost/api/v1/dash/
+ 1038  curl http://localhost/api/v1/users/
+ 1039  curl http://localhost/api/v1/dash/
+ 1040  curl http://localhost/api/v1/dash
+ 1041  nano README.md 
+ 1042  docker-compose restart djangoapp
+ 1043  curl http://localhost/api/v1/dash
+ 1044  curl http://localhost/api/v1/users/
+ 1045  curl http://localhost/api/v1/dash/
+ 1046  ls
+ 1047  cd ..
+ 1048  ls -ltr
+ 1049  cd django_api_jwt/
+ 1050  ls
+ 1051  ls -ltr
+ 1052  cd venv/
+ 1053  ls
+ 1054  cd lib/
+ 1055  ls
+ 1056  cd ..
+ 1057  cd include/
+ 1058  ls
+ 1059  ls -ltr
+ 1060  cd ..
+ 1061  ls -ltr
+ 1062  cd bin/
+ 1063  ls
+ 1064  cd ../..
+ 1065  clear
+ 1066  cd /home/apalya/Documents/
+ 1067  ls -ltr
+ 1068  nano myplex_user_device.csv 
+ 1069  docker exec -it mysqldb mysqlimport --ignore-lines=1 --lines-terminated-by='\n' --fields-terminated-by=',' --verbose --local -udjango -pdjangosEcrEt myplex_user_device.csv
+ 1070  cd /home/apalya/workspace/python/dashboard_api/
+ 1071  cd services/web/
+ 1072  cp /home/apalya/Documents/myplex_user_device.csv .
+ 1073  cd ../..
+ 1074  docker-compose restart djangoapp
+ 1075  mysqlimport --help
+ 1076  mysqlimport
+ 1077  nano services/web/myplex_user_device.csv 
+ 1078  ls -ltr /home/apalya/Downloads/sql/
+ 1079  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1080  clear
+ 1081  ls -ltr /home/apalya/Downloads/sql/
+ 1082  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1083  docker-compose ps
+ 1084  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1085  clear
+ 1086  ls -ltr /home/apalya/Downloads/sql/
+ 1087  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1088  clear
+ 1089  ls -ltr /home/apalya/Downloads/sql/
+ 1090  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1091  clear
+ 1092  ls -ltr /home/apalya/Downloads/sql/
+ 1093  docker-compose status
+ 1094  docker-compose ps
+ 1095  docker-compose restart djangoapp
+ 1096  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login
+ 1097  docker-compose restart djangoapp
+ 1098  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login
+ 1099  docker-compose restart djangoapp
+ 1100  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login
+ 1101  cd services/web/
+ 1102  ls
+ 1103  cd dash
+ 1104  ls -ltr
+ 1105  cd api/
+ 1106  ls
+ 1107  ls -ltr
+ 1108  cd ..
+ 1109  ls -ltr
+ 1110  cd ../..
+ 1111  cd ..
+ 1112  docker-compose restart djangoapp
+ 1113  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login
+ 1114  docker-compose restart djangoapp
+ 1115  grep -irl "dash\.models" .
+ 1116  docker-compose restart djangoapp
+ 1117  cd services/web/
+ 1118  cd dash/models/
+ 1119  ls
+ 1120  cd ..
+ 1121  mv models/ /home/apalya/workspace/
+ 1122  nano models.py 
+ 1123  cd ../..
+ 1124  cd ..
+ 1125  clear
+ 1126  docker-compose restart djangoapp
+ 1127  docker-compose down
+ 1128  find -iname *.pyc
+ 1129  find -iname *.pyc - delete
+ 1130  find -iname *.pyc
+ 1131  find . -path "*/*.pyc"  -delete
+ 1132  find -iname *.pyc
+ 1133  docker-compose up -d
+ 1134  docker-compose restart djangoapp
+ 1135  cd services/web/
+ 1136  grep -irl "using" .
+ 1137  cd dash/api/
+ 1138  ls
+ 1139  nano viewsets.py 
+ 1140  nano subscriptionviewset.py 
+ 1141  rm subscriptionviewset.py 
+ 1142  ls -ltr
+ 1143  nano activesubscriptionserializer.py 
+ 1144  cd ..
+ 1145  clear
+ 1146  grep -irl "using" .
+ 1147  docker-compose restart djangoapp
+ 1148  nano docker-compose.yml 
+ 1149  docker images
+ 1150  docker-compose down
+ 1151  nano docker-compose.yml 
+ 1152  docker run --detach --rm --name=djangoapp -v ./services/web:/home/project/web dashboard_api_djangoapp
+ 1153  docker run --detach --rm --name=djangoapp -v services/web:/home/project/web dashboard_api_djangoapp
+ 1154  cd services/web/
+ 1155  docker run --detach --rm --name=djangoapp -v $PWD:/home/project/web dashboard_api_djangoapp
+ 1156  docker container ls
+ 1157  cd ../..
+ 1158  find . -path "*/*.pyc"  -delete
+ 1159  find -iname *.pyc
+ 1160  docker-compose up 
+ 1161  docker-compose down
+ 1162  nano services/web/Dockerfile 
+ 1163  docker-compose up djangoapp
+ 1164  docker-compose build djangoapp
+ 1165  docker-compose up djangoapp
+ 1166  docker-compose down
+ 1167  docker-compose up djangoapp
+ 1168  docker-compose down
+ 1169  find -iname "ActiveSub*"
+ 1170  docker-compose down
+ 1171  docker-compose up djangoapp
+ 1172  docker-compose down
+ 1173  docker container ls
+ 1174  sudo init 0
+ 1175  cd workspace/python/
+ 1176  ls -ltr
+ 1177  cd dashboard_api/
+ 1178  ls -ltr
+ 1179  cp ../blog-django-rest-oauth2/django-urls.txt .
+ 1180  clear
+ 1181  docker-compose up -d
+ 1182  clear
+ 1183  ls -ltr
+ 1184  docker container ls
+ 1185  docker-compose down
+ 1186  clear
+ 1187  docker-compose up -d
+ 1188  clear
+ 1189  docker-compose ps
+ 1190  docker-compose exec mysqldb
+ 1191  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1192  docker logs -f mysqldb
+ 1193  docker logs -f djangoapp
+ 1194  docker logs -f mysqldb
+ 1195  docker logs -f djangoapp
+ 1196  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1197  clear
+ 1198  cat ../blog-django-rest-oauth2/django-urls.txt 
+ 1199  docker-compose ps
+ 1200  docker-compose exec djangoapp bash
+ 1201  ls -ltr
+ 1202  docker-compose exec djangoapp bash
+ 1203  ls -ltr services/web/
+ 1204  ls -ltr
+ 1205  ls
+ 1206  cd services/
+ 1207  ls
+ 1208  cd web/
+ 1209  ls
+ 1210  cd ../..
+ 1211  find -iname "static*"
+ 1212  docker-compose exec djangoapp bash
+ 1213  cd ../blog-django-rest-oauth2/
+ 1214  ls
+ 1215  cd services/web/
+ 1216  ls
+ 1217  cd ../..
+ 1218  cd ..
+ 1219  cd dashboard_api/
+ 1220  ls -ltr
+ 1221  clear
+ 1222  docker exec -it djangoapp python manage.py collectstatic
+ 1223  ls -ltr
+ 1224  cd services/web/
+ 1225  ls
+ 1226  cd ../..
+ 1227  docker-compose exec djangoapp
+ 1228  ls
+ 1229  docker-compose exec djangoapp
+ 1230  docker-compose exec djangoapp bash
+ 1231  clear
+ 1232  docker-compose ps
+ 1233  curl -X POST -d "grant_type=password&username=app&password=apalya01&scope=read" -u"W7VM8oYivwKsfqGCgfiubhL6LQsWOiYN0uIJIwxI:TKSaFkmzs2cZqm0IjYg8ceLMTXbInIVpkaKYdsCdNrgfFFxG4jCh8buHHeUd31HTzwchDiGyQ9ucMVywYCFHVnQEzNb2eOQE84MLyb6KGEWE22NrcYkYw2Rwdr8o6oYL" http://localhost/o/token/
+ 1234  curl   -H "Authorization: Bearer qjxTZVRYfHVFvCMt7WxIKaft8CDzOr"  http://localhost/api/v1/dash/
+ 1235  docker logs -f djangoapp
+ 1236  docker-compose ps
+ 1237  docker logs -f djangoapp
+ 1238  docker-compose exec mysqldb mysql -udjangoapp -pdjangosEcrEt -h mysqldb
+ 1239  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1240  docker-compose logs -f djangoapp
+ 1241  docker-compose exec djangoapp bash
+ 1242  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1243  docker-compose exec mysqldb mysqlimport
+ 1244  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1245  docker-compose exec mysqldb bash
+ 1246  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1247  docker-compose exec mysqldb bash
+ 1248  docker-compose exec mysqldb mysqlimport
+ 1249  docker-compose exec mysqldb bash
+ 1250  docker cp services/web/myplex_user_device.csv mysqldb:/
+ 1251  docker-compose exec mysqldb bash
+ 1252  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1253  ls -ltr /home/apalya/Downloads/sql/
+ 1254  nano /home/apalya/Downloads/sql/myplex_user_device.sql 
+ 1255  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1256  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt myplex_service < myplex_user_device.sql
+ 1257  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt myplex_service < /home/apalya/Downloads/sql/myplex_user_device.sql
+ 1258  cd services/web/
+ 1259  cp -R /home/apalya/Downloads/sql/ .
+ 1260  cd ../..
+ 1261  docker-compose exec mysqldb bash
+ 1262  docker cp services/web/sql/ mysqldb:/home/
+ 1263  docker-compose exec mysqldb bash
+ 1264  docker-compose ps
+ 1265  docker logs -f djangoapp 
+ 1266  docker-compose ps
+ 1267  docker logs -f djangoapp
+ 1268  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1269  docker-compose ps
+ 1270  docker logs -f djangoapp
+ 1271  docker-compose ps
+ 1272  docker logs -f djangoapp 
+ 1273  cd /tmp/
+ 1274  ls -ltr
+ 1275  cd /home/apalya/
+ 1276  cd workspace/
+ 1277  ls -ltr
+ 1278  cd python/dashboard_api/
+ 1279  docker-compose ps
+ 1280  docker logs -f djangoapp 
+ 1281  docker-compose exec mysqldb mysql -u django -pdjangosEcrEt -h mysqldb
+ 1282  docker logs -f djangoapp 
+ 1283  docker-compose exec djangoapp bash
+ 1284  docker container ls
+ 1285  docker-compose exec mysqldb
+ 1286  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1287  clear
+ 1288  ls -ltr
+ 1289  exit
+ 1290  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1291  clear
+ 1292  exit
+ 1293  cd workspace/
+ 1294  cd python/dashboard_api/
+ 1295  docker-compose ps
+ 1296  docker container ls
+ 1297  docker-compose up djangoapp
+ 1298  docker-compose down
+ 1299  nano services/web/Dockerfile 
+ 1300  cd services/web/
+ 1301  mkdir logs
+ 1302  cd logs
+ 1303  touch gunicorn.log
+ 1304  nano gunicorn.log 
+ 1305  cd ../..
+ 1306  docker-compose down
+ 1307  docker-compose up
+ 1308  docker-compose build djangoapp
+ 1309  docker-compose up -d
+ 1310  cd ..
+ 1311  docker-compose down
+ 1312  cd services/
+ 1313  ls
+ 1314  cd ..
+ 1315  nano services/web/Dockerfile 
+ 1316  docker-compose build djangoapp
+ 1317  docker-compose up
+ 1318  cd ../..
+ 1319  cd python/dashboard_api/
+ 1320  docker-compose up
+ 1321  cd ..
+ 1322  ls ltr
+ 1323  ls -ltr
+ 1324  cd php-apache-mysql-containerized/
+ 1325  ls
+ 1326  nano docker-compose.yml 
+ 1327  cd ..
+ 1328  ls -ltr
+ 1329  cd python/blog-django-rest-oauth2/
+ 1330  nano docker-compose.yml 
+ 1331  cd ..
+ 1332  cd dashboard_api/
+ 1333  docker-compose up 
+ 1334  cd 
+ 1335  cd workspace/python/dashboard_api/
+ 1336  docker-compose up
+ 1337  cd workspace/
+ 1338  cd spring/
+ 1339  ls -ltr
+ 1340  cd ..
+ 1341  cd python/
+ 1342  ls -ltr
+ 1343  cd dashboard_api/
+ 1344  git status
+ 1345  cat d.sql 
+ 1346  rm d.sql 
+ 1347  rm d1.sql 
+ 1348  git status
+ 1349  cat App\ Store\ Billing 
+ 1350  docker-compose ps
+ 1351  docker logs -f djangoapp
+ 1352  docker-compose restart django
+ 1353  docker-compose restart djangoapp
+ 1354  docker logs -f djangoapp
+ 1355  docker-compose restart djangoapp
+ 1356  docker logs -f djangoapp
+ 1357  docker-compose restart djangoapp
+ 1358  docker logs -f djangoapp
+ 1359  docker-compose restart djangoapp
+ 1360  docker logs -f djangoapp
+ 1361  docker-compose restart djangoapp
+ 1362  docker logs -f djangoapp
+ 1363  docker-compose restart djangoapp
+ 1364  docker logs -f djangoapp
+ 1365  docker-compose restart djangoapp
+ 1366  docker logs -f djangoapp
+ 1367  docker-compose restart djangoapp
+ 1368  docker logs -f djangoapp
+ 1369  docker-compose restart djangoapp
+ 1370  docker logs -f djangoapp
+ 1371  docker-compose restart djangoapp
+ 1372  docker logs -f djangoapp
+ 1373  git status
+ 1374  git add services/web/dash/views.py 
+ 1375  git commit -m "Altered the code that jsonifies the response"
+ 1376  docker-compose restart djangoapp
+ 1377  docker logs -f djangoapp
+ 1378  docker-compose restart djangoapp
+ 1379  docker logs -f djangoapp
+ 1380  docker-compose restart djangoapp
+ 1381  docker logs -f djangoapp
+ 1382  docker-compose restart djangoapp
+ 1383  docker logs -f djangoapp
+ 1384  docker-compose restart djangoapp
+ 1385  docker logs -f djangoapp
+ 1386  docker-compose restart djangoapp
+ 1387  docker logs -f djangoapp
+ 1388  docker-compose restart djangoapp
+ 1389  docker logs -f djangoapp
+ 1390  docker-compose restart djangoapp
+ 1391  docker logs -f djangoapp
+ 1392  docker-compose restart djangoapp
+ 1393  docker logs -f djangoapp
+ 1394  docker-compose restart djangoapp
+ 1395  docker logs -f djangoapp
+ 1396  docker-compose restart djangoapp
+ 1397  docker logs -f djangoapp
+ 1398  docker-compose restart djangoapp
+ 1399  docker logs -f djangoapp
+ 1400  docker-compose restart djangoapp
+ 1401  docker logs -f djangoapp
+ 1402  docker-compose restart djangoapp
+ 1403  docker logs -f djangoapp
+ 1404  docker-compose restart djangoapp
+ 1405  docker logs -f djangoapp
+ 1406  git status
+ 1407  git add services/web/dash/serializers.py
+ 1408  git add services/web/dash/urls.py
+ 1409  git add services/web/dash/views.py
+ 1410  git commit -m "fixed bug in serializer date validation"
+ 1411  git status
+ 1412  git push -u origin dashboard-ver2 
+ 1413  docker-compose down
+ 1414  cd ..
+ 1415  ls -ltr
+ 1416  cd ..
+ 1417  ls -ltr
+ 1418  cd reactjs/
+ 1419  ls -ltr
+ 1420  cd myreact/
+ 1421  ls -ltr
+ 1422  cat index.html 
+ 1423  ls -ltr
+ 1424  cd src/
+ 1425  ls
+ 1426  cd ..
+ 1427  ls -ltr
+ 1428  cd ..
+ 1429  ls -ltr
+ 1430  cd react-bolt/
+ 1431  ls
+ 1432  cat howto.txt 
+ 1433  ls -ltr
+ 1434  cd ..
+ 1435  ls -ltr
+ 1436  cd reactboiler/
+ 1437  ls
+ 1438  ls -ltr
+ 1439  nano README.md 
+ 1440  cd ..
+ 1441  ls -ltr
+ 1442  cd react-redux-boilerplate/
+ 1443  ls
+ 1444  nano howto.txt 
+ 1445  ls -ltr
+ 1446  nano Dockerfile 
+ 1447  nano run.sh 
+ 1448  ls -ltr
+ 1449  nano Dockerfile 
+ 1450  cd server/
+ 1451  ls
+ 1452  cat index.js 
+ 1453  cd ..
+ 1454  ls -ltr
+ 1455  cd server/
+ 1456  ls
+ 1457  cd middlewares/
+ 1458  ls
+ 1459  ls -ltr
+ 1460  cat frontendMiddleware.js 
+ 1461  cd ..
+ 1462  ls -ltr
+ 1463  cd util/
+ 1464  ls
+ 1465  cat port.js 
+ 1466  cd ..
+ 1467  ls -ltr
+ 1468  cd ..
+ 1469  cd myreact/
+ 1470  ls -ltr
+ 1471  nano index.html 
+ 1472  cd src/
+ 1473  ls -ltr
+ 1474  cd ..
+ 1475  ls -ltr
+ 1476  nano package.json 
+ 1477  cd ..
+ 1478  cd react-bolt/
+ 1479  ls
+ 1480  cd ..
+ 1481  ls -ltr
+ 1482  cd react-bolt/
+ 1483  ls
+ 1484  nano package.json 
+ 1485  cd ..
+ 1486  ls -ltr
+ 1487  cd ..
+ 1488  cd myreact/
+ 1489  ls -ltr
+ 1490  nano package.json 
+ 1491  cd ../..
+ 1492  cd python/dashboard_api/
+ 1493  ls -ltr
+ 1494  cd services/web/
+ 1495  find -iname index.html
+ 1496  find -iname "*.html"
+ 1497  cd ..
+ 1498  find -iname *html
+ 1499  cd ..
+ 1500  docker-compose down
+ 1501  docker-compose up
+ 1502  docker-compose down
+ 1503  docker-compose up -d
+ 1504  cd ..
+ 1505  cd ../reactjs/myreact/
+ 1506  cat ../react-bolt/howto.txt 
+ 1507  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1508  ls -ltr
+ 1509  cp ../react-bolt/react-bolt/run.sh .
+ 1510  clear
+ 1511  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1512  cat how
+ 1513  ls -ltr
+ 1514  cat ../react-bolt/howto.txt 
+ 1515  ls -ltr
+ 1516  docker image build -t react:app .
+ 1517  cp ../react-bolt/Dockerfile .
+ 1518  docker image build -t react:app .
+ 1519  nano Dockerfile 
+ 1520  cp ../react-redux-boilerplate/Dockerfile .
+ 1521  nano Dockerfile 
+ 1522  clear
+ 1523  docker image build -t react:app .
+ 1524  docker image ls react:app
+ 1525  docker image rm react:app
+ 1526  docker image ls react:app
+ 1527  clear
+ 1528  docker image build -t react:app .
+ 1529  docker image ls react:app
+ 1530  cat how
+ 1531  cat ../react-bolt/howto.txt 
+ 1532  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1533  docker container
+ 1534  docker container ps -a
+ 1535  docker container ls
+ 1536  nano run.sh 
+ 1537  nano Dockerfile 
+ 1538  cd ..
+ 1539  ls -ltr
+ 1540  cd reactboiler/
+ 1541  ls
+ 1542  cd app
+ 1543  ls
+ 1544  cd ..
+ 1545  cd react-redux-boilerplate/
+ 1546  ls
+ 1547  nano Dockerfile 
+ 1548  cd ..
+ 1549  cd myreact/
+ 1550  ls -ltr
+ 1551  npm install
+ 1552  cat package.json 
+ 1553  npm run dev
+ 1554  docker run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app start
+ 1555  cat run.sh 
+ 1556  cat ../react-redux-boilerplate/howto.txt 
+ 1557  docker container run -it react:app bash
+ 1558  docker container ls
+ 1559  docker container ps -a |grep -iE "react"
+ 1560  docker container run -it -p 3000:3000 react:app
+ 1561  docker container run -it react:app bash
+ 1562  docker container run -it -p 3000:3000 react:app
+ 1563  nano run.sh 
+ 1564  cd ..
+ 1565  cd react-bolt/
+ 1566  ls
+ 1567  cat Dockerfile 
+ 1568  cd ..
+ 1569  ls -ltr
+ 1570  cd reactboiler/
+ 1571  ls
+ 1572  nano package.json 
+ 1573  cd ..
+ 1574  cd myreact/
+ 1575  ls
+ 1576  nano package.json 
+ 1577  nano ../react-bolt/react-bolt/package.json 
+ 1578  nano package.json 
+ 1579  docker image build -t react:app .
+ 1580  docker container run -it -p --detach --rm --name=reactapp 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1581  docker container run -it -p -d --rm --name=reactapp 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1582  docker -p -d --rm --name=reactapp 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1583  docker container -d --rm --name=reactapp 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1584  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1585  nano package.json 
+ 1586  docker image build -t react:app .
+ 1587  nano package.json 
+ 1588  docker image build -t react:app .
+ 1589  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1590  nano package.json 
+ 1591  rm -rf node_modules/
+ 1592  npm run dev
+ 1593  nano package.json 
+ 1594  npm run 
+ 1595  npm install
+ 1596  npm run dev
+ 1597  nano webpack.config.js 
+ 1598  cd src/
+ 1599  ls
+ 1600  nano app.js 
+ 1601  cd ..
+ 1602  clear
+ 1603  nano index.html 
+ 1604  ls -ltr
+ 1605  cd src/
+ 1606  ls -ltr
+ 1607  cd ..
+ 1608  cat webpack.config.js 
+ 1609  cd ..
+ 1610  cd react-bolt/
+ 1611  nano react-bolt/package.json 
+ 1612  cd ..
+ 1613  ls -ltr
+ 1614  cd react-redux-boilerplate/
+ 1615  nano .git/config 
+ 1616  nano package.json 
+ 1617  cd ..
+ 1618  cd reactboiler/
+ 1619  ls
+ 1620  nano package.json 
+ 1621  cd ..
+ 1622  cd react-bolt/
+ 1623  ls
+ 1624  nano webpack.config.js 
+ 1625  cd ..
+ 1626  ls -ltr
+ 1627  cd reactboiler/
+ 1628  nano package.json 
+ 1629  ls
+ 1630  cd config/
+ 1631  ls
+ 1632  nano webpack.dev.babel.js 
+ 1633  grep -irl "scss" .
+ 1634  nano webpack.base.babel.js 
+ 1635  ls 
+ 1636  nano webpack.base.babel.js 
+ 1637  grep -irl "options".
+ 1638  cd ..
+ 1639  ls
+ 1640  nano babel.config.js 
+ 1641  grep -irl "\.entry" .
+ 1642  nano ./config/webpack.base.babel.js
+ 1643  grep -irl "entry" .
+ 1644  nano ./config/webpack.dev.babel.js
+ 1645  ls -ltr
+ 1646  cd app/
+ 1647  ls
+ 1648  cd ../..
+ 1649  cd myreact/
+ 1650  nano package.json 
+ 1651  npm run dev
+ 1652  cd src/
+ 1653  nano app.js 
+ 1654  ls
+ 1655  nano app.js 
+ 1656  ls -ltr
+ 1657  nano app.js 
+ 1658  grep -irl "AppTest" .
+ 1659  nano app.js 
+ 1660  cd ..
+ 1661  ls -altr
+ 1662  nano .babelrc 
+ 1663  cd .
+ 1664  nano package.json 
+ 1665  find -iname "404*.png"
+ 1666  find -iname "404*.*"
+ 1667  cd ..
+ 1668  cd python/dashboard_api/
+ 1669  cd services/reactapp/
+ 1670  find -iname "404*"
+ 1671  find -iname "*404*"
+ 1672  cd /home/apalya/workspace/reactjs/reactboiler/
+ 1673  nano .git/config 
+ 1674  cd ..
+ 1675  cd react-bolt/
+ 1676  cat howto.txt 
+ 1677  docker container ps -a
+ 1678  docker container ps -a|grep -ie "react"
+ 1679  docker exec -it cf2d2124ded8 bash
+ 1680  docker container ps -a|grep -ie "react"
+ 1681  clear
+ 1682  docker container ps -a|grep -ie "react"
+ 1683  docker exec -it reactapp bash
+ 1684  docker container stop reactapp
+ 1685  docker container ps -a|grep -ie "react"
+ 1686  docker container stop 3e597db580b8f67b48054047f82a1e5cc481034c3bd81b1dd840d7621e949444
+ 1687  docker container rm 3e597db580b8f67b48054047f82a1e5cc481034c3bd81b1dd840d7621e949444
+ 1688  clear
+ 1689  docker container ps -a|grep -ie "react"
+ 1690  docker exec -it reactapp bash
+ 1691  docker container stop mysql
+ 1692  docker container stop reactapp
+ 1693  docker container ps -a|grep -ie "react"
+ 1694  docker container rm 58f74fbb027d
+ 1695  docker container stop reactapp
+ 1696  docker container ps -a|grep -ie "react"
+ 1697  docker logs -f reactapp
+ 1698  docker exec -it reactapp bash
+ 1699  docker container stop reactapp
+ 1700  docker logs -f reactapp
+ 1701  docker-compose restart djangoapp
+ 1702  cd ../..
+ 1703  cd python/dashboard_api/
+ 1704  docker-compose restart djangoapp
+ 1705  docker logs -f reactapp
+ 1706  docker-compose down
+ 1707  docker container stop reactapp
+ 1708  cd workspace/python/blog-django-rest-oauth2/
+ 1709  git pull origin master
+ 1710  ls -ltr
+ 1711  cat django-urls.txt 
+ 1712  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login/
+ 1713  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM1MjU2NSwiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.1kttNpEZNgdbDSLvugtm7FZrw17jDCJKp0uvUovk0-A","user"  http://localhost/api/v1/dashboard/activesubscriptions/
+ 1714  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM1MjU2NSwiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.1kttNpEZNgdbDSLvugtm7FZrw17jDCJKp0uvUovk0-A"  http://localhost/api/v1/dashboard/activesubscriptions/
+ 1715  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM1MjU2NSwiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.1kttNpEZNgdbDSLvugtm7FZrw17jDCJKp0uvUovk0-A"  http://localhost/api/v1.1/activesubscription/5/22
+ 1716  git status
+ 1717  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM1MjU2NSwiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.1kttNpEZNgdbDSLvugtm7FZrw17jDCJKp0uvUovk0-A"  http://localhost/api/v1.1/activesubscription/5/22
+ 1718  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM1MjU2NSwiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.1kttNpEZNgdbDSLvugtm7FZrw17jDCJKp0uvUovk0-A"  http://localhost/api/v1.1/activesubscription/5/2019-06-24
+ 1719  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM1MjU2NSwiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.1kttNpEZNgdbDSLvugtm7FZrw17jDCJKp0uvUovk0-A"  http://localhost/api/v1.1/activesubscription/5/2019-06
+ 1720  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM1MjU2NSwiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.1kttNpEZNgdbDSLvugtm7FZrw17jDCJKp0uvUovk0-A"  http://localhost/api/v1.1/activesubscription/5/2019-06-24
+ 1721  cd ..
+ 1722  cd dashboard_api/
+ 1723  ls -ltr
+ 1724  cd services/web/
+ 1725  ls
+ 1726  ls -ltr
+ 1727  cd ..
+ 1728  ls -ltr
+ 1729  cd frontend/
+ 1730  cp /home/apalya/workspace/reactjs/react-redux-boilerplate/Dockerfile .
+ 1731  cp /home/apalya/workspace/reactjs/react-redux-boilerplate/run.sh .
+ 1732  ls -ltr~
+ 1733  cp /home/apalya/workspace/reactjs/react-redux-boilerplate/package.json .
+ 1734  cp /home/apalya/workspace/reactjs/myreact/index.html .
+ 1735  cp /home/apalya/workspace/reactjs/myreact/package.json .
+ 1736  ls -ltr
+ 1737  nano package.json
+ 1738  cp /home/apalya/workspace/reactjs/myreact/webpack.config.js .
+ 1739  ls -ltr
+ 1740  nano package.json 
+ 1741  ls -ltr
+ 1742  cp /home/apalya/workspace/reactjs/react-redux-boilerplate/howto.txt .
+ 1743  nano howto.txt 
+ 1744  ls -ltr
+ 1745  cd ..
+ 1746  nano docker-compose
+ 1747  nano docker-compose.yml 
+ 1748  docker-compose ps
+ 1749  cd services/frontend/
+ 1750  ls -ltr
+ 1751  cat howto.txt 
+ 1752  docker image build -t react:app .
+ 1753  docker image ls react:app
+ 1754  cat howto.txt 
+ 1755  docker run --detach --rm --name-reactapp -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1756  docker run --detach --rm --name=reactapp -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1757  docker container ps -a
+ 1758  docker container 
+ 1759  docker container ls
+ 1760  docker container stop 0d5306f5aa156fb3e336ecdb794ca8bd0acf9b8c8ea2dba22157c6ef214efb6c
+ 1761  docker container rm 0d5306f5aa156fb3e336ecdb794ca8bd0acf9b8c8ea2dba22157c6ef214efb6c
+ 1762  clear
+ 1763  cat howto.txt 
+ 1764  docker container run --detach --rm --name=reactapp -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1765  docker container ps -a
+ 1766  docker container run --detach --rm --name=reactapp -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1767  docker images ls react:app
+ 1768  docker images ls
+ 1769  docker image ls
+ 1770  docker image ls react:app
+ 1771  nano Dockerfile 
+ 1772  nano package.json 
+ 1773  nano Dockerfile 
+ 1774  nano run.sh 
+ 1775  ls -ltr
+ 1776  docker image build -t react:app .
+ 1777  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1778  ls -ltr
+ 1779  nano package.json 
+ 1780  nano webpack.config.js 
+ 1781  cd src/
+ 1782  ls
+ 1783  cd ..
+ 1784  ls -ltr
+ 1785  cd src/
+ 1786  ls -ltr
+ 1787  cd ..
+ 1788  cp -R /home/apalya/workspace/reactjs/myreact/src/ .
+ 1789  rm -rf src/
+ 1790  cp -R /home/apalya/workspace/reactjs/myreact/src/ .
+ 1791  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1792  nano index.html 
+ 1793  nano webpack.config.js 
+ 1794  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app bash
+ 1795  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app 
+ 1796  nano package.json 
+ 1797  nano webpack.config.js 
+ 1798  ls
+ 1799  mv webpack.config.js webpack.config.old
+ 1800  ls -ltr
+ 1801  cp -R /home/apalya/workspace/reactjs/reactboiler/config/ .
+ 1802  cp -R /home/apalya/workspace/reactjs/reactboiler/jest.config.js .
+ 1803  cp -R /home/apalya/workspace/reactjs/reactboiler/babel.config.js .
+ 1804  mv package.json package.react
+ 1805  cp -R /home/apalya/workspace/reactjs/reactboiler/package.json .
+ 1806  nano package.react 
+ 1807  nano package.json 
+ 1808  clear
+ 1809  nano package.json 
+ 1810  docker image build -t react:app .
+ 1811  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1812  nano webpack.config.old 
+ 1813  nano package.react 
+ 1814  nano package.json 
+ 1815  docker image build -t react:app .
+ 1816  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1817  nano package.json 
+ 1818  nano package.react 
+ 1819  nano package.json 
+ 1820  docker image rm react:app
+ 1821  docker container stop 8873635731a4
+ 1822  docker container rm 8873635731a4
+ 1823  docker image rm react:app
+ 1824  docker image build -t react:app .
+ 1825  nano package.json 
+ 1826  docker image build -t react:app .
+ 1827  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1828  nano package.react 
+ 1829  ls -ltr
+ 1830  cd config/
+ 1831  ls
+ 1832  cd ..
+ 1833  ls -ltr
+ 1834  mv package.json package.reactboilerplate
+ 1835  mv webpack.config.old webpack.config.js
+ 1836  mv package.react package.json
+ 1837  npm install
+ 1838  npm run dev
+ 1839  ls -ltr
+ 1840  rm -rf node_modules/
+ 1841  rm -rf config/
+ 1842  rm jest.config.js 
+ 1843  rm babel.config.js 
+ 1844  ls -ltr
+ 1845  rm package.json package-lock.json 
+ 1846  ls -ltr
+ 1847  rm webpack.config.js 
+ 1848  ls -ltr
+ 1849  cp /home/apalya/workspace/reactjs/myreact/package.json .
+ 1850  cp /home/apalya/workspace/reactjs/myreact/webpack.config.js .
+ 1851  ls -ltr
+ 1852  npm install
+ 1853  nano package.json 
+ 1854  npm install
+ 1855  npm run dev
+ 1856  nano .babelrc
+ 1857  nano package.json 
+ 1858  nano .babelrc
+ 1859  nano webpack.config.js 
+ 1860  npm run dev
+ 1861  npm install --save-dev babel-plugin-transform-class-properties
+ 1862  npm run dev
+ 1863  nano package.json 
+ 1864  nano webpack.config.js 
+ 1865  cp .babelrc .babelrc-old
+ 1866  nano .babelrc
+ 1867  npm run dev
+ 1868  cp .babelrc-old .babelrc
+ 1869  npm run dev
+ 1870  cd ..
+ 1871  docker image rm react:app
+ 1872  docker container stop 638ca83a05ad
+ 1873  docker container rm 638ca83a05ad
+ 1874  npm run dev
+ 1875  cd frontend/
+ 1876  npm run dev
+ 1877  cd ..
+ 1878  cp -R /home/apalya/workspace/reactjs/myreact/ .
+ 1879  mv myreact/ reactapp
+ 1880  cd reactapp/
+ 1881  npm install
+ 1882  nano .babelrc 
+ 1883  npm run dev
+ 1884  npm install react-highcharts --save
+ 1885  clear
+ 1886  ls -ltr
+ 1887  npm run dev
+ 1888  nano webpack.config.js 
+ 1889  nano package.json 
+ 1890  npm start
+ 1891  npm install less-loader less style-loader css-loader url-loader file-loader image-webpack-loader extract-text-webpack-plugin --save-dev
+ 1892  npm install bootstrap react-bootstrap --save 
+ 1893  npm start
+ 1894  find -iname bootstrap.scss
+ 1895  npm start
+ 1896  cd ..
+ 1897  mv frontend/ frontold
+ 1898  npx create-react-app my-app
+ 1899  npx create-react-app frontend
+ 1900  ls -ltr
+ 1901  cd front
+ 1902  cd frontend
+ 1903  ls
+ 1904  cd src/
+ 1905  ls
+ 1906  nano index.js 
+ 1907  cd ..
+ 1908  nanofind -iname "*babe*"
+ 1909  find -iname "webpack*"
+ 1910  ls
+ 1911  cd public/
+ 1912  ls
+ 1913  ls -ltr
+ 1914  cd ..
+ 1915  ls -ltr
+ 1916  cd src/
+ 1917  ls
+ 1918  cd ..
+ 1919  find -iname "*webpack*"
+ 1920  find -iname "*webpack*.js"
+ 1921  mv src src_old
+ 1922  cp -R ../reactapp/src/ .
+ 1923  cd src
+ 1924  ls
+ 1925  mv app.js index.js
+ 1926  nano index.js 
+ 1927  cd ..
+ 1928  npm start
+ 1929  nano /home/apalya/.npm/_logs/2019-06-24T08_03_26_500Z-debug.log
+ 1930  echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+ 1931  npm start
+ 1932  cd ..
+ 1933  ls
+ 1934  https://github.com/flexdinesh/react-redux-boilerplate.git
+ 1935  git clone https://github.com/flexdinesh/react-redux-boilerplate.git
+ 1936  clear
+ 1937  ls -ltr
+ 1938  cd react-redux-boilerplate/
+ 1939  nano README.md 
+ 1940  npm install
+ 1941  npm start
+ 1942  nano package.json 
+ 1943  cp ../frontold/Dockerfile .
+ 1944  cp ../frontold/run.sh .
+ 1945  docker build -t react:app .
+ 1946  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1947  rm -rf node_modules/
+ 1948  docker build -t react:app .
+ 1949  docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1950  docker container run --name=reactapp -d -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1951  docker-compose exec mysqldb mysql -udjango -pdjangosEcrEt -h mysqldb
+ 1952  docker container run --name=reactapp -d --rm -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app
+ 1953  ls -ltr
+ 1954  cd app/
+ 1955  ls
+ 1956  cd containers/
+ 1957  ls
+ 1958  cd highcharts/
+ 1959  ls
+ 1960  ls -ltr
+ 1961  cp ../HomePage/* .
+ 1962  ls -ltr
+ 1963  rm HomePage.js 
+ 1964  cp ../../components/highchart/timeseries.js .
+ 1965  mv timeseries.js TimeSeries.js
+ 1966  ls -ltr
+ 1967  cd ..
+ 1968  grep -irl "makeSelectRepos" .
+ 1969  nano HomePage/index.js 
+ 1970  cd ../..
+ 1971  docker-compose ps
+ 1972  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login/
+ 1973  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM3NjUyNywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.r7LA73efzuVhe56f0gV2p4Mz8P25RqZH5CEfkSSwhP0"  http://localhost/api/v1.1/activesubscription/5/22
+ 1974  curl   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImFwcCIsImV4cCI6MTU2MTM3NjUyNywiZW1haWwiOiJhcHBAYXBhbHlhLmNvbSJ9.r7LA73efzuVhe56f0gV2p4Mz8P25RqZH5CEfkSSwhP0"  http://localhost/api/v1.1/activesubscription/5/2019-06-24
+ 1975  curl -X POST -d "username=app&password=apalya01&scope=read" http://localhost/api/auth/login/
+ 1976  clear
+ 1977  git status
+ 1978  git add services/reactapp/
+ 1979  rm -rf services/frontend/
+ 1980  rm -rf services/frontold
+ 1981  git rm -rf services/reactapp/
+ 1982  git status
+ 1983  git add services/react-redux-boilerplate/
+ 1984  git status
+ 1985  git add services/web/dashboard/settings.py 
+ 1986  git status
+ 1987  git add docker-compose.yml 
+ 1988  git status
+ 1989  git commit -m "added front end code for displaying charts"
+ 1990  git status
+ 1991  git push -u origin dashboard-ver2 
+ 1992  clear
+ 1993  cd ..
+ 1994  ls -ltr
+ 1995  cd spring/
+ 1996  ls
+ 1997  ls -ltr
+ 1998  cd ..
+ 1999  clear
+ 2000  sudo init 0
+ 2001  docker container ps -a
+ 2002  docker container ls -a
+ 2003  docker container ls -a --filter status=exited --filter status=created
+ 2004  docker container prune
+ 2005  docker container ls -a --filter status=exited --filter status=created
+ 2006  docker container ps -a
+ 2007  cd workspace/python/
+ 2008  cd dashboard_api/
+ 2009  docker-compose up -d
+ 2010  clear
+ 2011  docker-compose ps
+ 2012  cd services/
+ 2013  ls -ltr
+ 2014  cd react-redux-boilerplate/
+ 2015  ls -ltr
+ 2016  cd ..
+ 2017  cd reactapp/
+ 2018  ls
+ 2019  cd ..
+ 2020  cd react-redux-boilerplate/
+ 2021  ls -ltr
+ 2022  history > 1

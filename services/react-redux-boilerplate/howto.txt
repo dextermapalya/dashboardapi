@@ -1,0 +1,6 @@
+build the image
+
+docker build -t react:app .
+
+start the container
+docker container run --name=reactapp -d --rm -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app

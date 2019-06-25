@@ -127,8 +127,15 @@ DATABASES = {
         'PASSWORD': 'djangosEcrEt',
         'HOST': 'mysqldb',
         'PORT': 3306,
+    },
+    'remote': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'SUN_CHARGING_DB',
+        'USER': 'appuser',
+        'PASSWORD': 'Asun09networKDB',
+        'HOST': 'v2stagingdb.cihebtldfl6n.ap-south-1.rds.amazonaws.com',
+        'PORT': 3306,
     }
-
 }
 
 # Password validation
@@ -274,6 +281,10 @@ LOGGING = {
         'py.warnings': {
             'handlers': ['development_logfile'],
         },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console','development_logfile','production_logfile'],
+        }
     }
 }
 

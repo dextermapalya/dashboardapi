@@ -10,35 +10,35 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from datetime import date
 from .serializers import SubscriptionSerializer
+import logging
+stdlogger = logging.getLogger(__name__)
 
-def get_subscriptionquery():
+def get_subscriptionquery(dt = None):
     query = """
-        SELECT  CURRENT_DATE() as cdate ,COUNT(DISTINCT a.cp_customer_id) as active_subs
-        FROM(
-        SELECT  p.cp_customer_id AS cp_customer_id
-        FROM  subscription s
-        INNER JOIN  payment p
-        ON s.cp_customer_id=p.cp_customer_id
-        AND s.order_id = p.order_id 
-        INNER JOIN  package_def t
-        ON s.package_id=t.package_id 
-        INNER JOIN  package_rate r
-        ON r.package_id=s.package_id
-        AND CAST(p.received_date AS DATE) BETWEEN CAST(r.start_date AS DATE) 
-        AND CAST(CASE WHEN r.end_date IS NULL THEN '2099-12-31' ELSE r.end_date END AS DATE)
-        AND CASE WHEN p.payment_method <>'App Store Billing' THEN 'Retail Price' ELSE payment_method END =r.rate_type
-        WHERE p.posting_status = 'Posted'  AND p.payment_type IN('Purchase','Renewal') AND is_refund IS NULL
-        AND cancellation_date IS NULL AND DATE(s.validity_end_date)>=CONVERT_TZ(NOW(),'GMT','Asia/Kolkata')
-        GROUP BY 1
-        UNION all
-        SELECT  cp_customer_id
-        FROM  revenue_transaction_details
-        WHERE payment_type IN('Purchase','Renewal') AND transaction_status ='Posted' AND
-        DATE(validity_end_date)>=CONVERT_TZ(NOW(),'GMT','Asia/Kolkata') AND cancellation_date IS NULL
-        GROUP BY 1
-        ) a
-        GROUP BY 1;
+            SELECT HOUR(created_on) HR,
+            COUNT(b.user_id) Mobile_Reg,
+            COUNT(c.user_id) email_Reg
+            FROM
+            (SELECT id,CONVERT_TZ(created_on,'GMT','Asia/Kolkata') created_on
+            FROM myplex_service.myplex_user_user WHERE DATE(CONVERT_TZ(created_on,'GMT','Asia/Kolkata'))={0}
+            GROUP BY 1,2
+            ) a
+            LEFT JOIN
+            (SELECT user_id,mobile FROM myplex_user_usermobile
+            WHERE DATE(CONVERT_TZ(created_on,'GMT','Asia/Kolkata'))={0} GROUP BY 1,2) b
+            ON a.id=b.user_id
+            LEFT JOIN
+            (SELECT user_id,email FROM myplex_user_useremail
+            WHERE DATE(CONVERT_TZ(created_on,'GMT','Asia/Kolkata'))={0} GROUP BY 1,2) c
+            ON a.id=c.user_id
+            GROUP BY 1    
         """
+    if dt is None:
+        query = query.format( ' CURRENT_DATE() ')    
+    else:
+        query = query.format( "DATE('" + dt + "')" )    
+
+    stdlogger.info(query)
     return query    
 
 def jsonifysubscriptions(resultset):
@@ -74,16 +74,17 @@ def activesubscriptions(request, id, dt_query ):
                 if validator.is_valid() == False:
                     raise Exception("Invalid rest Arguments")
                 #query = "select * from test"    
-                #cursor = connections['remote'].cursor() #this is for multiple databases
-                cursor =  connection.cursor() #this is for default database
-                cursor.execute( get_subscriptionquery() )
+                cursor = connections['remote'].cursor() #this is for multiple databases
+                #cursor =  connection.cursor() #this is for default database
+                cursor.execute( get_subscriptionquery(dt_query) )
+                #cursor.execute( "select * from myplex_user_device")
                 #query the db and jsonify the results
                 r = [dict((cursor.description[i][0], value) \
                   for i, value in enumerate(row)) for row in cursor.fetchall()]
                 cursor.connection.close()
 
                 #jsondata = jsonifysubscriptions (  cursor.fetchall() )
-                response = {"code": status_code, "data": r[0] }
+                response = {"code": status_code, "data": r }
                 
         except Exception as e:
             #return an exception

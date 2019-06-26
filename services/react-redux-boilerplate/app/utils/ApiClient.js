@@ -20,7 +20,8 @@ const ApiClient = () => {
     //const token = localStorage.getItem('token');
     console.log('adding token....', config.url)
 
-    if ( [ "auth/login" ].indexOf( config.url ) > 0 ) {
+    if ( [ "auth/login/" ].indexOf( config.url ) >= 0 ) {
+      
       config.headers = {'Content-Type': 'multipart/form-data' } 
     } else{
       console.log('******************************')

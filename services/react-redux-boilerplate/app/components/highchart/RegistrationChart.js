@@ -4,23 +4,19 @@ import HighchartsReact from 'highcharts-react-official'
 import axios from 'axios';
 import RegistrationOptions from './RegistrationOptions'
 import ApiClient from '../../utils/ApiClient'
-
-const optionsa = {
-  title: {
-    text: 'Registrations - Hourly'
-  },
-  series: [{
-    data: []
-  }]
-}
+import { map } from 'lodash';
 
 
 class RegistrationChart extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-    state = {
+    /*state = {
       chartname : this.props.chartname
-    }
+    }*/
     
+    constructor(props) {
+      super(props);
+      this.state = { chartOptions:{} };
+    }
 
    /* when the parent state changes this is the function in the child class that is 
    triggered the return state automatically updates the state 
@@ -65,17 +61,21 @@ class RegistrationChart extends React.Component { // eslint-disable-line react/p
     //ajax call to fetch timeline series
   fetchData() {
 
-    var user_info = localStorage.getItem('user_info');
-
-    var token = 
-    axios.defaults.headers.common = {'Authorization': ' Bearer ' + token}
-    var url = 'http://localhost/api/v1.1/activesubscription/5/2019-06-24'
-    ApiClient.get( 'v1.1/activesubscription/5/2019-06-24' )
+    ApiClient.get( 'v1.1/activesubscription/5/2019-04-05' )
     .then(res => {
-      const chartData = res.data;
-      this.setState({ chartData });
-      let data  = [ ['06/24/2019 07:00', 25], ['06/24/2019 07:00', 4], ['06/24/2019 07:00', 4] ]
-      RegistrationOptions.data = data
+      const chartData = res.data.data;
+      this.setState({ chartData }); 
+      var mobile = {name: 'Mobile', data: map(chartData, 'Mobile_Reg')} // [12, 14, 16, 18]
+      var desktop = {name: 'Others', data: map(chartData, 'email_Reg')} 
+      var hours = map(chartData , 'HR' )
+      var series = []
+
+      series.push (mobile)
+      series.push(desktop)
+
+      RegistrationOptions.series = series
+      console.log ('****', series)
+      this.setState({chartOptions: RegistrationOptions})
     })
 
   } 
@@ -86,7 +86,7 @@ class RegistrationChart extends React.Component { // eslint-disable-line react/p
         <div>
           <HighchartsReact
             highcharts={Highcharts}
-            options={RegistrationOptions}
+            options={this.state.chartOptions}
           />
         </div>
       </section>

@@ -13,7 +13,6 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import RegistrationChart from 'components/highchart/RegistrationChart';
 import ApiClient from '../../utils/ApiClient'
-import axios from 'axios'
 
 const options = Highcharts.Options = {
   title: {

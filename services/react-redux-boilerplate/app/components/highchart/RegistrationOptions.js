@@ -4,7 +4,7 @@ temp.toUTCString();
 min: Date.UTC(temp.getUTCFullYear(), temp.getUTCMonth(), temp.getUTCDate(), 0, 0, 0),
 max: Date.UTC(temp.getUTCDate(), temp.getUTCMonth(), temp.getUTCDate(), 0, 0, 0),
 */
-const hours = [12,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+const hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,'22:00','23:00']
 
 const RegistrationOptions = {
     chart: {
@@ -106,18 +106,9 @@ const RegistrationOptions = {
             }
         }
     },
+    series: []
   
-    series : [{
-        name: 'Registrations',
-        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
-           26.5, 23.3, 18.3, 13.9, 9.6],
-         },
-         {
-           name: 'App Installs',
-           data: [4.0, 9, 11, 100, 18, 27, 4,
-               3, 1, 0, 14, 9],
-         } 
-    ]
+    
 
     /*series: [{
         name: 'All sessions',

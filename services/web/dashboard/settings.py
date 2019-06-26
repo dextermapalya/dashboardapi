@@ -130,7 +130,7 @@ DATABASES = {
     },
     'remote': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'SUN_CHARGING_DB',
+        'NAME': 'myplex_service',
         'USER': 'appuser',
         'PASSWORD': 'Asun09networKDB',
         'HOST': 'v2stagingdb.cihebtldfl6n.ap-south-1.rds.amazonaws.com',

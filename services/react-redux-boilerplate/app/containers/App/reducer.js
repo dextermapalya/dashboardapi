@@ -7,6 +7,7 @@ export const initialState = {
   currentUser: false,
   userData: {
     repositories: false,
+    userinfo: {username:'guest', 'first_name':'Guest', 'last_name':'', email:''}
   },
 };
 

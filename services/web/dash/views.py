@@ -13,7 +13,7 @@ from .serializers import SubscriptionSerializer
 import logging
 stdlogger = logging.getLogger(__name__)
 
-def get_subscriptionquery(dt = None):
+def get_registrationquery(dt = None):
     query = """
             SELECT HOUR(created_on) HR,
             COUNT(b.user_id) Mobile_Reg,
@@ -56,7 +56,7 @@ def jsonifysubscriptions(resultset):
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
-def activesubscriptions(request, id, dt_query ):
+def activeregistrations(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
             status_code = 200
@@ -67,16 +67,16 @@ def activesubscriptions(request, id, dt_query ):
                 return JsonResponse({"message": "Got some data!", "data": request.data})
             
             else: 
-                params = {'id': id, 'dt_query':dt_query}
+                params = {'id': 1, 'dt_query':dt_query}
                 print(params)
                 validator = SubscriptionSerializer( data = params )
                 print()
                 if validator.is_valid() == False:
                     raise Exception("Invalid rest Arguments")
                 #query = "select * from test"    
-                cursor = connections['remote'].cursor() #this is for multiple databases
+                cursor = connections['myplex_service'].cursor() #this is for multiple databases
                 #cursor =  connection.cursor() #this is for default database
-                cursor.execute( get_subscriptionquery(dt_query) )
+                cursor.execute( get_registrationquery(dt_query) )
                 #cursor.execute( "select * from myplex_user_device")
                 #query the db and jsonify the results
                 r = [dict((cursor.description[i][0], value) \

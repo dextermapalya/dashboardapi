@@ -7,7 +7,7 @@ MySQL - 5.7.17
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE TABLE `package_def` (
+CREATE TABLE IF NOT EXISTS `package_def` (
   `business_unit` varchar(500) NOT NULL,
   `package_def_id` int(22) NOT NULL,
   `package_id` int(22) NOT NULL,

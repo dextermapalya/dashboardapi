@@ -6,11 +6,11 @@ const stackedChartOptions = {
         type: 'column'
     },
     title: {
-        text: 'Stacked column chart'
+        text: ' '
     },
     xAxis: {
         title: {
-            text: "Time"
+            text: " "
         },
         categories: hours
     },

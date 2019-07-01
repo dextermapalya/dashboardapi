@@ -5,6 +5,7 @@ import { map, cloneDeep } from 'lodash';
 import chartOptions from './chartOptions'
 import ApiClient from 'utils/ApiClient'
 import InstallationService from 'services/InstallationService'
+import  {getCurrentDate} from 'utils/DateFunctions'
 
 class InstallationChart extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -56,26 +57,25 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
     componentDidMount() {
       
       console.log('props....+++', this.props)
-      const { charttype, fetchData } = this.props;
-      console.log('ctype', charttype)
+      const { chartname, fetchData, isLoggedin } = this.props;
+      console.log('ctype', chartname)
       this.cOptions.series = []
       this.cOptions.title.text = "App Installations Hourly"
       this.cOptions.xAxis.title.text = "Time"
       this.cOptions.yAxis[0].title.text = " OS Type"
 
-      if (charttype && charttype.trim().length > 0) {
-        console.log('fethcing data ++++')
-
-        //this.fetchData();
+      if (chartname && chartname.trim().length > 0 && isLoggedin )  {
+        this.fetchData();
       }
        
     }
 
     //ajax call to fetch timeline series
   fetchData() {
-
     //ApiService.get()
-    ApiClient.get( 'v1.1/activeinstallations/2019-06-24' )
+    let today = getCurrentDate('/')
+    today = `2019-06-24`
+    ApiClient.get( `v1.1/activeinstallations/${today}` )
     .then(res => {
       //delegate the json transformation to a service
       var series = InstallationService.transformData( res.data.data )

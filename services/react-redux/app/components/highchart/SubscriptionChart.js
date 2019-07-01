@@ -6,6 +6,7 @@ import { cloneDeep } from 'lodash';
 import stackedChartOptions from './barchartOptions'
 import ApiClient from 'utils/ApiClient'
 import SubscriptionService from 'services/SubscriptionService'
+import {getCurrentDate} from 'utils/DateFunctions'
 
 class SubscriptionChart extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -20,7 +21,6 @@ class SubscriptionChart extends React.Component { // eslint-disable-line react/p
       //this means the content of each chart will be the same
       this.cOptions = cloneDeep(stackedChartOptions);
       //this.cOptions = JSON.parse(JSON.stringify(chartOptions)); 
-
       this.state = { chartOptions:{} };
     }
 
@@ -60,27 +60,27 @@ class SubscriptionChart extends React.Component { // eslint-disable-line react/p
      */
     componentDidMount() {
       console.log('props....+++', this.props)
-      const { charttype, fetchData } = this.props;
-      console.log('ctype', charttype)
+      //cdate = (new Date(cts)).toString();
+      const { chartname, fetchData, isLoggedin } = this.props;
       this.cOptions.series = []
       this.cOptions.series = []
       this.cOptions.title.text = "Subscriptions Hourly"
       this.cOptions.xAxis.title.text = "Time"
       this.cOptions.yAxis[0].title.text = " Payment Method"
 
-      if (charttype && charttype.trim().length > 0) {
-        console.log('fethcing data ++++')
-
-        //this.fetchData();
-      }
+      if (chartname && chartname.trim().length > 0 && isLoggedin )  {
+        this.fetchData();
+      }      
        
     }
 
     //ajax call to fetch timeline series
   fetchData() {
 
-    //ApiService.get()
-    ApiClient.get( 'v1.1/activesubscriptions/2019-06-24' )
+    //get current date to avoid hard coding
+    let today = getCurrentDate('/')
+    today = `2019-06-24`
+    ApiClient.get( `v1.1/activesubscriptions/${today}` )
     .then(res => {
       //delegate the json transformation to a service
       var series = SubscriptionService.transformData( res.data.data )

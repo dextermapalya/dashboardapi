@@ -5,6 +5,7 @@ import { map, cloneDeep } from 'lodash';
 import chartOptions from './chartOptions'
 import ApiClient from 'utils/ApiClient'
 import RegistrationService from 'services/RegistrationService'
+import {getCurrentDate} from 'utils/DateFunctions'
 
 class RegistrationChart extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -51,12 +52,14 @@ class RegistrationChart extends React.Component { // eslint-disable-line react/p
      */
     componentDidMount() {
       
-      const { charttype, fetchData } = this.props;
-      console.log('ctype', charttype)
+      const { chartname, fetchData, isLoggedin } = this.props;
       this.cOptions.series = []
       this.cOptions.title.text = "Registrations Hourly"
       this.cOptions.xAxis.title.text = "Time"
       this.cOptions.yAxis[0].title.text = " Device Type"
+      if (chartname && chartname.trim().length > 0 && isLoggedin )  {
+        this.fetchData();
+      }      
     
     }
 
@@ -64,7 +67,9 @@ class RegistrationChart extends React.Component { // eslint-disable-line react/p
   fetchData() {
 
     //ApiService.get()
-    ApiClient.get( 'v1.1/activeregistrations/2019-06-24' )
+    let today = getCurrentDate('/')
+    today = `2019-06-24`
+    ApiClient.get( `v1.1/activeregistrations/${today}` )
     .then(res => {
       //delegate the json transformation to a service
       var series = RegistrationService.transformData( res.data.data )

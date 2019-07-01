@@ -137,15 +137,26 @@ export default class HomePage extends React.PureComponent {
         </Helmet>
         <div className="home-page">
           <section className="centered">
+          { /* conditional expressions */}  
+          {!isLoggedin && (
+            <span>Authenticating....</span>
+          )}
+
             <h3>{isLoggedin.toString()}....</h3>
             {/*<h4>{Object.keys(userinfo).map(key => (
               <p key={key} details={userinfo[key]} >{userinfo[key]}</p>
             ))}</h4>*/}
           </section>
-          <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
-          <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
-          <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
-          <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
+          
+          {isLoggedin && (
+            <section>
+            <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
+            <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
+            <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
+            <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
+            </section>
+          )}
+
 
           
         </div>

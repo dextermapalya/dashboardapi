@@ -7,6 +7,7 @@ import stackedChartOptions from './barchartOptions'
 
 import ApiClient from 'utils/ApiClient'
 import RenewalService from 'services/RenewalService'
+import {getCurrentDate} from 'utils/DateFunctions'
 
 class RenewalChart extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -63,26 +64,24 @@ class RenewalChart extends React.Component { // eslint-disable-line react/prefer
     componentDidMount() {
       
       console.log('props....+++', this.props)
-      const { charttype, fetchData } = this.props;
-      console.log('ctype', charttype)
+      const { chartname, fetchData, isLoggedin } = this.props;
       this.cOptions.series = []
       this.cOptions.title.text = "Renewals Hourly"
       this.cOptions.xAxis.title.text = "Time"
       this.cOptions.yAxis[0].title.text = " Payment Method"
 
-      if (charttype && charttype.trim().length > 0) {
-        console.log('fethcing data ++++')
-
-        //this.fetchData();
-      }
+      if (chartname && chartname.trim().length > 0 && isLoggedin )  {
+        this.fetchData();
+      }      
        
     }
 
   //ajax call to fetch timeline series
   fetchData() {
 
-    //ApiService.get()
-    ApiClient.get( 'v1.1/activerenewals/2019-06-24' )
+    let today = getCurrentDate('/')
+    today = `2019-06-24`
+    ApiClient.get( `v1.1/activerenewals/${today}` )
     .then(res => {
       //delegate the json transformation to a service
       var series = RenewalService.transformData( res.data.data )

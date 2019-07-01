@@ -5,7 +5,10 @@ import { map, cloneDeep } from 'lodash';
 import chartOptions from './chartOptions'
 import ApiClient from 'utils/ApiClient'
 import InstallationService from 'services/InstallationService'
-import  {getCurrentDate} from 'utils/DateFunctions'
+import  {getCurrentDate, getDate, getDateRange } from 'utils/DateFunctions'
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+import 'bootstrap-daterangepicker/daterangepicker.css';
+import moment from 'moment'
 
 class InstallationChart extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -18,7 +21,11 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
       //clone a copy of high chart options otherwise the same instance is applied across all charts
       //this means the content of each chart will be the same
       this.cOptions = cloneDeep(chartOptions);
-      this.state = { chartOptions: {} };
+      const dateRange = getDateRange(-7) 
+      console.log('dateRange', dateRange)
+      this.state = { chartOptions: {}, startDate: dateRange.startDate, endDate:dateRange.endDate };
+      this.handleDateRange = this.handleDateRange.bind(this);
+
     }
 
    /* when the parent state changes this is the function in the child class that is 
@@ -71,11 +78,18 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
     }
 
     //ajax call to fetch timeline series
-  fetchData() {
+  fetchData( dateRange = {} ) {
     //ApiService.get()
+    if (typeof( dateRange.startDate) != "undefined") {
+      let startDate = dateRange.startDate
+      let endDate = dateRange.endDate
+    }  
+    
     let today = getCurrentDate('/')
     today = `2019-06-24`
-    ApiClient.get( `v1.1/activeinstallations/${today}` )
+    let url =  `v1.1/activeinstallations/${today}` 
+     
+    ApiClient.get( url )
     .then(res => {
       //delegate the json transformation to a service
       var series = InstallationService.transformData( res.data.data )
@@ -86,9 +100,23 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
 
   } 
 
+  /* set begin and end date once user selects the date range */
+  handleDateRange(event, picker) {
+    console.log(picker.startDate.format('mm/dd/yyyy'), '***', picker);
+    console.log('Date', moment(picker.startDate).format('MM-DD-YYYY') )
+    this.setState({startDate: picker.startDate, endDate: picker.endDate })
+    
+    //this.setState({startDate: moment(picker.startDate).format('YYYY-MM-DD').toString() })
+    //this.setState({endDate: moment(picker.endDate).format('YYYY-MM-DD').toString() })
+  }
+
   render() {
+    const {startDate, endDate} = this.state
     return (
       <section>
+        <DateRangePicker onEvent={this.handleDateRange} startDate={startDate} endDate={endDate}>
+          <button >Change Date Range</button>
+        </DateRangePicker>
         <div>
           <HighchartsReact
             highcharts={Highcharts}

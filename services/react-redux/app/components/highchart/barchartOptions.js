@@ -9,32 +9,35 @@ const stackedChartOptions = {
         text: 'Stacked column chart'
     },
     xAxis: {
-        categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+        title: {
+            text: "Time"
+        },
+        categories: hours
     },
-    yAxis: {
+    yAxis: [{
         min: 0,
         title: {
-            text: 'Total fruit consumption'
+            text: ' '
         },
         stackLabels: {
             enabled: true,
             style: {
                 fontWeight: 'bold',
-                color: ( // theme
+                /*color: ( // theme
                     Highcharts.defaultOptions.title.style &&
                     Highcharts.defaultOptions.title.style.color
-                ) || 'gray'
+                ) || 'gray' */
             }
         }
-    },
+    }],
     legend: {
         align: 'right',
         x: -30,
         verticalAlign: 'top',
         y: 25,
         floating: true,
-        backgroundColor:
-            Highcharts.defaultOptions.legend.backgroundColor || 'white',
+        backgroundColor:'white',
+        //    Highcharts.defaultOptions.legend.backgroundColor || 'white',
         borderColor: '#CCC',
         borderWidth: 1,
         shadow: false
@@ -62,3 +65,5 @@ const stackedChartOptions = {
         data: [3, 4, 4, 2, 5]
     }]
 }
+
+export default stackedChartOptions;

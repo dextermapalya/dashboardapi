@@ -14,6 +14,7 @@ import Highcharts from 'highcharts';
 import InstallationChart from 'components/highchart/InstallationChart'
 import RegistrationChart from 'components/highchart/RegistrationChart'
 import RenewalChart from 'components/highchart/RenewalChart'
+import SubscriptionChart from 'components/highchart/SubscriptionChart'
 
 /*import {
   HighchartsChart, Chart, XAxis, YAxis, Title, Legend, BarSeries, Tooltip, withHighcharts
@@ -143,6 +144,9 @@ export default class HomePage extends React.PureComponent {
           </section>
           <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
           <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
+          <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
+          <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
+
           
         </div>
   

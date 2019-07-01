@@ -1,6 +1,6 @@
 import {filter, map, uniq} from 'lodash'
 
-const RenewalService = {
+const SubscriptionService = {
 
     /* transform json object into data that can be consumed by highcharts*/
     transformData: function(jsonInput) {
@@ -12,7 +12,7 @@ const RenewalService = {
             //filter all items that match keyword
             var data = filter( jsonInput, { 'payment_method': item } );
 
-            var hourlyData = map(data, 'Renewals'); 
+            var hourlyData = map(data, 'subs'); 
             series.push ( {'name': item, data: hourlyData } )
 
         });
@@ -23,4 +23,4 @@ const RenewalService = {
 
 };
 
-export default RenewalService
+export default SubscriptionService

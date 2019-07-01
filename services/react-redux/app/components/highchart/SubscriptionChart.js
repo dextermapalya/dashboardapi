@@ -3,9 +3,9 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { cloneDeep } from 'lodash';
 //import chartOptions from './chartOptions'
-import stackedChartOptions from './barchart'
+import stackedChartOptions from './barchartOptions'
 import ApiClient from 'utils/ApiClient'
-import SubscriptionService from './SubscriptionService'
+import SubscriptionService from 'services/SubscriptionService'
 
 class SubscriptionChart extends React.Component { // eslint-disable-line react/prefer-stateless-function
 

@@ -79,8 +79,8 @@ class RenewalChart extends React.Component { // eslint-disable-line react/prefer
   //ajax call to fetch timeline series
   fetchData() {
 
-    let today = getCurrentDate('/')
-    today = `2019-06-24`
+    let today = getCurrentDate('-')
+    //today = `2019-06-24`
     ApiClient.get( `v1.1/activerenewals/${today}` )
     .then(res => {
       //delegate the json transformation to a service

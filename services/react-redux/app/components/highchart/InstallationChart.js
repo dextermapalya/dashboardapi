@@ -85,8 +85,8 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
       let endDate = dateRange.endDate
     }  
     
-    let today = getCurrentDate('/')
-    today = `2019-06-24`
+    let today = getCurrentDate('-')
+    //today = `2019-06-24`
     let url =  `v1.1/activeinstallations/${today}` 
      
     ApiClient.get( url )

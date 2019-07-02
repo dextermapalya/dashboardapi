@@ -112,7 +112,7 @@ DATABASE_APPS_MAPPING = {'db2':'sample'}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'SUNNXT_CHARGING_DB',
+        'NAME': 'dashboard',
         'USER': 'django',
         'PASSWORD': 'djangosEcrEt',
         'HOST': 'mysqldb',

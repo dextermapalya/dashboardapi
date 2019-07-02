@@ -15,7 +15,7 @@ import InstallationChart from 'components/highchart/InstallationChart'
 import RegistrationChart from 'components/highchart/RegistrationChart'
 import RenewalChart from 'components/highchart/RenewalChart'
 import SubscriptionChart from 'components/highchart/SubscriptionChart'
-import Sample from './Sample'
+//import Sample from './Sample'
 /*import {
   HighchartsChart, Chart, XAxis, YAxis, Title, Legend, BarSeries, Tooltip, withHighcharts
   } from 'react-jsx-highcharts';

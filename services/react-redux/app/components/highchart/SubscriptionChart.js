@@ -78,8 +78,8 @@ class SubscriptionChart extends React.Component { // eslint-disable-line react/p
   fetchData() {
 
     //get current date to avoid hard coding
-    let today = getCurrentDate('/')
-    today = `2019-06-24`
+    let today = getCurrentDate('-')
+    //today = `2019-06-24`
     ApiClient.get( `v1.1/activesubscriptions/${today}` )
     .then(res => {
       //delegate the json transformation to a service

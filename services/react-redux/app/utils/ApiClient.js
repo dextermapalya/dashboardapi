@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {LOCAL_BASE_URL} from 'config/APIEndPoints'
+import {LOCAL_BASE_URL, PRODUCTION_BASE_URL} from 'config/APIEndPoints'
 
 const ApiClient = () => {
   const defaultOptions = {
-    baseURL: LOCAL_BASE_URL,
+    baseURL: PRODUCTION_BASE_URL,
     timeout:5000,
     //method: 'get',
     headers: {

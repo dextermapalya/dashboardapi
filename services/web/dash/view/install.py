@@ -43,7 +43,7 @@ def activeinstallations(request,  dt_query ):
             if validator.is_valid() == False:
                 raise Exception("Invalid rest Arguments")
             #query = "select * from test"    
-            cursor = connections['myplex_service'].cursor() #this is for multiple databases
+            cursor = connections['remote'].cursor() #this is for multiple databases
             #cursor =  connection.cursor() #this is for default database
             cursor.execute( get_installationsquery( dt_query ) )
             #cursor.execute( "select * from myplex_user_device")

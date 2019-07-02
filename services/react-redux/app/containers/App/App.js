@@ -17,7 +17,8 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.scss';
-
+//import Home from '../HomePage/Home';
+import Sample from 'containers/HomePage/Sample'
 const App = () => (
   <div className="app-wrapper">
     <Helmet
@@ -26,20 +27,20 @@ const App = () => (
     >
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
-    <Header />
+    {/* <Header />
     <div className="container">
                 <div className="jumbotron mt-5">
                     <div className="col-sm-8 mx-auto">
                         <h1 className="text-center">Dashboard</h1>
                     </div>
                 </div>
-    </div>
+    </div> */}
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      <Route exact path="/" component={Sample} />
       <Route path="/features" component={FeaturePage} />
       <Route path="" component={NotFoundPage} />
     </Switch>
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 

@@ -8,6 +8,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from rest_framework.decorators import api_view
 from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
+from django.shortcuts import render
 
 class CursorByName():
     def __init__(self, cursor):
@@ -22,6 +23,8 @@ class CursorByName():
         return { description[0]: row[col] for col, description in enumerate(self._cursor.description) }
     
 
+def index(request):
+    return render(request, "build/index.html")
 
 def home(request):
     """

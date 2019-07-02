@@ -15,7 +15,7 @@ import InstallationChart from 'components/highchart/InstallationChart'
 import RegistrationChart from 'components/highchart/RegistrationChart'
 import RenewalChart from 'components/highchart/RenewalChart'
 import SubscriptionChart from 'components/highchart/SubscriptionChart'
-
+import Sample from './Sample'
 /*import {
   HighchartsChart, Chart, XAxis, YAxis, Title, Legend, BarSeries, Tooltip, withHighcharts
   } from 'react-jsx-highcharts';
@@ -128,6 +128,7 @@ export default class HomePage extends React.PureComponent {
 
     return (
       <article>
+      
         <Helmet>
           <title>Home Page</title>
           <meta
@@ -135,6 +136,7 @@ export default class HomePage extends React.PureComponent {
             content="A React.js Boilerplate application homepage"
           />
         </Helmet>
+        
         <div className="home-page">
           <section className="centered">
           { /* conditional expressions */}  
@@ -150,10 +152,25 @@ export default class HomePage extends React.PureComponent {
           
           {isLoggedin && (
             <section>
-            <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
-            <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
-            <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
-            <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
+<div class="container">
+  <div class="row">
+              <div className="col-sm-6">
+              <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
+              </div>
+              <div className="col-sm-6">
+              <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
+                </div>
+                <div className="col-sm-6">
+                <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
+                </div>
+                <div className="col-sm-6">
+                <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
+                </div>
+          
+          </div>
+          </div>
+           
+          
             </section>
           )}
 

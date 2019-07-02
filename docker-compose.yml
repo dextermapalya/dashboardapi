@@ -66,6 +66,7 @@ services:
     tty: true
     ports:
       - "80:80"
+      - "81:81"
       - "443:443"
     volumes:
       #check the dockerfile inside web folder it contains an env variable called APP_HOME

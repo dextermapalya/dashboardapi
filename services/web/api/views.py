@@ -9,6 +9,9 @@ from rest_framework.decorators import api_view
 from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import render
+from django.views.generic import TemplateView
+
+catchall = TemplateView.as_view(template_name='index.html')
 
 class CursorByName():
     def __init__(self, cursor):

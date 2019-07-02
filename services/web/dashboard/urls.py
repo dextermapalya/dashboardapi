@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers ,generics, permissions, serializers
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
@@ -27,6 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('', views.index, kwargs=None, name=None),
+    #re_path(r'', views.catchall),
+
     #path('', views.home, kwargs=None, name=None),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     #path('activesubscription/<int:id>/', views.activesubscriptions, )

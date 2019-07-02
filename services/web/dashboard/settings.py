@@ -73,12 +73,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'dashboard.urls'
-
+BACKEND_DIR = BASE_DIR
+FRONTEND_DIR = os.path.abspath(
+    os.path.join(BASE_DIR, '..', 'react-frontend'))
+print("**** {0}".format(FRONTEND_DIR))
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #DIRS': [],
-        'DIRS': [os.path.join(BASE_DIR, 'book-frontend')],
+        'DIRS': [os.path.join(BASE_DIR, 'react-frontend')],
+        #'DIRS': [os.path.join(FRONTEND_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,12 +137,13 @@ DATABASES = {
     'remote': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myplex_service',
-        'USER': 'appuser',
-        'PASSWORD': 'Asun09networKDB',
-        'HOST': 'v2stagingdb.cihebtldfl6n.ap-south-1.rds.amazonaws.com',
+        'USER': 'dashboard',
+        'PASSWORD': 'SunDas!br@82',
+        'HOST': '10.10.9.44',
         'PORT': 3306,
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -175,12 +180,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+    
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') #<-- THIS IS FOR rendering static files inside a docker container
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'react-frontend', "build", "static"),  # update the STATICFILES_DIRS
 )
+#STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]
 
 REST_FRAMEWORK = {
    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

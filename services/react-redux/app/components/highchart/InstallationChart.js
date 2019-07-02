@@ -114,9 +114,9 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
     const {startDate, endDate} = this.state
     return (
       <section>
-        <DateRangePicker onEvent={this.handleDateRange} startDate={startDate} endDate={endDate}>
+        {/* <DateRangePicker onEvent={this.handleDateRange} startDate={startDate} endDate={endDate}>
           <button >Change Date Range</button>
-        </DateRangePicker>
+        </DateRangePicker> */}
         <div>
           <HighchartsReact
             highcharts={Highcharts}

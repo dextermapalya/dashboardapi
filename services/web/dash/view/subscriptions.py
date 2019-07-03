@@ -9,6 +9,9 @@ from rest_framework.decorators import api_view
 from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import SubscriptionSerializer
+from django.views.decorators.cache import cache_page
+from dash.utils import get_env_variable, get_db_connection
+from dash.utils import get_env_variable, get_db_connection
 
 from datetime import date
 import logging
@@ -36,19 +39,21 @@ def get_subscriptionsquery(dt = None):
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
+@cache_page(60 * 60) #cache for 1 hour
 def activesubscriptions(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
             status_code = 200
 
             params = {'id': 1, 'dt_query':dt_query}
-            print(params)
             validator = SubscriptionSerializer( data = params )
-            print()
             if validator.is_valid() == False:
                 raise Exception("Invalid rest Arguments")
-            #query = "select * from test"    
-            cursor = connections['remote'].cursor() #this is for multiple databases
+
+            db_conn = get_db_connection()
+            stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
+
+            cursor = connections[db_conn].cursor() #this is for multiple databases
             #cursor =  connection.cursor() #this is for default database
             cursor.execute( get_subscriptionsquery( dt_query ) )
             #cursor.execute( "select * from myplex_user_device")

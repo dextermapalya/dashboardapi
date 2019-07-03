@@ -29,6 +29,7 @@ services:
     #  - "internal_host:172.27.0.1"
     environment:
       SERVICE_NAME: djangoapp
+      MODE: 'local' # <-- this env var helps django pick the right db connection
     env_file:
       - ./services/web/.env
     depends_on:

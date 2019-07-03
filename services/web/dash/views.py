@@ -13,7 +13,7 @@ from .serializers import SubscriptionSerializer
 from django.core.cache import cache #for memcache
 from dash.cache import registration_key #import the name of the key for cache the registration views
 from django.views.decorators.cache import cache_page
-
+from dash.utils import get_env_variable, get_db_connection
 
 import logging
 stdlogger = logging.getLogger(__name__)
@@ -61,7 +61,7 @@ def jsonifysubscriptions(resultset):
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 1)
+@cache_page(60 * 60) #cache for 1 hour
 def activeregistrations(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
@@ -78,6 +78,8 @@ def activeregistrations(request, dt_query ):
                 if validator.is_valid() == False:
                     raise Exception("Invalid rest Arguments")
 
+                db_conn = get_db_connection()
+                stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
                 #check if already cached
                 cache_time = 60*2 # time in seconds for cache to be valid
                 #data = cache.get(registration_key) # returns None if no key-value pair
@@ -86,8 +88,9 @@ def activeregistrations(request, dt_query ):
                 data = None
 
                 if not data:
-                    stdlogger.info("Fetching from DATABASE\n\n\n\n\n")
-                    cursor = connections['myplex_service'].cursor() #this is for multiple databases
+                    stdlogger.info("Fetching from DATABASE")
+                    #cursor = connections['myplex_service'].cursor() #this is for multiple databases
+                    cursor = connections[db_conn].cursor() #this is for multiple databases
                     #cursor =  connection.cursor() #this is for default database
                     cursor.execute( get_registrationquery(dt_query) )
                     #cursor.execute( "select * from myplex_user_device")

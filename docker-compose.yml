@@ -2,6 +2,19 @@ version: '3.6'
 
 services:
 
+
+  memcached:
+    image: memcached
+    ports:
+      - "11211:11211"
+    entrypoint:
+      - memcached
+      - -m 64
+    container_name: memcache
+    restart: unless-stopped
+    networks:
+      - app
+
   djangoapp:
     build:
       context: ./services/web
@@ -20,6 +33,7 @@ services:
       - ./services/web/.env
     depends_on:
       - mysqldb # <--- this can be commented depending on which database is in use
+      - memcached # <--- is required for django memcache
     networks:
       - app
     volumes:

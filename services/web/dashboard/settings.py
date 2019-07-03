@@ -311,3 +311,10 @@ JWT_AUTH = {
 }
 
 REST_USE_JWT = True
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'memcached:11211',
+    }
+}

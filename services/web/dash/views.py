@@ -115,3 +115,33 @@ def activeregistrations(request, dt_query ):
             return JsonResponse( response, status = status_code )    
             
 
+@api_view(['GET'])
+@permission_classes([])
+def articles(request ):
+    try:
+        data = [
+            {'id':1, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':2, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':3, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':4, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':5, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':6, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':7, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':8, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':9, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':10, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':11, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':12, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':13, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':14, 'title': 'Article 1', 'content': 'Some sample content'},
+            {'id':15, 'title': 'Article 1', 'content': 'Some sample content'}
+        ]
+
+    except Exception as e:
+        print(e)
+        raise 
+    finally:
+        response = {"code": 200, "data": data }
+        return JsonResponse( response, status = 200 ) 
+
+

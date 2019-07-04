@@ -9,5 +9,6 @@ urlpatterns = [
     path('activeinstallations/<slug:dt_query>', install.activeinstallations, ),
     path('activesubscriptions/<slug:dt_query>', subscriptions.activesubscriptions, ),
     path('activerenewals/<slug:dt_query>', renewals.activerenewals, ),
+    path('articles/', views.articles ),
 
 ]

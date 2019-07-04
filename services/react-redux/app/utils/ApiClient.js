@@ -1,22 +1,26 @@
 import axios from "axios";
-import { LOCAL_BASE_URL, PRODUCTION_BASE_URL } from "config/APIEndPoints";
+import { LOCAL_BASE_URL, PRODUCTION_BASE_URL } from "shared/constants";
+
+/* logic to determin which api endpoint to interact with*/
+const getBaseURL = () => {
+  console.log("APICLIENT fetching baseurl.....");
+  // determin the baseulr based on hostname using window.location.href
+  const currentUrl = window.location.href;
+  // perform a regex for ip or domain name
+  var patt = new RegExp("16.118|dashboard");
+  var res = patt.test(currentUrl);
+  // if true use remote ip else local ip
+  const BASE_URL = res ? PRODUCTION_BASE_URL : LOCAL_BASE_URL;
+  //based on currentUrl change the baseUrl
+  console.log("BASE_URL", BASE_URL);
+  return BASE_URL
+};
 
 const ApiClient = () => {
-  // determin the baseulr based on hostname using window.location.href */
-  /*
-  const currentUrl = window.location.href
-  // perform a regex for ip or domain name 
-  var patt = new RegExp("16.118|dashboard");
-  
-  var res = patt.test(str);
-  // if true use remote ip else local ip 
-  const BASE_URL = (res ) ? PRODUCTION_BASE_URL : LOCAL_BASE_URL 
-  //based on currentUrl change the baseUrl
-  console.log('******', BASE_URL)*/
+
   const defaultOptions = {
-    baseURL: LOCAL_BASE_URL,
+    baseURL: getBaseURL(),
     timeout: 65000,
-    //method: 'get',
     headers: {
       "Content-Type": "application/json"
     }

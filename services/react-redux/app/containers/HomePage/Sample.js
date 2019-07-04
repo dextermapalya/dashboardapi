@@ -7,8 +7,42 @@ import settingsicon from '../../assets/images/settings_icon.png';
 import HomePage from 'containers/HomePage/Loadable';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+class CurrentDate extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        startDate: new Date()
+      };
+      this.handleChange = this.handleChange.bind(this);
+    }
+   
+    handleChange(date) {
+      this.setState({
+        startDate: date
+      });
+    }
+   
+    render() {
+      return (
+        <DatePicker
+        selected={this.state.startDate}
+        onChange={this.handleChange}
+        />
+        // <DatePicker
+        // selected={this.state.startDate}
+        // onChange={this.handleChange}
+        // highlightDates={[subDays(new Date(), 7), addDays(new Date(), 7)]}
+        // placeholderText="This highlights a week ago and a week from today" />          
+      );
+    }
+  }
 
 const Sample = () => {
+   
+
     return (
         <section>
                 <body className="mini-navbar">
@@ -74,9 +108,11 @@ const Sample = () => {
                                     <div className="nav-collapse ">
                                         <ul className="nav navbar-nav navbar-right">
                                             <li className="dropdown">
-                                                <DateRangePicker startDate="1/1/2014" endDate="3/1/2014">
+                                                 {/* <DateRangePicker startDate="1/1/2014" endDate="3/1/2014">
                                                       <button className="dropdown-toggle btn-grad daterange_btn" data-toggle="dropdown" role="button" aria-expanded="false">Select Dates<span className="caret"></span></button>
-                                              </DateRangePicker>
+                                                </DateRangePicker>  */}
+                                                <CurrentDate />
+                                                
                                                 {/* <ul className="dropdown-menu" role="menu">
                                                     <li><a href="#">1</a></li>
                                                     <li className="divider"></li>

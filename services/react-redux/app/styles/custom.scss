@@ -403,7 +403,7 @@ width: 1%;
     padding-bottom: 15px;
 }
 
-.dashbord_header .nav.navbar-right > li > a{
+.dashbord_header .nav.navbar-right > li  .daterange_btn{
     color: #999;
     background-color: #fff;
     border: 1px solid #999;
@@ -411,9 +411,13 @@ width: 1%;
     border-radius: 4px;
     padding: 8px 12px;
     min-height: 35px;
+    font-size: 14px;
 }
-.dashbord_header .nav.navbar-right > li > a:hover{
+.dashbord_header .nav.navbar-right > li .daterange_btn:hover{
     background-image: linear-gradient(to right, #dddddd 0%, #ffffff 80%);
+}
+.dashbord_header .nav.navbar-right > li .daterange_btn:focus{
+    outline: none;
 }
 .dashbord_header .nav .open>a, .dashbord_header .nav .open>a:hover, .dashbord_header .nav .open>a:focus{
     background-image: linear-gradient(to right, #dddddd 0%, #ffffff 80%);

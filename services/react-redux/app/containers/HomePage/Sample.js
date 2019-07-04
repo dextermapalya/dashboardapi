@@ -5,6 +5,8 @@ import logo from '../../assets/images/logo.png';
 import dashicon from '../../assets/images/dashboard.png';
 import settingsicon from '../../assets/images/settings_icon.png';
 import HomePage from 'containers/HomePage/Loadable';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+import 'bootstrap-daterangepicker/daterangepicker.css';
 
 const Sample = () => {
     return (
@@ -35,6 +37,7 @@ const Sample = () => {
                                         <ul className="nav navbar-nav navbar-right">
                                             <li className="dropdown">
                                                 <a href="#" className=" btn-grad" data-toggle="dropdown" role="button" aria-expanded="false">Username_login_Id<span className="caret"></span></a>
+                                              
                                                 {/* <ul className="dropdown-menu" role="menu">
                                                     <li><a href="#"><i className="fa fa-unlock-alt" aria-hidden="true"></i> Login</a></li>
                                                     <li className="divider"></li>
@@ -71,12 +74,14 @@ const Sample = () => {
                                     <div className="nav-collapse ">
                                         <ul className="nav navbar-nav navbar-right">
                                             <li className="dropdown">
-                                                <a href="#" className="dropdown-toggle btn-grad" data-toggle="dropdown" role="button" aria-expanded="false">Select Dates<span className="caret"></span></a>
-                                                <ul className="dropdown-menu" role="menu">
+                                                <DateRangePicker startDate="1/1/2014" endDate="3/1/2014">
+                                                      <button className="dropdown-toggle btn-grad daterange_btn" data-toggle="dropdown" role="button" aria-expanded="false">Select Dates<span className="caret"></span></button>
+                                              </DateRangePicker>
+                                                {/* <ul className="dropdown-menu" role="menu">
                                                     <li><a href="#">1</a></li>
                                                     <li className="divider"></li>
                                                     <li><a href="#">2</a></li>
-                                                </ul>
+                                                </ul> */}
                                             </li>
                                         </ul>
                                     </div>

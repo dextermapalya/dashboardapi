@@ -14,7 +14,7 @@ class CurrentDate extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        startDate: new Date()
+        startDate: ""
       };
       this.handleChange = this.handleChange.bind(this);
     }
@@ -28,8 +28,11 @@ class CurrentDate extends React.Component {
     render() {
       return (
         <DatePicker
+        placeholderText="Select a Date"
         selected={this.state.startDate}
+        onSelect={this.handleSelect}
         onChange={this.handleChange}
+       
         />
         // <DatePicker
         // selected={this.state.startDate}

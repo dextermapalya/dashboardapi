@@ -52,7 +52,7 @@
     "react": "^16.8.6",
     "react-bootstrap-daterangepicker": "^4.1.0",
     "react-date-picker": "^7.5.1",
-    "react-datepicker":"",
+    "react-datepicker": "",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-jsx-highcharts": "",

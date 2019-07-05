@@ -403,20 +403,25 @@ width: 1%;
     padding-bottom: 15px;
 }
 
-.dashbord_header .nav.navbar-right > li  .daterange_btn{
+.dashbord_header .nav.navbar-right > li .react-datepicker-wrapper input{
     color: #999;
     background-color: #fff;
     border: 1px solid #999;
-    background-image: linear-gradient(to right, #ffffff 0%, #999999 250%);
+    // background-image: linear-gradient(to right, #ffffff 0%, #999999 250%);
     border-radius: 4px;
-    padding: 8px 12px;
+    padding: 6px 12px;
     min-height: 35px;
-    font-size: 14px;
+    font-size: 15px;
+    outline: none;
+    width: 150px;
 }
-.dashbord_header .nav.navbar-right > li .daterange_btn:hover{
-    background-image: linear-gradient(to right, #dddddd 0%, #ffffff 80%);
+.dashbord_header .nav.navbar-right > li .react-datepicker-popper{
+    left: -40px !important;
 }
-.dashbord_header .nav.navbar-right > li .daterange_btn:focus{
+.dashbord_header .nav.navbar-right > li input:hover{
+    // background-image: linear-gradient(to right, #dddddd 0%, #ffffff 80%);
+}
+.dashbord_header .nav.navbar-right > li input:focus{
     outline: none;
 }
 .dashbord_header .nav .open>a, .dashbord_header .nav .open>a:hover, .dashbord_header .nav .open>a:focus{

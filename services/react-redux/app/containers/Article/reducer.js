@@ -10,6 +10,7 @@
  *   return state.set('yourStateVariable', true);
  */
 import { fromJS } from 'immutable';
+import cloneDeep from 'lodash';
 
 import { CHANGE_TITLE, LOAD_ARTICLES, 
          LOAD_ARTICLES_SUCCESS,
@@ -23,36 +24,48 @@ import { CHANGE_TITLE, LOAD_ARTICLES,
 const initialState = {
   title: 'SAMPLE...',
   content:'',
-  article:{'id':'', 'title':'', 'content':''}
+  article:{'id':'', 'title':'Sample Title', 'content':'Sample Content....'}
 }
 
 function articleReducer(state = initialState, action) {
+
   switch (action.type) {
     
-    case CHANGE_TITLE:
+    case CHANGE_TITLE: {
       console.log('CHANGING_TITLE......', action)
       //set any checks or filters here
-      
-      return { ...state, title: action.title , article: {title:action.title} };
-      //return state.set('title', action.title);
-      //state.set('article.title', action.title)
+      return { ...state, loading:false, title: action.title };
+    }
 
-      case CHANGE_ARTICLE_TITLE:
+    case CHANGE_ARTICLE_TITLE: {
           console.log('CHANGING_ARTICLE_TITLE......', action, state)
           //set any checks or filters here
+          const articleClone = Object.assign({}, state.article);
+          console.log('CHANGING_ARTICLE_CONTENT+++++', articleClone)
+          articleClone.title = action.title
+          const newState = {
+            ...state,
+            loading: true,
+            article: articleClone,
+          };
+          return newState
+      }
 
-          return { ...state, article: {title:action.title, content:state.content} };
-          //return state.set('title', action.title);
-          //state.set('article.title', action.title)
+      case CHANGE_ARTICLE_CONTENT: {
+              console.log('CHANGING_ARTICLE_CONTENT......', action, state)
+              //var articleClone = cloneDeep(state.article)
+              const articleClone = Object.assign({}, state.article);
+              console.log('CHANGING_ARTICLE_CONTENT+++++', articleClone)
+              articleClone.content= action.content
+              const newState = {
+                ...state,
+                loading: true,
+                article: articleClone,
+              };
+              return newState
+        }
 
-      case CHANGE_ARTICLE_CONTENT:
-              console.log('CHANGING_ARTICLE_CONTENT......', action)
-              //set any checks or filters here
-              return { ...state, article: {content:action.content} };
-              //return state.set('title', action.title);
-              //state.set('article.title', action.title)
-            
-    case LOAD_ARTICLES: {
+        case LOAD_ARTICLES: {
          console.log('LOADING ARTICLES......')
         const newState = {
           ...state,
@@ -62,7 +75,7 @@ function articleReducer(state = initialState, action) {
         };
     
         return newState;
-    }
+      }
 
     case SAVE_ARTICLE: {
       console.log( 'STATE SAVE_ARTICLE' )
@@ -90,6 +103,7 @@ function articleReducer(state = initialState, action) {
     }
 
     default:
+      console.log('CHANGING', state)
       return state;
   }
 }

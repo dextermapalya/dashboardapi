@@ -16,6 +16,7 @@ import { makeSelectTitle, makeSelectArticle } from './selectors';
  */
 export function* getArticles() {
   // Select username from store
+  console.log('GET ARTICLES....')
   const username = yield select(makeSelectTitle());
   const requestURL = `http://localhost/api/articles/`;
 

@@ -22,6 +22,7 @@ const makeSelectArticle = () => createSelector(
   (articleState) => articleState.article
 );
 
+
 export {
   selectArticle,
   makeSelectTitle,

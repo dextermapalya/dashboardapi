@@ -8,7 +8,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import "./style.scss";
-import { makeSelectArticle } from './selectors';
 
 export default class Article extends React.PureComponent {
  
@@ -17,6 +16,8 @@ export default class Article extends React.PureComponent {
     this.state = {
       article: {id:'', title:'', content:''}
     };
+    console.log('ARTICLE constructor....')
+
     this.validateForm = this.validateForm.bind(this);
     //this.handleChange = this.handleChange.bind(this)
 
@@ -25,6 +26,7 @@ export default class Article extends React.PureComponent {
   componentDidMount() {
     const { title, onChangeTitle } = this.props;
     //onPageLoad(); //defined in index.js
+    console.log('ARTICLE COMPONENT....')
   }
   
 
@@ -32,8 +34,8 @@ export default class Article extends React.PureComponent {
     const self = this
     e.preventDefault()
     const {title} = this.props
-    console.log('VALIDATING', title )
-    //this.props.onSaveArticle(e,{'title':title, 'content':title})
+    console.log('VALIDATING', title, this.props.article )
+    this.props.onSaveArticle(e, this.props.article)
   }
   
 
@@ -53,7 +55,7 @@ export default class Article extends React.PureComponent {
       onChangeTitle,
       onSaveArticle,
       onChangeArticleTitle,
-      onChangeArticleContent
+      onChangeArticleContent,
     } = this.props;
 
     const  {
@@ -142,5 +144,5 @@ Article.propTypes = {
   onChangeTitle: PropTypes.func,
   onSaveArticle: PropTypes.func,
   onChangeArticleContent: PropTypes.func,
-  onChangeArticleTitle: PropTypes.func
+  onChangeArticleTitle: PropTypes.func,
 };

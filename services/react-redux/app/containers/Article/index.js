@@ -15,9 +15,7 @@ import { makeSelectTitle, makeSelectArticle } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Article from './Article';
-import {
-  select
-} from 'redux-saga/effects';
+
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeTitle: (evt) => dispatch(changeTitle(evt.target.value)),
@@ -43,6 +41,5 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReducer = injectReducer({ key: 'blog', reducer });
 const withSaga = injectSaga({ key: 'blog', saga });
-
 export default compose(withReducer, withSaga, withConnect)(Article);
 export { mapDispatchToProps };

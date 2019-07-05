@@ -17,9 +17,8 @@ import RenewalChart from "components/highchart/RenewalChart";
 import SubscriptionChart from "components/highchart/SubscriptionChart";
 //import Sample from "components/Sample/Sample"
 import Article from 'containers/Article/Loadable';
+import InstallChart  from 'components/charts/installation';
 
-import List from "components/Sample/List";
-import Form from "components/Sample/Form";
 //import Sample from './Sample'
 /*import {
   HighchartsChart, Chart, XAxis, YAxis, Title, Legend, BarSeries, Tooltip, withHighcharts
@@ -188,6 +187,7 @@ export default class HomePage extends React.PureComponent {
                       date={currentDate}
                     />
                   </div>
+                  <InstallChart />
                 </div>
               </div>
               <div>

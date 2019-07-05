@@ -25,6 +25,7 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
       console.log('dateRange', dateRange)
       this.state = { chartOptions: {}, startDate: dateRange.startDate, endDate:dateRange.endDate };
       this.handleDateRange = this.handleDateRange.bind(this);
+      this.fetchData = this.fetchData.bind(this);
 
     }
 
@@ -38,26 +39,29 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
         return { chartname: nextProps.chartname, isLoggedin: nextProps.isLoggedin };
       } else return null;
    }
+   
    /*
    * this function is called after getDerivedStateFromProps is invoked
    * and only if the parent state has changed
    */
    componentDidUpdate(prevProps, prevState) {
-    console.log('props....', this.props, '**', this.state)
+     console.log('props....', this.props, '**', this.state, '+++', this.props.date)
      console.log('component updated...', prevProps, prevState)
      const { chartname } = this.state;
-     console.log( this.state)
+     //console.log( this.state)
 
-     if (this.props.isLoggedin == true && prevProps.isLoggedin == false) {
+     if (this.props.isLoggedin == true && prevProps.isLoggedin != this.props.isLoggedin ) {
       this.fetchData()
      }
-     /*if(prevProps.isLoggedin !== chartname && this.props.chartname == "registrations") {
-          console.log('fethcing data ++++')
-          this.fetchData();
-     } */
-      //this.fetchData(); //this is for installations    
+     
+     if (this.props.date != prevProps.date) {
+      this.setState({chartOptions: {} })
+      this.fetchData()
+     }
+ 
 
    }
+
     /**
      * when initial state make ajax request to fetch data
      */
@@ -85,10 +89,11 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
       let endDate = dateRange.endDate
     }  
     
-    let today = getCurrentDate('-')
-    //today = `2019-06-24`
-    let url =  `v1.1/activeinstallations/${today}` 
-     
+    //let date = getCurrentDate('-')
+    //date = `2019-06-24`
+    const date = this.props.date
+    let url =  `v1.1/activeinstallations/${date}` 
+    console.log('url....', url)
     ApiClient.get( url )
     .then(res => {
       //delegate the json transformation to a service
@@ -121,6 +126,7 @@ class InstallationChart extends React.Component { // eslint-disable-line react/p
           <HighchartsReact
             highcharts={Highcharts}
             options={this.state.chartOptions}
+            oneToOne={true}
           />
         </div>
       </section>

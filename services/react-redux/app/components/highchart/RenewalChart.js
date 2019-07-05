@@ -46,16 +46,14 @@ class RenewalChart extends React.Component { // eslint-disable-line react/prefer
      const { chartname } = this.state;
      console.log( this.state)
 
-     if (this.props.isLoggedin == true && prevProps.isLoggedin == false) {
-      console.log('renewals.....')
+     if (this.props.isLoggedin == true && prevProps.isLoggedin != this.props.isLoggedin ) {
       this.fetchData()
-
      }
-     /*if(prevProps.isLoggedin !== chartname && this.props.chartname == "registrations") {
-          console.log('fethcing data ++++')
-          this.fetchData();
-     } */
-      //this.fetchData(); //this is for installations    
+     
+     if (this.props.date != prevProps.date) {
+      this.setState({chartOptions: {} })
+      this.fetchData()
+     }
 
    }
     /**
@@ -79,9 +77,8 @@ class RenewalChart extends React.Component { // eslint-disable-line react/prefer
   //ajax call to fetch timeline series
   fetchData() {
 
-    let today = getCurrentDate('-')
-    //today = `2019-06-24`
-    ApiClient.get( `v1.1/activerenewals/${today}` )
+    const date = this.props.date
+    ApiClient.get( `v1.1/activerenewals/${date}` )
     .then(res => {
       //delegate the json transformation to a service
       var series = RenewalService.transformData( res.data.data )
@@ -99,6 +96,7 @@ class RenewalChart extends React.Component { // eslint-disable-line react/prefer
           <HighchartsReact
             highcharts={Highcharts}
             options={this.state.chartOptions}
+            oneToOne={true}
           />
         </div>
       </section>

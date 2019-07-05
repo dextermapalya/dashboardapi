@@ -9,39 +9,10 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {formatDate, getDate} from 'utils/DateFunctions'
+import DashboardContext from 'context/Dashboard'
+import DateSelector from 'containers/DateSelector/Loadable'
 
-class CurrentDate extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        startDate: ""
-      };
-      this.handleChange = this.handleChange.bind(this);
-    }
-   
-    handleChange(date) {
-      this.setState({
-        startDate: date
-      });
-    }
-   
-    render() {
-      return (
-        <DatePicker
-        placeholderText="Select a Date"
-        selected={this.state.startDate}
-        onSelect={this.handleSelect}
-        onChange={this.handleChange}
-       
-        />
-        // <DatePicker
-        // selected={this.state.startDate}
-        // onChange={this.handleChange}
-        // highlightDates={[subDays(new Date(), 7), addDays(new Date(), 7)]}
-        // placeholderText="This highlights a week ago and a week from today" />          
-      );
-    }
-  }
 
 const Sample = () => {
    
@@ -114,7 +85,7 @@ const Sample = () => {
                                                  {/* <DateRangePicker startDate="1/1/2014" endDate="3/1/2014">
                                                       <button className="dropdown-toggle btn-grad daterange_btn" data-toggle="dropdown" role="button" aria-expanded="false">Select Dates<span className="caret"></span></button>
                                                 </DateRangePicker>  */}
-                                                <CurrentDate />
+                                                <DateSelector />
                                                 
                                                 {/* <ul className="dropdown-menu" role="menu">
                                                     <li><a href="#">1</a></li>

@@ -14,6 +14,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
+import Signup from 'components/register/Signup'
 import Footer from 'components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.scss';
@@ -37,6 +38,8 @@ const App = () => (
     </div> */}
     <Switch>
       <Route exact path="/" component={Sample} />
+      <Route exact path="/signup" component={Signup} />
+
       <Route path="/features" component={FeaturePage} />
       <Route path="" component={NotFoundPage} />
     </Switch>

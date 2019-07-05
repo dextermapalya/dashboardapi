@@ -11,6 +11,7 @@ import {
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
+import { makeSelectDate } from 'containers/DateSelector/selectors';
 import reducer from './reducer';
 import saga from './saga';
 import HomePage from './HomePage';
@@ -32,8 +33,10 @@ const mapStateToProps = createStructuredSelector({
   repos: makeSelectRepos(),
   username: makeSelectUsername(),
   loading: makeSelectLoading(),
-  error: makeSelectError()
+  error: makeSelectError(),
+  currentDate: makeSelectDate(),
 });
+
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

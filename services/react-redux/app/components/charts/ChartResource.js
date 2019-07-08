@@ -7,7 +7,8 @@ import PropTypes from "prop-types";
 export default class ChartResource extends React.PureComponent {
     state = {
       loading: false,
-      payload: []
+      payload: [],
+      notice: ""
     }
     
     constructor(props) {
@@ -16,7 +17,9 @@ export default class ChartResource extends React.PureComponent {
     }
 
     fetchData() {
+        this.setState({notice: "Loading please wait..."})
         const url = this.props.path  + this.props.currentDate
+        
         console.log('&&&&&&3', url, this.props)
   
         ApiClient.get( url )
@@ -24,9 +27,18 @@ export default class ChartResource extends React.PureComponent {
   
           this.setState({
               payload: res.data,
-              loading: false
+              loading: false,
+              notice:""
             })
-        })
+        }).catch(err =>
+          {
+              //throw new Error("Unable to fetch api data");
+              this.setState({
+                payload: [],
+                loading: false,
+                notice: "Unable to fetch api data"
+              })              
+          });
   
     }
 
@@ -34,6 +46,7 @@ export default class ChartResource extends React.PureComponent {
       this.setState({ loading: true })
       let date = getCurrentDate('-')
       date = '2019-06-24'
+      this.fetchData()
 
   
     }

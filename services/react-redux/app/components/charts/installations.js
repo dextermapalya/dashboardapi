@@ -50,11 +50,11 @@ const transformData = (payload) => {
  *
  * @return {jsx content}   
  */
-const InstallChart = () => {
+const InstallChart = (  ) => {
     return (
         <ChartResource 
         path={AUTH_INSTALLATIONS} render={ data => {
-      if (data.loading) return <p>Loading data.....</p>
+      if (data.loading) return <p>{data.notice}...Loading data.....</p>
       return ( <section>{transformData(data.payload)}</section>  )
     }}
   />
@@ -62,8 +62,6 @@ const InstallChart = () => {
     )
   };
   
-  InstallChart.propTypes = {
-   
-  };
+  
   
 export default InstallChart;

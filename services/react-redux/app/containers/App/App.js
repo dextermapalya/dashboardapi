@@ -36,6 +36,7 @@ class App extends Component {
 
     render() {
         return(
+
   <div className="app-wrapper">
     <div id="wrapper_body" className={
             this.state.active ? "mini-navbar pace-done" : "side-navbar pace-done"

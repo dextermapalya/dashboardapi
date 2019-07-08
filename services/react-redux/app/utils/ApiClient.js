@@ -7,7 +7,7 @@ const getBaseURL = () => {
   // determin the baseulr based on hostname using window.location.href
   const currentUrl = window.location.href;
   // perform a regex for ip or domain name
-  var patt = new RegExp("16.118|dashboard");
+  var patt = new RegExp("16.118") //new RegExp("16.118|dashboard");
   var res = patt.test(currentUrl);
   // if true use remote ip else local ip
   const BASE_URL = res ? PRODUCTION_BASE_URL : LOCAL_BASE_URL;

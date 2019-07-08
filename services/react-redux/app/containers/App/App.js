@@ -22,6 +22,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.scss';
 //import Home from '../HomePage/Home';
 import Sample from 'containers/HomePage/Sample'
+
 const App = () => (
   <div className="app-wrapper">
     <Helmet

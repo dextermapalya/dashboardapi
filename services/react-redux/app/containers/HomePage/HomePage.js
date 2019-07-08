@@ -6,7 +6,6 @@
 
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
 import './style.scss';
 import { AUTH_LOGIN } from 'config/APIEndPoints';
 import ApiClient from 'utils/ApiClient';
@@ -15,7 +14,9 @@ import InstallationChart from 'components/highchart/InstallationChart'
 import RegistrationChart from 'components/highchart/RegistrationChart'
 import RenewalChart from 'components/highchart/RenewalChart'
 import SubscriptionChart from 'components/highchart/SubscriptionChart'
-import Sample from './Sample'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 /*import {
   HighchartsChart, Chart, XAxis, YAxis, Title, Legend, BarSeries, Tooltip, withHighcharts
   } from 'react-jsx-highcharts';
@@ -30,8 +31,16 @@ export default class HomePage extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { userinfo: '', isLoggedin: false, name: 'Test' };
+    this.state = { userinfo: '', isLoggedin: false, name: 'Test', startDate: "" };
+  
+    this.handleChange = this.handleChange.bind(this);
   }
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
+
 
   componentDidMount() {
     const { username, onSubmitForm } = this.props;
@@ -77,7 +86,8 @@ export default class HomePage extends React.PureComponent {
     }
   }
 
-
+ 
+ 
 
   render() {
 
@@ -128,14 +138,6 @@ export default class HomePage extends React.PureComponent {
 
     return (
       <article>
-      
-        <Helmet>
-          <title>Home Page</title>
-          <meta
-            name="description"
-            content="A React.js Boilerplate application homepage"
-          />
-        </Helmet>
         
         <div className="home-page">
           <section className="centered">
@@ -152,29 +154,116 @@ export default class HomePage extends React.PureComponent {
           
           {isLoggedin && (
             <section>
-<div class="container">
-  <div class="row">
-              <div className="col-sm-6">
-              <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
+               <div className="dashbord_header">
+                <h2 className="navbar-left">Business Dashboard</h2>
+
+                <div className="nav navbar-top-links navbar-right ">
+                <DatePicker
+                  selected={this.state.startDate}
+                  onChange={this.handleChange}
+                  placeholderText="Select Date"
+                />                     
+                    </div>
+                </div>
+            <div className="row content_area">
+                <div className="col-lg-6">
+                    <div className="ibox float-e-margins">
+                        <div className="ibox-title">
+                            {/* <h4 className="Individual_title">Dashboard</h4> */}
+                            <div className="ibox-tools">
+                                <a className="collapse-link">
+                                    <i className="fa fa-chevron-up uparrow"></i>
+                                </a>
+
+                                <ul className="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div className="ibox-content">
+                           <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
+                </div>
+            </div>
+            </div>
+            <div className="col-lg-6">
+                    <div className="ibox float-e-margins">
+                        <div className="ibox-title">
+                            {/* <h4 className="Individual_title">Dashboard</h4> */}
+                            <div className="ibox-tools">
+                                <a className="collapse-link">
+                                    <i className="fa fa-chevron-up uparrow"></i>
+                                </a>
+
+                                <ul className="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div className="ibox-content">
+                          <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
+                </div>
+            </div>
+            </div>
+            <div className="col-lg-6">
+                    <div className="ibox float-e-margins">
+                        <div className="ibox-title">
+                            {/* <h4 className="Individual_title">Dashboard</h4> */}
+                            <div className="ibox-tools">
+                                <a className="collapse-link">
+                                    <i className="fa fa-chevron-up uparrow"></i>
+                                </a>
+
+                                <ul className="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div className="ibox-content">
+                           <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
               </div>
-              <div className="col-sm-6">
-              <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
+            </div>
+            </div>
+            <div className="col-lg-6">
+                    <div className="ibox float-e-margins">
+                        <div className="ibox-title">
+                            {/* <h4 className="Individual_title">Dashboard</h4> */}
+                            <div className="ibox-tools">
+                                <a className="collapse-link">
+                                    <i className="fa fa-chevron-up uparrow"></i>
+                                </a>
+
+                                <ul className="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                <div className="ibox-content">
+                    <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
                 </div>
-                <div className="col-sm-6">
-                <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
-                </div>
-                <div className="col-sm-6">
-                <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
-                </div>
-          
-          </div>
+            </div>
+            </div>
+         
           </div>
            
           
             </section>
           )}
-
-
           
         </div>
   

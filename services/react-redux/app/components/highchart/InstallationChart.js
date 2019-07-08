@@ -6,8 +6,7 @@ import chartOptions from './chartOptions'
 import ApiClient from 'utils/ApiClient'
 import InstallationService from 'services/InstallationService'
 import  {getCurrentDate, getDate, getDateRange } from 'utils/DateFunctions'
-import DateRangePicker from 'react-bootstrap-daterangepicker';
-import 'bootstrap-daterangepicker/daterangepicker.css';
+
 import moment from 'moment'
 
 class InstallationChart extends React.Component { // eslint-disable-line react/prefer-stateless-function

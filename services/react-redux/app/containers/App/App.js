@@ -6,43 +6,59 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Sidebar from '../../components/Sidebar';
+import Header from '../../components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.scss';
-//import Home from '../HomePage/Home';
-import Sample from 'containers/HomePage/Sample'
-const App = () => (
+import '../../styles/style_th.scss';
+import '../../styles/custom.scss';
+import '../../styles/animate.scss';
+
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          active: false
+        };
+      }
+
+      updateValue = value => {
+        this.setState({
+          active: value
+        });
+      };
+
+    render() {
+        return(
   <div className="app-wrapper">
-    <Helmet
-      titleTemplate="%s - React.js Boilerplate"
-      defaultTitle="React.js Boilerplate"
-    >
-      <meta name="description" content="A React.js Boilerplate application" />
-    </Helmet>
-    {/* <Header />
-    <div className="container">
-                <div className="jumbotron mt-5">
-                    <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center">Dashboard</h1>
-                    </div>
-                </div>
-    </div> */}
+    <div id="wrapper_body" className={
+            this.state.active ? "mini-navbar pace-done" : "side-navbar pace-done"
+          }>
+    <Sidebar />
+    <div id="page-wrapper" className="gray-bg">
+    <Header updateParent={this.updateValue}/>
+    <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
+
     <Switch>
-      <Route exact path="/" component={Sample} />
+      <Route exact path="/" component={HomePage} />
       <Route path="/features" component={FeaturePage} />
-      <Route path="" component={NotFoundPage} />
+      <Route path="/NotFoundPage" component={NotFoundPage} />
     </Switch>
-    {/* <Footer /> */}
+
+        </div>
+        </div>
+    </div>
   </div>
-);
+  )
+}
+}
+
 
 export default App;
-//export default withHighcharts(App, Highcharts);
+

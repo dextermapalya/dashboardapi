@@ -48,7 +48,7 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
                   <i className="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">Dashboard</span>
                   </NavLink>
                   </li>        
-                  <li className="Nav_item">
+                  {/* <li className="Nav_item">
                   <NavLink className={DropDownClass.join(' ')} to="/features" activeClassName="active" onClick={this.toggle.bind(this)}>
                     <i className="fa fa-cog" aria-hidden="true"></i><span className="nav-label">Settings</span><span className="fa arrow"></span>
                   </NavLink>
@@ -63,7 +63,7 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
                   <NavLink to="/" className="router-link list_active" to="/NotFoundPage" activeClassName="active" onClick={this.toggleremove.bind(this)}>
                   <i className="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">about</span>
                   </NavLink>
-                  </li>   
+                  </li>    */}
                 
             </ul>
         </div>

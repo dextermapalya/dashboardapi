@@ -50,7 +50,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
 
                     <span>
                         <img src={logo} className="header_logo" /> 
-                        <button class="minimalize-styl-2 btn btn-primary navbar_toggle" onClick={this.togglebutton}><i class="fa fa-bars"></i> </button>
+                        <button className="minimalize-styl-2 btn btn-primary navbar_toggle" onClick={this.togglebutton}><i className="fa fa-bars"></i> </button>
                     </span>
                                    
                     <ul className="nav navbar-top-links navbar-right login_dropdown">

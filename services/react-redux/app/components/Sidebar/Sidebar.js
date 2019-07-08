@@ -45,12 +45,12 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
                
                   <li className="Nav_item">
                   <NavLink to="/" className={homeItem} activeClassName="" onClick={this.toggleremove.bind(this)}>
-                  <i class="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">Dashboard</span>
+                  <i className="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">Dashboard</span>
                   </NavLink>
                   </li>        
                   <li className="Nav_item">
                   <NavLink className={DropDownClass.join(' ')} to="/features" activeClassName="active" onClick={this.toggle.bind(this)}>
-                    <i class="fa fa-cog" aria-hidden="true"></i><span className="nav-label">Settings</span><span class="fa arrow"></span>
+                    <i className="fa fa-cog" aria-hidden="true"></i><span className="nav-label">Settings</span><span className="fa arrow"></span>
                   </NavLink>
                    <ul className={subMenuClass.join(' ')}>
                             <li><a href="#">Individual Personalization</a></li>
@@ -61,7 +61,7 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
                   </li>
                   <li className="Nav_item">
                   <NavLink to="/" className="router-link list_active" to="/NotFoundPage" activeClassName="active" onClick={this.toggleremove.bind(this)}>
-                  <i class="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">about</span>
+                  <i className="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">about</span>
                   </NavLink>
                   </li>   
                 

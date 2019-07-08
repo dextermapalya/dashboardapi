@@ -14,7 +14,7 @@ import DateSelector from './DateSelector';
 const mapDispatchToProps = (dispatch) => ({
   onChangeDate: (evt, date) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    console.log('DISPATCHING ACTION SUBMIT FORM', date)
+    console.log('DISPATCHING ACTION DATE CHANGE', date)
     dispatch(changeDate(date));
   }
 

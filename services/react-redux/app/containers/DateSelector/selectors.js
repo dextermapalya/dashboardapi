@@ -13,9 +13,13 @@ const selectDate = (state) => {
 
 const makeSelectDate = () => createSelector(
   selectDate,
-  (dateState) => dateState.date
+  (dateState) => {
+    console.log('SELECTOR ACTION DATE CHANGE ....', dateState)
+    return dateState.date
+  }
 );
 
 export {
+  selectDate,
   makeSelectDate,
 };

@@ -5,6 +5,7 @@ export const initialState = {
   loading: false,
   error: false,
   currentUser: false,
+  articles:[],
   userData: {
     repositories: false,
   },

@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
+import Dashboard from 'containers/Dashboard/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Sidebar from '../../components/Sidebar';
@@ -46,7 +46,7 @@ class App extends Component {
     <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
 
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      <Route exact path="/" component={Dashboard} />
       <Route path="/features" component={FeaturePage} />
       <Route path="/NotFoundPage" component={NotFoundPage} />
     </Switch>

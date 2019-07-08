@@ -14,7 +14,13 @@ export function getCurrentDate( separator='/' ) {
 
 /* get current date using moment js */
 export function getDate() {
+  const today = new Date()
   return moment().format('YYYY-MM-DD');
+}
+
+/* format a date using moment js */
+export function formatDate(date) {
+    return moment(date).format('YYYY-MM-DD').toString()
 }
 
 /* get date range 

@@ -41,10 +41,14 @@ class RegistrationChart extends React.Component { // eslint-disable-line react/p
      const { chartname } = this.state;
      console.log( this.state)
 
-     if (this.props.isLoggedin == true && prevProps.isLoggedin == false) {
-      this.fetchData() //fetchdata for registrations
+     if (this.props.isLoggedin == true && prevProps.isLoggedin != this.props.isLoggedin ) {
+      this.fetchData()
      }
-    
+     
+     if (this.props.date != prevProps.date) {
+      this.setState({chartOptions: {} })
+      this.fetchData()
+     }
 
    }
     /**
@@ -67,9 +71,9 @@ class RegistrationChart extends React.Component { // eslint-disable-line react/p
   fetchData() {
 
     //ApiService.get()
-    let today = getCurrentDate('/')
-    today = `2019-06-24`
-    ApiClient.get( `v1.1/activeregistrations/${today}` )
+    //today = `2019-06-24`
+    const date = this.props.date
+    ApiClient.get( `v1.1/activeregistrations/${date}` )
     .then(res => {
       //delegate the json transformation to a service
       var series = RegistrationService.transformData( res.data.data )
@@ -87,6 +91,7 @@ class RegistrationChart extends React.Component { // eslint-disable-line react/p
           <HighchartsReact
             highcharts={Highcharts}
             options={this.state.chartOptions}
+            oneToOne={true}
           />
         </div>
       </section>

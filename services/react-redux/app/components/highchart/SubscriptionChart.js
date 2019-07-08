@@ -45,14 +45,14 @@ class SubscriptionChart extends React.Component { // eslint-disable-line react/p
      const { chartname } = this.state;
      console.log( this.state)
 
-     if (this.props.isLoggedin == true && prevProps.isLoggedin == false) {
-       this.fetchData()
+     if (this.props.isLoggedin == true && prevProps.isLoggedin != this.props.isLoggedin ) {
+      this.fetchData()
      }
-     /*if(prevProps.isLoggedin !== chartname && this.props.chartname == "registrations") {
-          console.log('fethcing data ++++')
-          this.fetchData();
-     } */
-      //this.fetchData(); //this is for installations    
+     
+     if (this.props.date != prevProps.date) {
+      this.setState({chartOptions: {} })
+      this.fetchData()
+     }
 
    }
     /**
@@ -78,9 +78,9 @@ class SubscriptionChart extends React.Component { // eslint-disable-line react/p
   fetchData() {
 
     //get current date to avoid hard coding
-    let today = getCurrentDate('/')
-    today = `2019-06-24`
-    ApiClient.get( `v1.1/activesubscriptions/${today}` )
+    const date = this.props.date
+    //today = `2019-06-24`
+    ApiClient.get( `v1.1/activesubscriptions/${date}` )
     .then(res => {
       //delegate the json transformation to a service
       var series = SubscriptionService.transformData( res.data.data )
@@ -98,6 +98,7 @@ class SubscriptionChart extends React.Component { // eslint-disable-line react/p
           <HighchartsReact
             highcharts={Highcharts}
             options={this.state.chartOptions}
+            oneToOne={true}
           />
         </div>
       </section>

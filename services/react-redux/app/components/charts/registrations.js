@@ -54,7 +54,7 @@ const RegistrationChart = () => {
     return (
         <ChartResource 
         path={AUTH_REGISTRATIONS} render={ data => {
-      if (data.loading) return <p>Loading data.....</p>
+      if (data.loading) return <p>{data.notice}</p>
       return ( <section>{transformData(data.payload)}</section>  )
     }}
   />

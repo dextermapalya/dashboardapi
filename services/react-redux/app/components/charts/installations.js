@@ -54,7 +54,7 @@ const InstallChart = (  ) => {
     return (
         <ChartResource 
         path={AUTH_INSTALLATIONS} render={ data => {
-      if (data.loading) return <p>{data.notice}...Loading data.....</p>
+      if (data.loading) return <p>{data.notice}</p>
       return ( <section>{transformData(data.payload)}</section>  )
     }}
   />

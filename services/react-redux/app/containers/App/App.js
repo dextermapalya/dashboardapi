@@ -15,6 +15,8 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Signup from 'components/register/Signup'
+import Authenticate from 'containers/auth';
+
 import Footer from 'components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.scss';
@@ -37,8 +39,9 @@ const App = () => (
                 </div>
     </div> */}
     <Switch>
-      <Route exact path="/" component={Sample} />
+      <Route exact path="/" component={Authenticate} />
       <Route exact path="/signup" component={Signup} />
+      <Route exact path="/dashboard" component={Sample} />
 
       <Route path="/features" component={FeaturePage} />
       <Route path="" component={NotFoundPage} />

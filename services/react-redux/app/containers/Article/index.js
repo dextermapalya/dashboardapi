@@ -10,7 +10,9 @@ import {
   makeSelectError
 } from 'containers/App/selectors';
 
-import { loadArticles,  changeTitle, saveArticle, changeArticleTitle, changeArticleContent } from './actions';
+import {
+  loadArticles, changeTitle, saveArticle, changeArticleTitle, changeArticleContent
+} from './actions';
 import { makeSelectTitle, makeSelectArticle } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -21,10 +23,10 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeTitle: (evt) => dispatch(changeTitle(evt.target.value)),
   onChangeArticleTitle: (evt) => dispatch(changeArticleTitle(evt.target.value)),
   onChangeArticleContent: (evt) => dispatch(changeArticleContent(evt.target.value)),
-  onLoadArticles: (evt) => dispatch( loadArticles() ),
+  onLoadArticles: (evt) => dispatch(loadArticles()),
   onSaveArticle: (evt, article) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    console.log('DISPATCHING ACTION SUBMIT FORM', article)
+    console.log('DISPATCHING ACTION SUBMIT FORM', article);
     dispatch(saveArticle(article));
   }
 });

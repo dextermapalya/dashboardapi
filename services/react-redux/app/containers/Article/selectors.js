@@ -3,13 +3,13 @@
  */
 
 import { createSelector } from 'reselect';
-//import { initialState } from './reducer';
+// import { initialState } from './reducer';
 
 const selectArticle = (state) => {
-  console.log('SELECT ARTICLE', state.blog)
-  return state.blog
-} 
-//const selectGlobal = (state) => state.global || initialState;
+  console.log('SELECT ARTICLE', state.blog);
+  return state.blog;
+};
+// const selectGlobal = (state) => state.global || initialState;
 
 const makeSelectTitle = () => createSelector(
   selectArticle,
@@ -28,7 +28,7 @@ export {
   makeSelectTitle,
   makeSelectArticle
 };
-/*import { createSelector } from 'reselect';
+/* import { createSelector } from 'reselect';
 
 const selectArticle = (state) => state.get('article');
 
@@ -42,4 +42,3 @@ export {
   makeSelectTitle,
 };
 */
-  

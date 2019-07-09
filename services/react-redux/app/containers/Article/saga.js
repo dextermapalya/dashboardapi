@@ -5,10 +5,10 @@
 import {
   call, put, select, takeLatest
 } from 'redux-saga/effects';
+import request from 'utils/request';
 import { LOAD_ARTICLES, SAVE_ARTICLE } from './constants';
 import { articlesLoaded, articlesLoadingError } from './actions';
 
-import request from 'utils/request';
 import { makeSelectTitle, makeSelectArticle } from './selectors';
 
 /**
@@ -16,9 +16,9 @@ import { makeSelectTitle, makeSelectArticle } from './selectors';
  */
 export function* getArticles() {
   // Select username from store
-  console.log('GET ARTICLES....')
+  console.log('GET ARTICLES....');
   const username = yield select(makeSelectTitle());
-  const requestURL = `http://localhost/api/articles/`;
+  const requestURL = 'http://localhost/api/articles/';
 
   try {
     // Call our request helper (see 'utils/request')
@@ -31,9 +31,9 @@ export function* getArticles() {
 
 
 export function* saveArticle() {
-  console.log('SAVING ARTICLE....')
+  console.log('SAVING ARTICLE....');
   const article = yield select(makeSelectArticle());
-  console.log('ARTICLE', article)
+  console.log('ARTICLE', article);
 }
 /**
  * Root saga manages watcher lifecycle

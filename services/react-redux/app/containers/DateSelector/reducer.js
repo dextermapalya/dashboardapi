@@ -11,32 +11,30 @@
  */
 import { fromJS } from 'immutable';
 import cloneDeep from 'lodash';
-import {getDate , formatDate } from 'utils/DateFunctions'
+import { getDate, formatDate } from 'utils/DateFunctions';
 
-import { CHANGE_DATE
-        } from './constants';
+import { CHANGE_DATE } from './constants';
 
 // The initial state of the App
 const initialState = {
   date: formatDate(getDate()),
-  modified:false
-}
+  modified: false
+};
 
 function dateReducer(state = initialState, action) {
-  console.log('DATE REDUCER')
+  console.log('DATE REDUCER');
 
   switch (action.type) {
     case CHANGE_DATE: {
-      console.log('CHANGING_DATE......', action)
-      //set any checks or filters here
-      return { ...state, modified:true, date: formatDate(action.date) };
+      console.log('CHANGING_DATE......', action);
+      // set any checks or filters here
+      return { ...state, modified: true, date: formatDate(action.date) };
     }
 
     default:
-      console.log('CHANGING DATE', state)
+      console.log('CHANGING DATE', state);
       return state;
   }
 }
 
 export default dateReducer;
-

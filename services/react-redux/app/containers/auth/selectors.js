@@ -3,13 +3,13 @@
  */
 
 import { createSelector } from 'reselect';
-//import { initialState } from './reducer';
+// import { initialState } from './reducer';
 
 const selectAuth = (state) => {
-  console.log('SELECT AUTH', state.auth)
-  return state.auth
-} 
-//const selectGlobal = (state) => state.global || initialState;
+  console.log('SELECT AUTH', state.auth);
+  return state.auth;
+};
+// const selectGlobal = (state) => state.global || initialState;
 
 const makeSelectUser = () => createSelector(
   selectAuth,
@@ -18,18 +18,18 @@ const makeSelectUser = () => createSelector(
 
 
 const makeSelectCredentials = () => createSelector(
-    selectAuth,
+  selectAuth,
   (authState) => authState.credentials
 );
 
 const makeSelectAuthStatus = () => createSelector(
   selectAuth,
-(authState) => authState.isLoggedIn
+  (authState) => authState.isLoggedIn
 );
 
 export {
-    selectAuth,
-    makeSelectUser,
-    makeSelectCredentials,
-    makeSelectAuthStatus
+  selectAuth,
+  makeSelectUser,
+  makeSelectCredentials,
+  makeSelectAuthStatus
 };

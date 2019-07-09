@@ -8,7 +8,7 @@ import {
 import { CHANGE_DATE, DATE_MODIFIED } from './constants';
 import { dateChanged } from './actions';
 
-//import request from 'utils/request';
+// import request from 'utils/request';
 import { makeSelectDate } from './selectors';
 
 /**
@@ -16,26 +16,26 @@ import { makeSelectDate } from './selectors';
  */
 export function* getInstallations() {
   // Select username from store
-  console.log('GET ARTICLES....')
-  //const username = yield select(makeSelectTitle());
-  //const requestURL = `http://localhost/api/articles/`;
+  console.log('GET ARTICLES....');
+  // const username = yield select(makeSelectTitle());
+  // const requestURL = `http://localhost/api/articles/`;
 
   try {
     // Call our request helper (see 'utils/request')
-    console.log('api call to fetch data')
-    //const articles = yield call(request, requestURL);
-    //yield put(articlesLoaded(articles, 'username'));
+    console.log('api call to fetch data');
+    // const articles = yield call(request, requestURL);
+    // yield put(articlesLoaded(articles, 'username'));
   } catch (err) {
-    console.log(err)
-   // yield put(articlesLoadingError(err));
+    console.log(err);
+    // yield put(articlesLoadingError(err));
   }
 }
 
 
 export function* dateModified() {
-  console.log('SAVING ARTICLE....')
+  console.log('SAVING ARTICLE....');
   const article = yield select(makeSelectArticle());
-  console.log('ARTICLE', article)
+  console.log('ARTICLE', article);
 }
 /**
  * Root saga manages watcher lifecycle

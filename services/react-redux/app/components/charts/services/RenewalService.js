@@ -1,26 +1,25 @@
-import {filter, map, uniq} from 'lodash'
+import { filter, map, uniq } from 'lodash';
 
 const RenewalService = {
 
-    /* transform json object into data that can be consumed by highcharts*/
-    transformData: function(jsonInput) {
-        //first extract all unique keys ex that way hardcoding is avoided
-        const paymentTypes =  uniq( map(jsonInput, 'payment_method') )
-        const series = []
-        //iterate through each osType and generate hourly data
-        paymentTypes.forEach(function(item, index) {
-            //filter all items that match keyword
-            var data = filter( jsonInput, { 'payment_method': item } );
+  /* transform json object into data that can be consumed by highcharts */
+  transformData(jsonInput) {
+    // first extract all unique keys ex that way hardcoding is avoided
+    const paymentTypes = uniq(map(jsonInput, 'payment_method'));
+    const series = [];
+    // iterate through each osType and generate hourly data
+    paymentTypes.forEach((item, index) => {
+      // filter all items that match keyword
+      const data = filter(jsonInput, { payment_method: item });
 
-            var hourlyData = map(data, 'Renewals'); 
-            series.push ( {'name': item, data: hourlyData } )
+      const hourlyData = map(data, 'Renewals');
+      series.push({ name: item, data: hourlyData });
+    });
 
-        });
-
-        return series
-        //inspect the value
-    },
+    return series;
+    // inspect the value
+  },
 
 };
 
-export default RenewalService
+export default RenewalService;

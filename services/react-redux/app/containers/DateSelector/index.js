@@ -14,7 +14,7 @@ import DateSelector from './DateSelector';
 const mapDispatchToProps = (dispatch) => ({
   onChangeDate: (evt, date) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    console.log('DISPATCHING ACTION DATE CHANGE', date)
+    console.log('DISPATCHING ACTION DATE CHANGE', date);
     dispatch(changeDate(date));
   }
 
@@ -27,6 +27,6 @@ const mapStateToProps = createStructuredSelector({
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReducer = injectReducer({ key: 'dateselector', reducer });
-//const withSaga = injectSaga({ key: 'dateselector', saga });
+// const withSaga = injectSaga({ key: 'dateselector', saga });
 export default compose(withReducer, withConnect)(DateSelector);
 export { mapDispatchToProps };

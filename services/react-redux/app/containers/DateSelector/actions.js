@@ -15,8 +15,7 @@
  *    }
  */
 
-import { CHANGE_DATE,
-} from './constants';
+import { CHANGE_DATE } from './constants';
 
 /**
  * Changes the input field of the form
@@ -31,4 +30,3 @@ export function changeDate(date) {
     date
   };
 }
-

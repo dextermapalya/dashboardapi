@@ -15,7 +15,8 @@
  *    }
  */
 
-import { CHANGE_TITLE,
+import {
+  CHANGE_TITLE,
   LOAD_ARTICLES,
   LOAD_ARTICLES_SUCCESS,
   LOAD_ARTICLES_ERROR,
@@ -73,13 +74,12 @@ export function changeArticleContent(content) {
  * @return {object} An action object with a type of LOAD_ARTICLES
  */
 export function saveArticle(article) {
-  console.log('ACTION',SAVE_ARTICLE, article )
+  console.log('ACTION', SAVE_ARTICLE, article);
   return {
     type: SAVE_ARTICLE,
     article
   };
 }
-
 
 
 /**

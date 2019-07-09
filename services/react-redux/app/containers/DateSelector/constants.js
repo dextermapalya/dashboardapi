@@ -10,4 +10,4 @@
  */
 
 export const CHANGE_DATE = 'CHANGE_DATE';
-export const DATE_MODIFIED = 'DATE_MODIFIED'
+export const DATE_MODIFIED = 'DATE_MODIFIED';

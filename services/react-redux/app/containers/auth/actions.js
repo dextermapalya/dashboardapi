@@ -15,7 +15,9 @@
  *    }
  */
 
-import { AUTHENTICATE,AUTH_SUCCESS,AUTH_ERROR,AUTH_STATE } from './constants';
+import {
+  AUTHENTICATE, AUTH_SUCCESS, AUTH_ERROR, AUTH_STATE
+} from './constants';
 
 /**
  * Authenticates a user with given credentials
@@ -39,12 +41,12 @@ export function authenticateUser(credentials) {
  * @return {object}    An action object with a type of AUTH_STATE
  */
 export function getAuthState(credentials) {
-    return {
-      type: AUTH_STATE,
-      user
-    };
-  }
-  
+  return {
+    type: AUTH_STATE,
+    user
+  };
+}
+
 
 /**
  * Dispatched when the articles are loaded by the request saga
@@ -55,25 +57,24 @@ export function getAuthState(credentials) {
  * @return {object}  An action object with a type of LOAD_ARTICLES_SUCCESS passing the repos
  */
 export function authComplete(user, username, isLoggedIn) {
-    return {
-      type: AUTH_SUCCESS,
-      user,
-      username,
-      isLoggedIn
-    };
-  }
-  
-  /**
+  return {
+    type: AUTH_SUCCESS,
+    user,
+    username,
+    isLoggedIn
+  };
+}
+
+/**
    * Dispatched when loading the repositories fails
    *
    * @param  {object} error The error
    *
    * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
    */
-  export function authError(error) {
-    return {
-      type: AUTH_ERROR,
-      error,
-    };
-  }
-  
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    error,
+  };
+}

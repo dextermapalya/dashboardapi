@@ -8,18 +8,18 @@ import {
   makeSelectLoading,
   makeSelectError
 } from 'containers/App/selectors';
+import { makeSelectDate } from 'containers/DateSelector/selectors';
+import Highcharts from 'highcharts';
+import {
+  withHighcharts
+} from 'react-jsx-highcharts';
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
-import { makeSelectDate } from 'containers/DateSelector/selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Dashboard from './Dashboard';
-import Highcharts from 'highcharts';
 
-import {
-   withHighcharts
-} from 'react-jsx-highcharts';
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
@@ -44,6 +44,6 @@ const withReducer = injectReducer({ key: 'home', reducer });
 const withSaga = injectSaga({ key: 'home', saga });
 
 export default compose(withReducer, withSaga, withConnect)(Dashboard);
-//export default compose(withReducer, withSaga, withConnect, withHighcharts)(Dashboard, Highcharts);
+// export default compose(withReducer, withSaga, withConnect, withHighcharts)(Dashboard, Highcharts);
 
 export { mapDispatchToProps };

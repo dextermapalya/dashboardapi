@@ -49,7 +49,7 @@ export default class ChartResource extends React.PureComponent {
     componentDidUpdate(prevProps, prevState) {
       console.log(prevProps, this.props, '&&&&&&&&');
       if (this.props.currentDate != prevProps.currentDate) {
-        this.setState({ currentDate: this.props.currentDate });
+        this.setState({ currentDate: this.props.currentDate, payload: {} });
         this.fetchData();
       }
     }

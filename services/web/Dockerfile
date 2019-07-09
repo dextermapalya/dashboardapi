@@ -96,5 +96,5 @@ EXPOSE 8000
 # define the default command to run when starting the container
 #CMD ["gunicorn", "--chdir", "dashboard", "--bind", ":8000", "dashboard.wsgi:application"]
 #CMD ["gunicorn", "--bind", ":8000", "--error-logfile","=./logs/gunicorn.log", "dashboard.wsgi:application"]
-CMD ["gunicorn", "--bind", ":8000", "dashboard.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000","--workers", "=7", "--timeout", "=5000", "--log-level","=debug", "--access-logfile", "--error-logfile", "dashboard.wsgi:application"]
 #CMD ["python", "manage.py", "runserver"]

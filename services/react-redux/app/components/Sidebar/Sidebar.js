@@ -32,7 +32,7 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
       DropDownClass.push('');
     }
       
-    const homeItem = location.pathname === "/" ? "router-link list_active active" : "router-link list_active";
+    // const homeItem = location.pathname === "/" ? "router-link list_active active" : "router-link list_active";
   
     
     return (
@@ -44,7 +44,7 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
             <ul className="nav metismenu" id="side-menu">
                
                   <li className="Nav_item">
-                  <NavLink to="/" className={homeItem} activeClassName="" onClick={this.toggleremove.bind(this)}>
+                  <NavLink to="/" className="router-link list_active" activeClassName="active" onClick={this.toggleremove.bind(this)}>
                   <i className="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">Dashboard</span>
                   </NavLink>
                   </li>        
@@ -64,7 +64,6 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
                   <i className="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">about</span>
                   </NavLink>
                   </li>    */}
-                
             </ul>
         </div>
     </nav>

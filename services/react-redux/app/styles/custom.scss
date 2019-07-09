@@ -557,6 +557,7 @@ width: 1%;
 }
 .dashbord_header .react-datepicker-popper{
     left: -40px !important;
+    z-index: 9;
 }
 .dropdown-menu.show::before{
     content: "";

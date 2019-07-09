@@ -49,11 +49,11 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt /
 #RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels -r requirements.txt
 RUN pip install -r requirements.txt
-
+RUN mkdir -p /srv/logs
 # Create directory for the app user
 RUN mkdir -p /home/project
 #set variable for log directory
-ENV LOG_DIR=/var/log/django
+ENV LOG_DIR=/var/logs/django
 #create a log directory if does not exist
 RUN mkdir -p $LOG_DIR
 #copy the empty file into /var/log/django to avoid errors wheny django initialises
@@ -95,6 +95,9 @@ EXPOSE 8000
 # that is from the location where manage.py is located in such cases --chdir must be used
 # define the default command to run when starting the container
 #CMD ["gunicorn", "--chdir", "dashboard", "--bind", ":8000", "dashboard.wsgi:application"]
-#CMD ["gunicorn", "--bind", ":8000", "--error-logfile","=./logs/gunicorn.log", "dashboard.wsgi:application"]
-CMD ["gunicorn", "--bind", ":8000","--workers", "=7", "--timeout", "=5000", "--log-level","=debug", "--access-logfile", "--error-logfile", "dashboard.wsgi:application"]
+####CMD ["gunicorn", "--bind", ":8000", "--error-logfile","=/tmp/gunicorn.log", "dashboard.wsgi:application"]
+####CMD ["gunicorn", "--bind", ":8000", "dashboard.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000","--workers", "2", "--timeout", "120", "--log-level","debug", "--access-logfile=/tmp/gunicorn-access.log", "--error-logfile=/tmp/gunicorn-error.log", "dashboard.wsgi:application"]
 #CMD ["python", "manage.py", "runserver"]
+#ENTRYPOINT ["/home/project/web/entrypoint.sh"]
+#CMD ["/home/project/web/entrypoint.sh"]

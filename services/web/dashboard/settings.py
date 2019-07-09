@@ -265,7 +265,7 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': '/var/log/django/django_production.log',
+            'filename': '/var/logs/django/django_production.log',
             'maxBytes' : 1024*1024*100, # 100MB
             'backupCount' : 5,
             'formatter': 'simple'
@@ -274,7 +274,7 @@ LOGGING = {
             'level': 'DEBUG',
             'filters': ['require_debug_false','require_debug_true'],
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': '/var/log/django/django_dba.log',
+            'filename': '/var/logs/django/django_dba.log',
             'formatter': 'simple'
         },
     },

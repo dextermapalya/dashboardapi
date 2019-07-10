@@ -14,6 +14,7 @@ from django.core.cache import cache #for memcache
 from dash.cache import registration_key #import the name of the key for cache the registration views
 from django.views.decorators.cache import cache_page
 from dash.utils import get_env_variable, get_db_connection
+from .logutils import start_timer, stop_timer
 
 import logging
 stdlogger = logging.getLogger(__name__)
@@ -66,6 +67,7 @@ def activeregistrations(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
             status_code = 200
+            start_time = start_timer() #init start time all computations start after this
 
             if request.method == 'POST':
                 print(request.data)
@@ -102,7 +104,9 @@ def activeregistrations(request, dt_query ):
                     #cache.set(registration_key, data, cache_time) #store the response in cache
 
                     #jsondata = jsonifysubscriptions (  cursor.fetchall() )
-                response = {"code": status_code, "data": data }
+                duration = stop_timer( start_time )    
+                response = {"code": status_code, "data": data, "duration":duration }
+                stdlogger.info("@@@@@@ Registration QUERY consumed {0}".format(duration) )
                 
         except Exception as e:
             #return an exception

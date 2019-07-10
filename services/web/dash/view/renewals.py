@@ -11,6 +11,7 @@ from rest_framework.decorators import api_view, permission_classes
 from .serializers import RenewalSerializer
 from django.views.decorators.cache import cache_page
 from dash.utils import get_env_variable, get_db_connection
+from dash.logutils import start_timer, stop_timer
 
 from datetime import date
 import logging
@@ -55,6 +56,7 @@ def activerenewals(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
             status_code = 200
+            start_time = start_timer() #init start time all computations start after this
 
             params = {'id': 1, 'dt_query':dt_query}
             validator = RenewalSerializer( data = params )
@@ -70,12 +72,14 @@ def activerenewals(request, dt_query ):
             cursor.execute( get_renewalsquery( dt_query ) )
             #cursor.execute( "select * from myplex_user_device")
             #query the db and jsonify the results
-            r = [dict((cursor.description[i][0], value) \
+            data = [dict((cursor.description[i][0], value) \
                 for i, value in enumerate(row)) for row in cursor.fetchall()]
             cursor.connection.close()
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
-            response = {"code": status_code, "data": r }
+            duration = stop_timer( start_time )    
+            response = {"code": status_code, "data": data, "duration":duration }
+            stdlogger.info("@@@@@@ RENEWALS QUERY consumed {0}".format(duration) )
                 
         except Exception as e:
             #return an exception

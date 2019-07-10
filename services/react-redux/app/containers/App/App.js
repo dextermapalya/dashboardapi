@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import {  Switch, Route } from 'react-router-dom';
 
 import Dashboard from 'containers/Dashboard/Dashboard';
 import FeaturePage from 'containers/FeaturePage/Loadable';
@@ -49,14 +49,12 @@ class App extends Component {
               <div id="page-wrapper" className="gray-bg">
                 <Header updateParent={this.updateValue} />
                 <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
-
                   <Switch>
                     <Route exact path="/" component={Authenticate} />
-                    <Route exact path="/dashboard" component={Dashboard} />
+                    <Route path="/dashboard" component={Dashboard} />
                     <Route path="/features" component={FeaturePage} />
                     <Route path="/NotFoundPage" component={NotFoundPage} />
                   </Switch>
-
                 </div>
               </div>
             </div>

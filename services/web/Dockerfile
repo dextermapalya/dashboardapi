@@ -48,7 +48,7 @@ RUN apt-get update && apt-get install -y \
 ##### ####
 # copy supervisor conf file
 #######
-COPY supervisord.conf /etc/supervisor.d/
+COPY supervisord.conf /etc/supervisor.d/dashboard.ini
 
 
 
@@ -57,15 +57,22 @@ COPY requirements.txt /
 #RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels -r requirements.txt
 RUN pip install -r requirements.txt
 RUN mkdir -p /srv/logs
+RUN mkdir -p /var/logs/django
+RUN mkdir -p /var/logs/supervisord
+
 # Create directory for the app user
 RUN mkdir -p /home/project
 #set variable for log directory
-ENV LOG_DIR=/var/logs/django
+ENV LOG_DIR=/var/logs/
+
 #create a log directory if does not exist
 RUN mkdir -p $LOG_DIR
 #copy the empty file into /var/log/django to avoid errors wheny django initialises
-COPY django_dba.log $LOG_DIR
-
+RUN echo "-" > /var/logs/django/django_dba.log
+RUN echo "-" > /var/logs/django/gunicorn-error.log
+RUN echo "-" > /var/logs/django/gunicorn-access.log
+RUN echo "-" > /var/logs/supervisord/django-stderr.log
+RUN echo "-" > /var/logs/supervisord/django-stdout.log
 
 # Create the app user
 RUN groupadd app && useradd -g app app
@@ -113,4 +120,5 @@ EXPOSE 8000
 #CMD ["python", "manage.py", "runserver"]
 #ENTRYPOINT ["/home/project/web/entrypoint.sh"]
 #CMD ["/home/project/web/entrypoint.sh"]
-CMD ["supervisord", "-c", "/etc/supervisor.d/supervisord.conf"]
+###CMD ["supervisord", "-c", "/etc/supervisor.d/supervisord.conf"]
+CMD ["supervisord", "-c", "/etc/supervisor.d/dashboard.ini"]

@@ -21,3 +21,4 @@ mysql-connector-python
 djangorestframework-jwt
 django-rest-auth
 python-memcached
+gevent

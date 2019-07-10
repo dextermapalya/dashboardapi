@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     libpq-dev \
     python-dev \
+    supervisor \
     #py-mysqldb \
     default-libmysqlclient-dev
 
@@ -44,6 +45,12 @@ RUN apt-get update && apt-get install -y \
 #RUN virtualenv -p python3.6 virtual
 #RUN /bin/bash -c "source /virtual/bin/activate"
 #####setup virtualenv for python if required ####
+##### ####
+# copy supervisor conf file
+#######
+COPY supervisord.conf /etc/supervisor.d/
+
+
 
 # Install Requirements
 COPY requirements.txt /
@@ -69,6 +76,11 @@ ENV HOME=/home/project
 ENV APP_HOME=/home/project/web
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
+
+##### ####
+# copy gunicorn.conf  file
+#######
+COPY gunicorn.conf $APP_HOME
 
 # Install Requirements
 #COPY --from=builder /wheels /wheels
@@ -97,7 +109,8 @@ EXPOSE 8000
 #CMD ["gunicorn", "--chdir", "dashboard", "--bind", ":8000", "dashboard.wsgi:application"]
 ####CMD ["gunicorn", "--bind", ":8000", "--error-logfile","=/tmp/gunicorn.log", "dashboard.wsgi:application"]
 ####CMD ["gunicorn", "--bind", ":8000", "dashboard.wsgi:application"]
-CMD ["gunicorn", "--bind", ":8000","--workers", "2", "--timeout", "120", "--log-level","debug", "--access-logfile=/tmp/gunicorn-access.log", "--error-logfile=/tmp/gunicorn-error.log", "dashboard.wsgi:application"]
+#### WORKING ####CMD ["gunicorn", "--bind", ":8000","--workers", "2", "--timeout", "120", "--log-level","debug", "--access-logfile=/tmp/gunicorn-access.log", "--error-logfile=/tmp/gunicorn-error.log", "dashboard.wsgi:application"]
 #CMD ["python", "manage.py", "runserver"]
 #ENTRYPOINT ["/home/project/web/entrypoint.sh"]
 #CMD ["/home/project/web/entrypoint.sh"]
+CMD ["supervisord", "-c", "/etc/supervisor.d/supervisord.conf"]

@@ -5,10 +5,10 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import { changeDate } from './actions';
-import { makeSelectDate } from './selectors';
 import reducer from './reducer';
-import saga from './saga';
 import DateSelector from './DateSelector';
+import saga from './saga';
+import { makeSelectDate } from './selectors';
 
 
 const mapDispatchToProps = (dispatch) => ({

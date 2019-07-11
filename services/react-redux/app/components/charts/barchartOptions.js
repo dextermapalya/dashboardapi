@@ -42,7 +42,10 @@ const stackedChartOptions = {
     //    Highcharts.defaultOptions.legend.backgroundColor || 'white',
     borderColor: '#CCC',
     borderWidth: 1,
-    shadow: false
+    shadow: false,
+    itemMarginTop: 0,
+    itemMarginBottom: 0
+
   },
   tooltip: {
     headerFormat: '<b>{point.x}</b><br/>',

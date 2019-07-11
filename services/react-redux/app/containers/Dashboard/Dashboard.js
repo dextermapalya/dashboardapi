@@ -4,14 +4,9 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import "./style.scss";
 
-// import RegistrationChart from 'components/highchart/RegistrationChart'
-// import RenewalChart from 'components/highchart/RenewalChart'
-// import SubscriptionChart from 'components/highchart/SubscriptionChart'
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import DateSelector from "containers/DateSelector/Loadable";
 import InstallChart from "components/charts/installations";
@@ -50,7 +45,7 @@ const Dashboard = () => (
                   </ul>
                 </div>
               </div>
-              <div className="ibox-content">
+              <div className="ibox-content" >
                 <InstallChart />
               </div>
             </div>

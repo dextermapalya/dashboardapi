@@ -70,7 +70,9 @@ const chartOptions = {
   legend: {
     align: 'left',
     verticalAlign: 'top',
-    borderWidth: 0
+    borderWidth: 1,
+    itemMarginTop: 0,
+    itemMarginBottom: 0
   },
 
   tooltip: {

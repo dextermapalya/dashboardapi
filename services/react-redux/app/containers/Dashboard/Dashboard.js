@@ -29,7 +29,7 @@ const Dashboard = () => (
           <div className="col-lg-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h4 className="Individual_title">Installations Hourly</h4>
+                <h5 className="Individual_title">Installations Hourly</h5>
                 <div className="ibox-tools">
                   <a className="collapse-link">
                     <i className="fa fa-chevron-up uparrow" />
@@ -53,7 +53,7 @@ const Dashboard = () => (
           <div className="col-lg-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h4 className="Individual_title">Registrations Hourly</h4>
+                <h5 className="Individual_title">Registrations Hourly</h5>
                 <div className="ibox-tools">
                   <a className="collapse-link">
                     <i className="fa fa-chevron-up uparrow" />
@@ -77,7 +77,7 @@ const Dashboard = () => (
           <div className="col-lg-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h4 className="Individual_title">Renewals Hourly</h4> 
+                <h5 className="Individual_title">Renewals Hourly</h5> 
                 <div className="ibox-tools">
                   <a className="collapse-link">
                     <i className="fa fa-chevron-up uparrow" />
@@ -101,7 +101,7 @@ const Dashboard = () => (
           <div className="col-lg-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h4 className="Individual_title">Subscriptions Hourly</h4> 
+                <h5 className="Individual_title">Subscriptions Hourly</h5> 
                 <div className="ibox-tools">
                   <a className="collapse-link">
                     <i className="fa fa-chevron-up uparrow" />

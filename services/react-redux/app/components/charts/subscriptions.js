@@ -29,9 +29,12 @@ const transformData = (payload) => {
   cOptions.xAxis.title.text = 'Time';
   cOptions.yAxis[0].title.text = ' Payment Method';
 
-  const series = SubscriptionService.transformData(payload.data);
-  cOptions.series = series;
-  console.log('&&&&&5', series);
+  const data = SubscriptionService.transformData(payload.data);
+  console.log('SUBSCRIPTIONS', data)
+  cOptions.series = data.series;
+  cOptions.categories = data.hours;
+
+  console.log('&&&&&5', data.series);
 
   return (
     <div>

@@ -30,9 +30,8 @@ const transformData = (payload) => {
   cOptions.xAxis.title.text = 'Time';
   cOptions.yAxis[0].title.text = ' Payment Method';
 
-  const series = RenewalService.transformData(payload.data);
-  cOptions.series = series;
-  console.log('&&&&&5', series);
+  const data = RenewalService.transformData(payload.data);
+  cOptions.series = data.series;
 
   return (
     <div>

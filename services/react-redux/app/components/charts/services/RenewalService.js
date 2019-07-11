@@ -1,4 +1,5 @@
-import { filter, map, uniq } from 'lodash';
+import { filter, map, uniq, maxBy } from 'lodash';
+import { getHoursUntilNow } from 'utils/DateFunctions'
 
 const RenewalService = {
 
@@ -7,8 +8,11 @@ const RenewalService = {
     // first extract all unique keys ex that way hardcoding is avoided
     const paymentTypes = uniq(map(jsonInput, 'payment_method'));
     const series = [];
+    let maxH = maxBy(jsonInput, 'HOUR')
+    maxH = (maxH == undefined ) ? 23 : maxH.HOUR 
+    const hours = getHoursUntilNow(maxH)
 
-    const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,23]; 
+    //const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,23]; 
 
     paymentTypes.forEach((item, index) => {
       // filter all items that match keyword
@@ -56,7 +60,7 @@ const RenewalService = {
       series.push({ name: item, data: hourlyData });
     });*/
 
-    return series;
+    return {'series': series, 'hours': hours};
     // inspect the value
   },
 

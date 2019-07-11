@@ -48,11 +48,13 @@ export function getCurrentHour() {
 }
 
 /* getHoursUntilNow 
-* arguments none
+* arguments int 
+* if argument is omitted then use current hour
 * return array of integers
 */
-export function getHoursUntilNow() {
-  var h = getCurrentHour
+export function getHoursUntilNow( h ) {
+  if (h == undefined)
+    h = getCurrentHour()
   var hours = []
   for (var i =0; i <= h; i++) {
     hours.push(i)

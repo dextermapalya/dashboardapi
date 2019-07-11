@@ -1,4 +1,5 @@
-import { filter, map, uniq } from 'lodash';
+import { filter, map, uniq, maxBy } from 'lodash';
+import { getHoursUntilNow } from 'utils/DateFunctions'
 
 const SubscriptionService = {
 
@@ -8,8 +9,11 @@ const SubscriptionService = {
     const paymentTypes = uniq(map(jsonInput, 'payment_method'));
     const series = [];
     // iterate through each osType and generate hourly data
+    let maxH = maxBy(jsonInput, 'HOUR')
+    maxH = (maxH == undefined ) ? 23 : maxH.HOUR 
+    const hours = getHoursUntilNow( maxH )
     
-    const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,23]; 
+    //const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,23]; 
 
     paymentTypes.forEach((item, index) => {
       // filter all items that match keyword
@@ -47,8 +51,8 @@ const SubscriptionService = {
         const hourlyData = map(hData, "subs");
         series.push({ name: item, data: hourlyData });
     });
-
-    return series;
+    console.log('SUBSCRIPTIONS...', series, hours)
+    return {'series': series, 'hours':hours};
     // inspect the value
   },
 

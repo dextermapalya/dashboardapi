@@ -8,6 +8,7 @@ import { AUTH_INSTALLATIONS } from 'shared/constants';
 import PropTypes from 'prop-types';
 import ChartResource from './Loadable';
 import chartOptions from './chartOptions';
+import { getHoursUntilNow } from 'utils/DateFunctions'
 
 /**
  * called from functional component InstallChart, when its parent class successfully
@@ -24,6 +25,8 @@ const transformData = (payload) => {
     * so it must be cloned and used in highcharts
     * */
   const cOptions = cloneDeep(chartOptions);
+  cOptions.yAxis[0].title.text = ' Device Type';
+  //cOptions.xAxis.categories = getHoursUntilNow()
   const series = InstallationService.transformData(payload.data);
   cOptions.series = series;
   console.log('&&&&&5', series);

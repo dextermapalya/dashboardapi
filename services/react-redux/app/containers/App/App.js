@@ -9,7 +9,6 @@
 import React, { Component } from 'react';
 import {  Switch, Route } from 'react-router-dom';
 
-import Dashboard from 'containers/Dashboard/Dashboard';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Authenticate from 'containers/auth';
@@ -20,6 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../styles/style_th.scss';
 import '../../styles/custom.scss';
 import '../../styles/animate.scss';
+import Dashboard from 'containers/Dashboard/Dashboard';
 
 class App extends Component {
   constructor(props) {

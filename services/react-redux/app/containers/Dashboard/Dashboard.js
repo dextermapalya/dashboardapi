@@ -26,6 +26,7 @@ const Dashboard = () => (
             <DateSelector />
           </div>
         </div>
+
         <div className="row content_area">
           <div className="col-lg-6">
             <div className="ibox float-e-margins">
@@ -46,7 +47,7 @@ const Dashboard = () => (
                   </ul>
                 </div>
               </div>
-              <div className="ibox-content" >
+              <div className="ibox-content">
                 <InstallChart />
               </div>
             </div>
@@ -78,7 +79,7 @@ const Dashboard = () => (
           <div className="col-lg-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h5 className="Individual_title">Renewals Hourly</h5> 
+                <h5 className="Individual_title">Renewals Hourly</h5>
                 <div className="ibox-tools">
                   <a className="collapse-link">
                     <i className="fa fa-chevron-up uparrow" />
@@ -102,7 +103,7 @@ const Dashboard = () => (
           <div className="col-lg-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h5 className="Individual_title">Subscriptions Hourly</h5> 
+                <h5 className="Individual_title">Subscriptions Hourly</h5>
                 <div className="ibox-tools">
                   <a className="collapse-link">
                     <i className="fa fa-chevron-up uparrow" />

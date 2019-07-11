@@ -1,15 +1,15 @@
 /**
- * Homepage selectors
+ * DateSelector selectors
  */
 
 import { createSelector } from 'reselect';
-// import { initialState } from './reducer';
+import { initialState } from './reducer';
 
-const selectDate = (state) => {
-  console.log('SELECT DATE', state.dateselector);
-  return state.dateselector;
+const selectDate = state => {
+  console.log("SELECT DATE", state.dateselector, state, state.dateselector);
+  if (state.dateselector) return state.dateselector;
+  if (state.highcharts) return state.highcharts;
 };
-// const selectGlobal = (state) => state.global || initialState;
 
 const makeSelectDate = () => createSelector(
   selectDate,

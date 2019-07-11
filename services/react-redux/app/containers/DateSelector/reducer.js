@@ -1,5 +1,5 @@
 /*
- * HomeReducer
+ * DateSelectorReducer
  *
  * The reducer takes care of our data. Using actions, we can change our
  * application state.
@@ -9,20 +9,18 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { fromJS } from 'immutable';
-import cloneDeep from 'lodash';
-import { getDate, formatDate } from 'utils/DateFunctions';
-
 import { CHANGE_DATE } from './constants';
+ import { getDate, formatDate } from 'utils/DateFunctions';
+
 
 // The initial state of the App
-const initialState = {
+export const initialState = {
   date: formatDate(getDate()),
   modified: false
 };
 
 function dateReducer(state = initialState, action) {
-  console.log('DATE REDUCER');
+  console.log('DATE REDUCER', state);
 
   switch (action.type) {
     case CHANGE_DATE: {
@@ -32,7 +30,6 @@ function dateReducer(state = initialState, action) {
     }
 
     default:
-      console.log('CHANGING DATE', state);
       return state;
   }
 }

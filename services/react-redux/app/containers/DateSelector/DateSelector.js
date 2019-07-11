@@ -31,6 +31,7 @@ export default class DateSelector extends React.PureComponent {
       startDate: date,
       currentDate: formatDate(date)
     });
+    console.log('SELECT DATE changed Dateselector', date)
     let e; // do not remove this line, because dispatch function requires the event and value
     // event has already been handled by datepicker
     this.props.onChangeDate(e, formatDate(date));

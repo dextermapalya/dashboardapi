@@ -37,3 +37,25 @@ export function getDateRange(days) {
   }
   return { startDate: dateFrom, endDate: dateTo };
 }
+
+/* getCurrentHour 
+* arguments none
+* return int
+*/
+export function getCurrentHour() {
+  var d = new Date();
+  return d.getHours();
+}
+
+/* getHoursUntilNow 
+* arguments none
+* return array of integers
+*/
+export function getHoursUntilNow() {
+  var h = getCurrentHour
+  var hours = []
+  for (var i =0; i <= h; i++) {
+    hours.push(i)
+  }
+  return hours
+}

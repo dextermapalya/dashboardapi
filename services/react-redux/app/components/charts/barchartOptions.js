@@ -34,9 +34,9 @@ const stackedChartOptions = {
   }],
   legend: {
     align: 'right',
-    x: 0,
     verticalAlign: 'top',
-    y: 0,
+    x: 0,
+    y: -14,
     floating: true,
     backgroundColor: 'white',
     //    Highcharts.defaultOptions.legend.backgroundColor || 'white',
@@ -44,8 +44,8 @@ const stackedChartOptions = {
     borderWidth: 1,
     shadow: false,
     itemMarginTop: 0,
-    itemMarginBottom: 0
-
+    itemMarginBottom: 0,
+    draggable: true
   },
   tooltip: {
     headerFormat: '<b>{point.x}</b><br/>',

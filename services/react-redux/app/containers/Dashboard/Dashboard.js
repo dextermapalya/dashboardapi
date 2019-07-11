@@ -14,6 +14,7 @@ import RegistrationChart from "components/charts/registrations";
 import RenewalChart from "components/charts/renewals";
 import SubscriptionChart from "components/charts/subscriptions";
 
+
 const Dashboard = () => (
   <article>
     <div className="home-page">

@@ -3,14 +3,16 @@ const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
 const stackedChartOptions = {
 
   chart: {
-    type: 'column'
+    type: 'column',
+    marginTop: 130
   },
   title: {
     text: ' '
   },
   xAxis: {
     title: {
-      text: ' '
+      text: ' ',
+      y: 60
     },
     categories: hours
   },
@@ -32,9 +34,9 @@ const stackedChartOptions = {
   }],
   legend: {
     align: 'right',
-    x: -30,
+    x: 0,
     verticalAlign: 'top',
-    y: 25,
+    y: 0,
     floating: true,
     backgroundColor: 'white',
     //    Highcharts.defaultOptions.legend.backgroundColor || 'white',
@@ -54,16 +56,7 @@ const stackedChartOptions = {
       }
     }
   },
-  series: [{
-    name: 'John',
-    data: [5, 3, 4, 7, 2]
-  }, {
-    name: 'Jane',
-    data: [2, 2, 3, 2, 1]
-  }, {
-    name: 'Joe',
-    data: [3, 4, 4, 2, 5]
-  }]
+  series: []
 };
 
 export default stackedChartOptions;

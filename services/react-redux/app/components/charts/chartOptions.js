@@ -3,20 +3,20 @@ const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
 const chartOptions = {
   chart: {
     scrollablePlotArea: {
-      minWidth: 700
+      minWidth: 700,
+      marginTop: 130
     }
   },
 
   data: [],
 
   title: {
-    text: 'App Installations by OS - Hourly'
+    text: ' '
   },
 
-  subtitle: {
+  /*subtitle: {
     text: 'Source: SUNNXT API'
-  },
-
+  },*/
 
   xAxisaa: {
     title: {
@@ -33,14 +33,16 @@ const chartOptions = {
   },
   xAxis: {
     title: {
-      text: 'Time'
+      text: 'Time',
+      y: 60
     },
     categories: hours
   },
 
   yAxis: [{ // left y axis
     title: {
-      text: 'Users'
+      text: ' ',
+      y: 60
     },
     labels: {
       align: 'left',

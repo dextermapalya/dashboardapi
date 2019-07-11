@@ -25,7 +25,7 @@ const transformData = (payload) => {
     * */
   const cOptions = cloneDeep(chartOptions);
   cOptions.series = []
-  cOptions.title.text = 'Subscriptions Hourly';
+  //cOptions.title.text = 'Subscriptions Hourly';
   cOptions.xAxis.title.text = 'Time';
   cOptions.yAxis[0].title.text = ' Payment Method';
 

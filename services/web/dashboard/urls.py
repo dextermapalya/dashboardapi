@@ -32,5 +32,6 @@ urlpatterns = [
     #path('', views.home, kwargs=None, name=None),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     #path('activesubscription/<int:id>/', views.activesubscriptions, )
+    path('task/', include('scheduler.urls'))
 
 ]

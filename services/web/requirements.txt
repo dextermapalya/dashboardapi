@@ -9,7 +9,7 @@ djangorestframework==3.9.3
 idna==2.8
 oauthlib==3.0.1
 pytz==2019.1
-requests==2.21.0
+requests
 soupsieve==1.9.1
 sqlparse==0.3.0
 urllib3==1.24.3
@@ -22,3 +22,4 @@ djangorestframework-jwt
 django-rest-auth
 python-memcached
 gevent
+django-background-tasks

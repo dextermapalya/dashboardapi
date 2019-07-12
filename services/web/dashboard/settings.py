@@ -54,13 +54,14 @@ INSTALLED_APPS = [
     'rest_framework', # <-- add this 3rd party module
     'oauth2_provider', # <-- add this 3rd party module
     'corsheaders', # <-- add this 3rd party module
-
+    'background_task', # <-- add this 3rd party module
     'rest_framework.authtoken', # Add this line for JWT
     'rest_auth',                # Add this line for JWT
 
     'users', # <-- add this module name created using python manage.py startapp users
     'api', # <-- add this module name created using python manage.py startapp api
-    'dash' # <-- add this module name created using python manage.py startapp dash
+    'dash', # <-- add this module name created using python manage.py startapp dash
+    'scheduler', # <-- add this module name created using python manage.py startapp scheduler
 ]
 
 MIDDLEWARE = [
@@ -279,7 +280,7 @@ LOGGING = {
         },
     },
     'root': {
-        'level': 'DEBUG',
+        'level': 'INFO',
         'handlers': ['console'],
     },
     'loggers': {
@@ -297,7 +298,8 @@ LOGGING = {
         },
         'django.db.backends': {
             'level': 'DEBUG',
-            'handlers': ['console','development_logfile','production_logfile'],
+            #'handlers': ['console','development_logfile','production_logfile'],
+            'handlers': ['development_logfile','production_logfile'],
         }
     }
 }

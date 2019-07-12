@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     python-dev \
     supervisor \
+    cron \
     #py-mysqldb \
     default-libmysqlclient-dev
 
@@ -51,6 +52,15 @@ RUN apt-get update && apt-get install -y \
 COPY supervisord.conf /etc/supervisor.d/dashboard.ini
 
 
+# Copy django-cron file to the cron.d directory
+COPY django-cron /etc/cron.d/django-cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/django-cron
+
+# Apply cron job
+RUN crontab /etc/cron.d/django-cron
+
 
 # Install Requirements
 COPY requirements.txt /
@@ -59,6 +69,8 @@ RUN pip install -r requirements.txt
 RUN mkdir -p /srv/logs
 RUN mkdir -p /var/logs/django
 RUN mkdir -p /var/logs/supervisord
+RUN mkdir -p /var/logs/cron
+
 
 # Create directory for the app user
 RUN mkdir -p /home/project
@@ -73,6 +85,9 @@ RUN echo "-" > /var/logs/django/gunicorn-error.log
 RUN echo "-" > /var/logs/django/gunicorn-access.log
 RUN echo "-" > /var/logs/supervisord/django-stderr.log
 RUN echo "-" > /var/logs/supervisord/django-stdout.log
+# Create the log file to be able to run tail
+RUN echo "-" > /var/logs/cron/cron.err.log
+RUN echo "-" > /var/logs/cron/cron.out.log
 
 # Create the app user
 RUN groupadd app && useradd -g app app

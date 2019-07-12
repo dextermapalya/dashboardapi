@@ -8,13 +8,15 @@ from django.core.serializers.json import DjangoJSONEncoder
 from rest_framework.decorators import api_view
 from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
-from datetime import date
+from datetime import date, datetime, timedelta
 from .serializers import SubscriptionSerializer
 from django.core.cache import cache #for memcache
 from dash.cache import registration_key #import the name of the key for cache the registration views
 from django.views.decorators.cache import cache_page
-from dash.utils import get_env_variable, get_db_connection
+from dash.utils import get_env_variable, get_db_connection, date_is_identical
 from .logutils import start_timer, stop_timer
+from scheduler.job import fetch_currentdata
+from background_task import background
 
 import logging
 stdlogger = logging.getLogger(__name__)
@@ -82,12 +84,14 @@ def activeregistrations(request, dt_query ):
 
                 db_conn = get_db_connection()
                 stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
-                #check if already cached
-                cache_time = 60*2 # time in seconds for cache to be valid
-                #data = cache.get(registration_key) # returns None if no key-value pair
-                #if data:
-                #    stdlogger.info("Fetching from CACHE\n\n\n\n")
                 data = None
+
+                #check if already cached
+                cache_time = 60*60*48 # preserve for 48 hours
+                if ( date_is_identical(dt_query) == False ):
+                    data = cache.get(dt_query + "_registration") # returns None if no key-value pair
+                if data:
+                    stdlogger.info("Fetching from CACHE\n\n\n\n")
 
                 if not data:
                     stdlogger.info("Fetching from DATABASE")
@@ -101,7 +105,7 @@ def activeregistrations(request, dt_query ):
                     for i, value in enumerate( row) ) for row in cursor.fetchall()]
                     cursor.connection.close()
 
-                    #cache.set(registration_key, data, cache_time) #store the response in cache
+                    cache.set(dt_query + "_registration", data, cache_time) #store the response in cache
 
                     #jsondata = jsonifysubscriptions (  cursor.fetchall() )
                 duration = stop_timer( start_time )    
@@ -140,6 +144,9 @@ def articles(request ):
             {'id':14, 'title': 'Article 1', 'content': 'Some sample content'},
             {'id':15, 'title': 'Article 1', 'content': 'Some sample content'}
         ]
+
+        d = datetime.today() + timedelta( days = 2 )
+        fetch_currentdata( repeat=60, repeat_until= d )
 
     except Exception as e:
         print(e)

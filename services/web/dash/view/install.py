@@ -10,7 +10,9 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import InstallationSerializer
 from django.views.decorators.cache import cache_page
-from dash.utils import get_env_variable, get_db_connection
+from django.core.cache import cache #for memcache
+
+from dash.utils import get_env_variable, get_db_connection, date_is_identical
 from dash.logutils import start_timer, stop_timer
 
 from datetime import date
@@ -48,15 +50,26 @@ def activeinstallations(request,  dt_query ):
                 raise Exception("Invalid rest Arguments")
 
             db_conn = get_db_connection()
-            stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
-            cursor = connections[db_conn].cursor() #this is for multiple databases
-            #cursor =  connection.cursor() #this is for default database
-            cursor.execute( get_installationsquery( dt_query ) )
-            #cursor.execute( "select * from myplex_user_device")
-            #query the db and jsonify the results
-            data = [dict((cursor.description[i][0], value) \
-                for i, value in enumerate(row)) for row in cursor.fetchall()]
-            cursor.connection.close()
+            data = None
+            #check if already cached
+            cache_time = 60*60*48 # preserve for 48 hours
+            if ( date_is_identical(dt_query) == False ):
+                data = cache.get(dt_query + "_install") # returns None if no key-value pair
+            if data:
+                    stdlogger.info("Fetching from CACHE\n\n\n\n")
+
+            if not data:
+                stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
+                cursor = connections[db_conn].cursor() #this is for multiple databases
+                #cursor =  connection.cursor() #this is for default database
+                cursor.execute( get_installationsquery( dt_query ) )
+                #cursor.execute( "select * from myplex_user_device")
+                #query the db and jsonify the results
+                data = [dict((cursor.description[i][0], value) \
+                    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                cursor.connection.close()
+                if ( date_is_identical(dt_query) == False ):
+                    cache.set(dt_query + "_install", data, cache_time) #store the response in cache
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
             duration = stop_timer( start_time )    

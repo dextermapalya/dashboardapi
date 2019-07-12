@@ -1,5 +1,6 @@
 import logging
 stdlogger = logging.getLogger(__name__)
+from datetime import date, datetime
 
 #to differentiate between local and production environments
 #use an environment variable to pick remote or local db
@@ -34,4 +35,20 @@ def get_db_connection():
 
     return db_conn    
 
+##
+# check if 2 dates are identical
+##
+def date_is_identical(dt = None):
 
+    is_identical = False
+
+    try:
+        if dt is not None:
+            today = datetime.today().strftime('%Y-%m-%d')
+            if dt == today:    
+                is_identical = True
+    except Exception as e:
+        stdlogger.debug("Error verifying identical date {0}".format( str(e) ) )
+        pass
+    finally:
+        return is_identical                

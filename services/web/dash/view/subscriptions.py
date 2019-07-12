@@ -10,9 +10,9 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import SubscriptionSerializer
 from django.views.decorators.cache import cache_page
-from dash.utils import get_env_variable, get_db_connection
-from dash.utils import get_env_variable, get_db_connection
+from dash.utils import get_env_variable, get_db_connection, date_is_identical
 from dash.logutils import start_timer, stop_timer
+from django.core.cache import cache #for memcache
 
 from datetime import date
 import logging
@@ -52,17 +52,29 @@ def activesubscriptions(request, dt_query ):
             if validator.is_valid() == False:
                 raise Exception("Invalid rest Arguments")
 
+            data = None
+            #check if already cached
+            cache_time = 60*60*48 # preserve for 48 hours
+            if ( date_is_identical(dt_query) == False ):
+                data = cache.get(dt_query + "_subscription") # returns None if no key-value pair
+            if data:
+                    stdlogger.info("Fetching from CACHE\n\n\n\n")
+
             db_conn = get_db_connection()
             stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
 
-            cursor = connections[db_conn].cursor() #this is for multiple databases
-            #cursor =  connection.cursor() #this is for default database
-            cursor.execute( get_subscriptionsquery( dt_query ) )
-            #cursor.execute( "select * from myplex_user_device")
-            #query the db and jsonify the results
-            data = [dict((cursor.description[i][0], value) \
-                for i, value in enumerate(row)) for row in cursor.fetchall()]
-            cursor.connection.close()
+            if not data:
+
+                cursor = connections[db_conn].cursor() #this is for multiple databases
+                #cursor =  connection.cursor() #this is for default database
+                cursor.execute( get_subscriptionsquery( dt_query ) )
+                #cursor.execute( "select * from myplex_user_device")
+                #query the db and jsonify the results
+                data = [dict((cursor.description[i][0], value) \
+                    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                cursor.connection.close()
+                if ( date_is_identical(dt_query) == False ):
+                    cache.set(dt_query + "_subscription", data, cache_time) #store the response in cache
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
             duration = stop_timer( start_time )    

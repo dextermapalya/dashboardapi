@@ -26,13 +26,25 @@ def notify_user(user_id):
 def getChartsByDate(access_token, dt):
 
     try:    
-        url = BASE_URL + INSTALLATIONS_URL + dt
         print("Fetching {0} ".format( url ) )
 
         headers = {'Content-Type': 'application/json', 
                     'Authorization':'Bearer {}'.format(access_token)}               
         #print( headers )       
-        response = requests.get(url, headers = headers , timeout = 120 )
+        endpoints = [INSTALLATIONS_URL, REGISTRATIONS_URL, SUBSCRIPTIONS_URL, RENEWALS_URL]
+        for item in endpoints:
+            url = BASE_URL + item + dt
+            response = requests.get(url, headers = headers , timeout = 120 )
+
+        #url = BASE_URL + REGISTRATIONS_URL + dt
+        #response = requests.get(url, headers = headers , timeout = 120 )
+
+        #url = BASE_URL + SUBSCRIPTIONS_URL + dt
+        #response = requests.get(url, headers = headers , timeout = 120 )
+
+        #url = BASE_URL + RENEWALS_URL + dt
+        #response = requests.get(url, headers = headers , timeout = 120 )
+
         #json_response = response.json()
         #print(response)
         print( response.json() )

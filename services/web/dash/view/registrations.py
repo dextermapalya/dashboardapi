@@ -9,14 +9,12 @@ from rest_framework.decorators import api_view
 from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from datetime import date, datetime, timedelta
-from .serializers import SubscriptionSerializer
+from .serializers import RegistrationSerializer
 from django.core.cache import cache #for memcache
 from dash.cache import registration_key #import the name of the key for cache the registration views
 from django.views.decorators.cache import cache_page
 from dash.utils import get_env_variable, get_db_connection, date_is_identical
-from .logutils import start_timer, stop_timer
-from scheduler.job import fetch_currentdata
-from background_task import background
+from dash.logutils import start_timer, stop_timer
 
 import logging
 stdlogger = logging.getLogger(__name__)
@@ -49,19 +47,6 @@ def get_registrationquery(dt = None):
     stdlogger.info(query)
     return query    
 
-def jsonifysubscriptions(resultset):
-        items = []
-
-        if len(resultset) > 0:
-
-            for item in resultset:
-                print(item[0])
-                items.append({'current_date':item[0],'active_subscriptions':item[1]})
-                print(items)
-
-        return items     
-
-
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
 @cache_page(60 * 35) #cache for 35 minutes
@@ -78,22 +63,22 @@ def activeregistrations(request, dt_query ):
             
             else: 
                 params = {'id': 1, 'dt_query':dt_query}
-                validator = SubscriptionSerializer( data = params )
+                validator = RegistrationSerializer( data = params )
                 if validator.is_valid() == False:
                     raise Exception("Invalid rest Arguments")
 
-                db_conn = get_db_connection()
-                stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
                 data = None
 
                 #check if already cached
-                cache_time = 60*60*48 # preserve for 48 hours
+                cache_time = 60 * 60 * (24*7) # preserve for 7 days
                 if ( date_is_identical(dt_query) == False ):
                     data = cache.get(dt_query + "_registration") # returns None if no key-value pair
                 if data:
                     stdlogger.info("Fetching from CACHE\n\n\n\n")
 
                 if not data:
+                    db_conn = get_db_connection()
+                    stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
                     stdlogger.info("Fetching from DATABASE")
                     #cursor = connections['myplex_service'].cursor() #this is for multiple databases
                     cursor = connections[db_conn].cursor() #this is for multiple databases
@@ -122,37 +107,4 @@ def activeregistrations(request, dt_query ):
             #return JsonResponse({'error': 'This page is forbidden', 'items': items}, status=403)
             return JsonResponse( response, status = status_code )    
             
-
-@api_view(['GET'])
-@permission_classes([])
-def articles(request ):
-    try:
-        data = [
-            {'id':1, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':2, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':3, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':4, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':5, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':6, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':7, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':8, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':9, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':10, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':11, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':12, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':13, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':14, 'title': 'Article 1', 'content': 'Some sample content'},
-            {'id':15, 'title': 'Article 1', 'content': 'Some sample content'}
-        ]
-
-        d = datetime.today() + timedelta( days = 2 )
-        fetch_currentdata( repeat=60, repeat_until= d )
-
-    except Exception as e:
-        print(e)
-        raise 
-    finally:
-        response = {"code": 200, "data": data }
-        return JsonResponse( response, status = 200 ) 
-
 

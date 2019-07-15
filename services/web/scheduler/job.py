@@ -34,6 +34,7 @@ def getChartsByDate(access_token, dt):
         endpoints = [INSTALLATIONS_URL, REGISTRATIONS_URL, SUBSCRIPTIONS_URL, RENEWALS_URL]
         for item in endpoints:
             url = BASE_URL + item + dt
+            stdlogger.info( " $$$$$$ Running cron to fetch  {0} ".format( url )  )
             response = requests.get(url, headers = headers , timeout = 120 )
 
         #url = BASE_URL + REGISTRATIONS_URL + dt

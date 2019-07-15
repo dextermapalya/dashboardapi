@@ -1,5 +1,5 @@
-*/25 *   *   *   * curl http://djangoapp:8000/task/current
-*    1   *   *   * curl http://djangoapp:8000/task/historical
+*/25 *   *   *   * curl http://djangoapp:8000/task/current/ >> /var/logs/cron/task-current.log 2>&1
+*    6   *   *   * curl http://djangoapp:8000/task/historical/ >> /var/logs/cron/task-historical.log 2>&1
 */2 * * * * echo "Hello world" >> /var/logs/cron/hello.log 2>&1
 
 

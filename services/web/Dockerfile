@@ -54,12 +54,9 @@ COPY supervisord.conf /etc/supervisor.d/dashboard.ini
 
 # Copy django-cron file to the cron.d directory
 COPY django-cron /etc/cron.d/django-cron
+###COPY django-cron /var/spool/cron/crontabs/app
 
-# Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/django-cron
 
-# Apply cron job
-RUN crontab /etc/cron.d/django-cron
 
 
 # Install Requirements
@@ -117,9 +114,30 @@ RUN chown -R app:app $APP_HOME
 
 # Chown all the /var/log files to the app user
 RUN chown -R app:app $LOG_DIR
+RUN chown -R app:app /var/
+#COPY config/crontab /etc/cron.d/cron 
+#RUN rm -Rf /etc/cron.daily  && \
+#    rm -Rf /etc/cron.weekly && \
+#    rm -Rf /etc/cron.monthly && \
+#    rm -Rf /etc/cron.hourly && \
+#    chmod a+x /etc/cron.d/cron
+
+RUN chgrp app /var/run/ && \
+    usermod -a -G app app
+
+#RUN service cron start
+# Apply cron job
+# Give execution rights on the cron job
+###RUN chown -R app:crontab /var/spool/cron/crontabs/app \
+### && chmod 600 /var/spool/cron/crontabs/app
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/django-cron
+# Apply cron job
+RUN crontab /etc/cron.d/django-cron
 
 # Change to the app user
-USER app
+#USER app
 
 # expose the port 8000
 EXPOSE 8000

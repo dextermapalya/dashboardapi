@@ -21,7 +21,12 @@ const chartOptions = {
   legend: {
       layout: 'vertical',
       align: 'right',
-      verticalAlign: 'middle'
+      verticalAlign: 'middle',
+      borderColor: '#CCC',
+      borderWidth: 1,
+      shadow: false,
+      itemMarginTop: 0,
+      itemMarginBottom: 0
   },
 
   plotOptions: {
@@ -44,7 +49,7 @@ const chartOptions = {
               legend: {
                   layout: 'horizontal',
                   align: 'center',
-                  verticalAlign: 'bottom'
+                  verticalAlign: 'top'
               }
           }
       }]

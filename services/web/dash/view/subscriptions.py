@@ -40,7 +40,7 @@ def get_subscriptionsquery(dt = None):
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 60) #cache for 1 hour
+@cache_page(60 * 35) #cache for 35 minutes
 def activesubscriptions(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
@@ -54,16 +54,17 @@ def activesubscriptions(request, dt_query ):
 
             data = None
             #check if already cached
-            cache_time = 60*60*48 # preserve for 48 hours
+            cache_time = 60 * 60 * (24*7) # preserve for 7 days
+
             if ( date_is_identical(dt_query) == False ):
                 data = cache.get(dt_query + "_subscription") # returns None if no key-value pair
             if data:
                     stdlogger.info("Fetching from CACHE\n\n\n\n")
 
-            db_conn = get_db_connection()
-            stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
 
             if not data:
+                db_conn = get_db_connection()
+                stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
 
                 cursor = connections[db_conn].cursor() #this is for multiple databases
                 #cursor =  connection.cursor() #this is for default database

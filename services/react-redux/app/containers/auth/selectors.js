@@ -3,13 +3,20 @@
  */
 
 import { createSelector } from 'reselect';
-// import { initialState } from './reducer';
+import { initialState } from './reducer';
+
 
 const selectAuth = (state) => {
-  console.log('SELECT AUTH', state.auth);
+  console.log('SELECT AUTH', state.auth, initialState);
+  state.auth = (!state.auth) ? initialState : state.auth
+  const data = localStorage.getItem('userinfo');
+  const jsonObj = JSON.parse(data);
+  const { token } = jsonObj;
+  state.auth.isLoggedIn = (token) ? true : false
   return state.auth;
 };
-// const selectGlobal = (state) => state.global || initialState;
+
+//const selectGlobal = (state) => state.global || initialState;
 
 const makeSelectUser = () => createSelector(
   selectAuth,

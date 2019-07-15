@@ -12,8 +12,11 @@ import {  Switch, Route } from 'react-router-dom';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Authenticate from 'containers/auth';
+import ProtectedRoute from "components/auth";
+
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
+import Home from "components/home";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../styles/style_th.scss';
@@ -25,7 +28,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false
+      active: false,
+      isLoggedIn:false,
     };
   }
 
@@ -51,8 +55,8 @@ class App extends Component {
                 <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
                   <Switch>
                     <Route exact path="/" component={Authenticate} />
-                    <Route path="/dashboard" component={Dashboard} />
-                    <Route path="/features" component={FeaturePage} />
+                    <ProtectedRoute path="/dashboard" component={Dashboard} />
+                    <ProtectedRoute path="/features" component={FeaturePage} />
                     <Route path="/NotFoundPage" component={NotFoundPage} />
                   </Switch>
                 </div>

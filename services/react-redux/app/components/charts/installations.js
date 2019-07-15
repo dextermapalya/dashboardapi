@@ -5,10 +5,8 @@ import { map, cloneDeep } from 'lodash';
 
 import InstallationService from 'components/charts/services/InstallationService';
 import { AUTH_INSTALLATIONS } from 'shared/constants';
-import PropTypes from 'prop-types';
 import ChartResource from './Loadable';
 import chartOptions from './chartOptions';
-import { getHoursUntilNow } from 'utils/DateFunctions'
 
 /**
  * called from functional component InstallChart, when its parent class successfully

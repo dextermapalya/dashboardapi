@@ -20,7 +20,7 @@ import {
 } from './constants';
 
 // The initial state of the App
-const initialState = {
+export const initialState = {
   user: { isLoggedIn: false },
   credentials: { username: '', password: '', scope: 'read' },
   isLoggedIn: false

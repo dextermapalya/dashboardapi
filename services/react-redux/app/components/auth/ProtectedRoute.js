@@ -16,7 +16,8 @@ const ProtectedRoute = ({ component: Comp, isLoggedIn, path, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/", // "/login/"
+              pathname: "/login", // "/login/"
+              params:{test:path},
               state: {
                 prevLocation: path,
                 error:

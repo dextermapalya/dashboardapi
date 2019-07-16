@@ -33,6 +33,7 @@ export default class Authenticate extends React.PureComponent {
     console.log('AUTH COMPONENT updated....', this.props);
     if (this.props.user != prevProps.user && this.props.isLoggedIn) {
       console.log('AUTH SUCCESS.....', this.props.user);
+
       localStorage.setItem('userinfo', JSON.stringify(this.props.user));
       // this.setState({currentDate:this.props.currentDate});
     }
@@ -49,6 +50,18 @@ export default class Authenticate extends React.PureComponent {
       isLoggedIn,
     } = this.props;
 
+    /*IF USER WAS REDIRECTED BECAUSE OF ROUTE PROTECTION 
+    * then extract the key for previous route so that user
+    * can be redirected to that page
+    */
+    let prevRoute = this.props.location.state.prevLocation
+    /* when the app grows, there will be several routes in such
+    * scenarios use the value of prevRoute until then redirect 
+    * user to dashboard */
+    prevRoute = "/dashboard"
+
+
+
     return (
       <article>
         <section>
@@ -57,7 +70,7 @@ export default class Authenticate extends React.PureComponent {
         </section>
 
         {isLoggedIn && (
-          <Redirect to="/dashboard" />
+          <Redirect to={prevRoute} />
         )
         }
       </article>

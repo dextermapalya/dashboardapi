@@ -70,6 +70,7 @@ def activeinstallations(request,  dt_query ):
                     for i, value in enumerate(row)) for row in cursor.fetchall()]
                 cursor.connection.close()
                 if ( date_is_identical(dt_query) == False ):
+                    stdlogger.info("#### STORING IN MEMCACHE...")
                     cache.set(dt_query + "_install", data, cache_time) #store the response in cache
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )

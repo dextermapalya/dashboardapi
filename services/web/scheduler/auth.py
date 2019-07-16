@@ -15,7 +15,7 @@ class TokenAuth(AuthBase):
     def __call__(self, r):
         """Attach an API token to a custom auth header."""
         r.headers['Authorization: Bearer'] = f'{self.token}'  # Python 3.6+
-        response.headers['Content-Type'] = 'application/json; charset=utf-8'
+        r.headers['Content-Type'] = 'application/json; charset=utf-8'
         return r
 
 ###

@@ -3,17 +3,11 @@
 from background_task import background
 import requests
 from datetime import datetime, timedelta
-
+import time
 from scheduler.auth import login, TokenAuth
 import logging
 stdlogger = logging.getLogger(__name__)
 from scheduler import BASE_URL, INSTALLATIONS_URL, REGISTRATIONS_URL, RENEWALS_URL, SUBSCRIPTIONS_URL
-
-#@background(schedule=62)
-def notify_user(user_id):
-    # lookup user by id and send them a message
-    user = User.objects.get(pk=user_id)
-    user.email_user('Here is a notification', 'You have been notified')
 
 
 ###
@@ -26,7 +20,6 @@ def notify_user(user_id):
 def getChartsByDate(access_token, dt):
 
     try:    
-        print("Fetching {0} ".format( url ) )
 
         headers = {'Content-Type': 'application/json', 
                     'Authorization':'Bearer {}'.format(access_token)}               
@@ -35,7 +28,10 @@ def getChartsByDate(access_token, dt):
         for item in endpoints:
             url = BASE_URL + item + dt
             stdlogger.info( " $$$$$$ Running cron to fetch  {0} ".format( url )  )
-            response = requests.get(url, headers = headers , timeout = 120 )
+            stdlogger.info( " $$$$$$ headers  {0} ".format( headers )  )
+
+            time.sleep(2)
+            response = requests.get(url, headers = headers , timeout = 180 )
 
         #url = BASE_URL + REGISTRATIONS_URL + dt
         #response = requests.get(url, headers = headers , timeout = 120 )

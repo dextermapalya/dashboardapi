@@ -54,9 +54,10 @@ class App extends Component {
                 <Header updateParent={this.updateValue} />
                 <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
                   <Switch>
-                    <Route exact path="/" component={Authenticate} />
+                    <ProtectedRoute exact path="/" component={Home} />
                     <ProtectedRoute path="/dashboard" component={Dashboard} />
                     <ProtectedRoute path="/features" component={FeaturePage} />
+                    <Route path="/login" component={Authenticate} />
                     <Route path="/NotFoundPage" component={NotFoundPage} />
                   </Switch>
                 </div>

@@ -19,9 +19,8 @@ const chartOptions = {
     showFirstLabel: false
   }],
   legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle',
+      layout: 'horizontal',
+      verticalAlign: 'top',
       borderColor: '#CCC',
       borderWidth: 1,
       shadow: false,

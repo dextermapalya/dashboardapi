@@ -167,6 +167,9 @@
 }
 #wrapper_body .navbar-static-side{
     margin-top: 70px;
+    position: fixed;
+    background-image: linear-gradient(0deg, #903, #FD1214);
+    height: 100vh;
 }
  .rmv{padding: 0px;}  
  .results_btn{

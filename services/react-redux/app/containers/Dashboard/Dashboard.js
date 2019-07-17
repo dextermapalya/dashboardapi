@@ -4,15 +4,15 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React from "react";
-import "./style.scss";
+import React from 'react';
+import './style.scss';
 
-import "react-datepicker/dist/react-datepicker.css";
-import DateSelector from "containers/DateSelector/Loadable";
-import InstallChart from "components/charts/installations";
-import RegistrationChart from "components/charts/registrations";
-import RenewalChart from "components/charts/renewals";
-import SubscriptionChart from "components/charts/subscriptions";
+import 'react-datepicker/dist/react-datepicker.css';
+import DateSelector from 'containers/DateSelector/Loadable';
+import InstallChart from 'components/charts/installations';
+import RegistrationChart from 'components/charts/registrations';
+import RenewalChart from 'components/charts/renewals';
+import SubscriptionChart from 'components/charts/subscriptions';
 
 
 const Dashboard = () => (

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Chart from 'Chart';
 import LoadingIndicator from 'components/LoadingIndicator';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -14,16 +13,16 @@ const transformData = (data) => {
     <h4>Chart 4</h4>
   );
 };
-const Charts = ({ loading, payload }) => {
+const Charts = ({ loading, payload, error }) => {
   if (loading) {
-    return <Chart component={LoadingIndicator} />;
+    return <div component={LoadingIndicator} />;
   }
 
   if (error !== false) {
     const ErrorComponent = () => (
       <h4>Something went wrong, please try again!</h4>
     );
-    return <Chart component={ErrorComponent} />;
+    return <div component={ErrorComponent} />;
   }
 
   if (payload !== false) {
@@ -44,6 +43,7 @@ const Charts = ({ loading, payload }) => {
 Charts.propTypes = {
   loading: PropTypes.bool,
   payload: PropTypes.any,
+  error: PropTypes.bool
 };
 
 export default Charts;

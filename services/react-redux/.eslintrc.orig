@@ -20,9 +20,6 @@
       }
     },
     "rules": {
-      "no-unused-vars": "off",
-      "radix":"off", 
-      "no-plusplus":0,
       "no-param-reassign": "off",
       "function-paren-newline": "off",
       "arrow-parens": [
@@ -47,7 +44,7 @@
         }
       ],
       "max-len": 0,
-      "no-console": 0,
+      "no-console": 1,
       "react/forbid-prop-types": 0,
       "react/jsx-curly-brace-presence": "off",
       "react/jsx-first-prop-new-line": [

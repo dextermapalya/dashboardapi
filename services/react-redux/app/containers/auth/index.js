@@ -10,10 +10,11 @@ import {
 } from 'containers/App/selectors';
 
 import {
-  makeSelectUser, makeSelectCredentials, makeSelectAuthStatus
+  makeSelectUser, makeSelectCredentials, makeSelectAuthStatus,
+  makeSelectTokenExpired
 } from './selectors';
 
-import { authenticateUser, changeAuthStateSuccess, changeAuthStateError } from './actions';
+import { authenticateUser } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import Authenticate from './Authenticate';
@@ -32,7 +33,8 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError(),
   credentials: makeSelectCredentials(),
-  isLoggedIn: makeSelectAuthStatus()
+  isLoggedIn: makeSelectAuthStatus(),
+  tokenExpired: makeSelectTokenExpired()
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -6,7 +6,6 @@ import {
   call, put, select, takeLatest
 } from 'redux-saga/effects';
 import { CHANGE_DATE, DATE_MODIFIED } from './constants';
-import { dateChanged } from './actions';
 
 // import request from 'utils/request';
 import { makeSelectDate } from './selectors';
@@ -26,17 +25,12 @@ export function* getInstallations() {
     // const articles = yield call(request, requestURL);
     // yield put(articlesLoaded(articles, 'username'));
   } catch (err) {
-    console.log(err);
+    yield (console.log(err));
     // yield put(articlesLoadingError(err));
   }
 }
 
 
-export function* dateModified() {
-  console.log('SAVING ARTICLE....');
-  const article = yield select(makeSelectArticle());
-  console.log('ARTICLE', article);
-}
 /**
  * Root saga manages watcher lifecycle
  */

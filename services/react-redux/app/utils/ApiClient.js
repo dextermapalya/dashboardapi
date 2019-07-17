@@ -19,7 +19,7 @@ const getBaseURL = () => {
 const ApiClient = () => {
   const defaultOptions = {
     baseURL: getBaseURL(),
-    timeout: 180000, //3 minutes of 180 seconds
+    timeout: 180000, // 3 minutes of 180 seconds
     headers: {
       'Content-Type': 'application/json'
     }

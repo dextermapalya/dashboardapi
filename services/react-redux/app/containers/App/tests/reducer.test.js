@@ -8,6 +8,7 @@ describe('appReducer', () => {
       loading: false,
       error: false,
       currentUser: false,
+      articles: [],
       userData: {
         repositories: false,
       },
@@ -16,6 +17,7 @@ describe('appReducer', () => {
 
   it('should return the initial state', () => {
     const expectedResult = state;
+    // console.log('##', state);
     expect(appReducer(undefined, {})).toEqual(expectedResult);
   });
 

@@ -6,30 +6,35 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
   constructor(props) {
     super(props);
     this.state = { addClass: false };
+    this.toggleremove = this.toggleremove.bind(this);
   }
 
   toggle() {
-    this.setState({ addClass: !this.state.addClass });
+    const { addClass } = this.state;
+    this.setState({ addClass: !addClass });
   }
 
-  toggleremove() {
+  toggleremove(e) {
+    e.preventDefault();
     this.setState({ addClass: false });
   }
 
 
   render() {
+    const { addClass } = this.state;
+
     const subMenuClass = ['nav nav-second-level collapse'];
-    if (this.state.addClass) {
+    if (addClass) {
       subMenuClass.push('in');
     }
-    if (this.state.addClass) {
+    if (addClass) {
       subMenuClass.push('');
     }
     const DropDownClass = ['router-link list_active'];
-    if (this.state.addClass) {
+    if (addClass) {
       DropDownClass.push('dropdown_arrow');
     }
-    if (this.state.addClass) {
+    if (addClass) {
       DropDownClass.push('');
     }
 
@@ -45,7 +50,7 @@ class Sidebar extends React.Component { // eslint-disable-line react/prefer-stat
             <ul className="nav metismenu" id="side-menu">
 
               <li className="Nav_item">
-                <NavLink to="/" className="router-link list_active" activeClassName="active" onClick={this.toggleremove.bind(this)}>
+                <NavLink to="/" className="router-link list_active" activeClassName="active" onClick={this.toggleremove}>
                   <i className="fa fa-windows" aria-hidden="true"></i><span className="nav-label list_active">Dashboard</span>
                 </NavLink>
               </li>

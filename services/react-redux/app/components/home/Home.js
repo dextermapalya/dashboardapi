@@ -2,14 +2,13 @@
 
 import React, { Component } from 'react';
 
-class Home extends Component {
-  render() {
-    return (
-      <div>
+const Home = () => (
+
+  <div>
         Welcome to SUNNXT Dashboard!
-      </div>
-    );
-  }
-}
+  </div>
+
+
+);
 
 export default Home;

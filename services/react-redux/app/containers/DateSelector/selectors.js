@@ -5,10 +5,11 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectDate = state => {
-  console.log("SELECT DATE", state.dateselector, state, state.dateselector);
+const selectDate = (state) => {
+  console.log('SELECT DATE', state.dateselector, state, state.dateselector);
   if (state.dateselector) return state.dateselector;
   if (state.highcharts) return state.highcharts;
+  return state.dateselector;
 };
 
 const makeSelectDate = () => createSelector(

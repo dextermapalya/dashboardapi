@@ -4,7 +4,7 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React from "react";
+import React, { Component } from 'react';
 import "./style.scss";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,9 +14,26 @@ import RegistrationChart from "components/charts/registrations";
 import RenewalChart from "components/charts/renewals";
 import SubscriptionChart from "components/charts/subscriptions";
 
+class Dashboard extends Component {
+  
+  state = {
+    showInstallChart: true,
+    showRegistrationChart: true,
+    showRenewalChart: true,
+    showSubscriptionChart: true
+  };
 
-const Dashboard = () => (
-  <article>
+  render() {
+
+    const { 
+      showInstallChart, 
+      showRegistrationChart, 
+      showRenewalChart, 
+      showSubscriptionChart 
+          } = this.state;
+
+    return (
+      <article>
     <div className="home-page">
       <section>
         <div className="dashbord_header">
@@ -33,8 +50,22 @@ const Dashboard = () => (
               <div className="ibox-title">
                 <h5 className="Individual_title">Installations Hourly</h5>
                 <div className="ibox-tools">
-                  <a className="collapse-link">
-                    <i className="fa fa-chevron-up uparrow" />
+                  <a className="collapse-link">  
+                     {showInstallChart ? (
+             <i className="fa fa-chevron-up uparrow" 
+             onClick={() =>
+               this.setState({
+                showInstallChart: !this.state.showInstallChart
+               })
+             }
+             />
+              ) : <i className="fa fa-chevron-down downarrow" 
+              onClick={() =>
+                this.setState({
+                  showInstallChart: !this.state.showInstallChart
+                })
+              }
+              />}
                   </a>
 
                   <ul className="dropdown-menu dropdown-user">
@@ -47,9 +78,11 @@ const Dashboard = () => (
                   </ul>
                 </div>
               </div>
+              {showInstallChart ? (
               <div className="ibox-content">
                 <InstallChart />
               </div>
+              ) : null}
             </div>
           </div>
           <div className="col-lg-6">
@@ -57,8 +90,22 @@ const Dashboard = () => (
               <div className="ibox-title">
                 <h5 className="Individual_title">Registrations Hourly</h5>
                 <div className="ibox-tools">
-                  <a className="collapse-link">
-                    <i className="fa fa-chevron-up uparrow" />
+                <a className="collapse-link">  
+                     {showRegistrationChart ? (
+             <i className="fa fa-chevron-up uparrow" 
+             onClick={() =>
+               this.setState({
+                showRegistrationChart: !this.state.showRegistrationChart
+               })
+             }
+             />
+              ) : <i className="fa fa-chevron-down downarrow" 
+              onClick={() =>
+                this.setState({
+                  showRegistrationChart: !this.state.showRegistrationChart
+                })
+              }
+              />}
                   </a>
 
                   <ul className="dropdown-menu dropdown-user">
@@ -71,9 +118,11 @@ const Dashboard = () => (
                   </ul>
                 </div>
               </div>
+              {showRegistrationChart ? (
               <div className="ibox-content">
-                <RegistrationChart />
+                 <RegistrationChart />
               </div>
+              ) : null}
             </div>
           </div>
           <div className="col-lg-6">
@@ -81,8 +130,22 @@ const Dashboard = () => (
               <div className="ibox-title">
                 <h5 className="Individual_title">Renewals Hourly</h5>
                 <div className="ibox-tools">
-                  <a className="collapse-link">
-                    <i className="fa fa-chevron-up uparrow" />
+                <a className="collapse-link">  
+                     {showRenewalChart ? (
+             <i className="fa fa-chevron-up uparrow" 
+             onClick={() =>
+               this.setState({
+                showRenewalChart: !this.state.showRenewalChart
+               })
+             }
+             />
+              ) : <i className="fa fa-chevron-down downarrow" 
+              onClick={() =>
+                this.setState({
+                  showRenewalChart: !this.state.showRenewalChart
+                })
+              }
+              />}
                   </a>
 
                   <ul className="dropdown-menu dropdown-user">
@@ -95,9 +158,11 @@ const Dashboard = () => (
                   </ul>
                 </div>
               </div>
+              {showRenewalChart ? (
               <div className="ibox-content">
                 <RenewalChart />
               </div>
+              ) : null}
             </div>
           </div>
           <div className="col-lg-6">
@@ -105,8 +170,22 @@ const Dashboard = () => (
               <div className="ibox-title">
                 <h5 className="Individual_title">Subscriptions Hourly</h5>
                 <div className="ibox-tools">
-                  <a className="collapse-link">
-                    <i className="fa fa-chevron-up uparrow" />
+                <a className="collapse-link">  
+                     {showSubscriptionChart ? (
+             <i className="fa fa-chevron-up uparrow" 
+             onClick={() =>
+               this.setState({
+                showSubscriptionChart: !this.state.showSubscriptionChart
+               })
+             }
+             />
+              ) : <i className="fa fa-chevron-down downarrow" 
+              onClick={() =>
+                this.setState({
+                  showSubscriptionChart: !this.state.showSubscriptionChart
+                })
+              }
+              />}
                   </a>
 
                   <ul className="dropdown-menu dropdown-user">
@@ -119,15 +198,24 @@ const Dashboard = () => (
                   </ul>
                 </div>
               </div>
+              {showSubscriptionChart ? (
               <div className="ibox-content">
-                <SubscriptionChart />
+               <SubscriptionChart />
               </div>
+              ) : null}
             </div>
           </div>
         </div>
       </section>
     </div>
   </article>
-);
+    )
+  }
+}
 
 export default Dashboard;
+
+
+
+
+

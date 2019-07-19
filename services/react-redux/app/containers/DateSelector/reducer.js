@@ -9,8 +9,8 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
+import { getDate, formatDate } from 'utils/DateFunctions';
 import { CHANGE_DATE } from './constants';
- import { getDate, formatDate } from 'utils/DateFunctions';
 
 
 // The initial state of the App

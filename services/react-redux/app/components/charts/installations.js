@@ -24,7 +24,7 @@ const transformData = (payload) => {
     * */
   const cOptions = cloneDeep(chartOptions);
   cOptions.yAxis[0].title.text = ' Device Type';
-  //cOptions.xAxis.categories = getHoursUntilNow()
+  // cOptions.xAxis.categories = getHoursUntilNow()
   const series = InstallationService.transformData(payload.data);
   cOptions.series = series;
   console.log('&&&&&5', series);

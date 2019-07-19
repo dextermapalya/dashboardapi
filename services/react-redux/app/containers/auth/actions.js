@@ -43,7 +43,7 @@ export function authenticateUser(credentials) {
 export function getAuthState(credentials) {
   return {
     type: AUTH_STATE,
-    user
+    credentials
   };
 }
 

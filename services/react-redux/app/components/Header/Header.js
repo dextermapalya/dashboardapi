@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import Banner from './images/banner.jpg';
-import './style.scss';
-import settingsicon from '../../assets/images/settings_icon.png';
-import logo from '../../assets/images/logo.png';
 import {
   Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
+
+import './style.scss';
+import settingsicon from 'assets/images/settings_icon.png';
+import logo from 'assets/images/logo.png';
+// import Banner from './images/banner.jpg';
+import PropTypes from 'prop-types';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -22,21 +24,14 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     };
   }
 
-  toggle() {
-    this.setState((prevState) => ({
-      dropdownOpen: !prevState.dropdownOpen,
-    }));
-  }
 
-  toggle2() {
-    this.setState((prevState) => ({
-      dropdownOpen2: !prevState.dropdownOpen2
-    }));
-  }
+  togglebutton = (e) => {
+    e.preventDefault();
+    const { active } = this.state;
+    const { updateParent } = this.props;
 
-  togglebutton = () => {
-    this.props.updateParent(this.state.active);
-    this.setState({ active: !this.state.active });
+    updateParent(active);
+    this.setState({ active: !active });
     // if (this.state.active) {
     //   this.setState({ defaultValue: 1 });
     // } else {
@@ -44,7 +39,23 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     // }
   };
 
+  toggle2() {
+    this.setState((prevState) => ({
+      dropdownOpen2: !prevState.dropdownOpen2
+    }));
+  }
+
+  toggle() {
+    this.setState((prevState) => ({
+      dropdownOpen: !prevState.dropdownOpen,
+    }));
+  }
+
+
   render() {
+    const {
+      toggle, dropdownOpen, dropdownOpen2, toggle2, togglebutton
+    } = this.state;
     return (
 
       <div className="header">
@@ -52,8 +63,11 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           <nav className="navbar navbar-static-top">
 
             <span>
-              <img src={logo} className="header_logo" />
-              <button className="minimalize-styl-2 btn btn-primary navbar_toggle" onClick={this.togglebutton}><i className="fa fa-bars"></i> </button>
+              <img alt={''} src={logo} className="header_logo" />
+              <button type="button" className="minimalize-styl-2 btn btn-primary navbar_toggle" onClick={this.togglebutton}>
+                <i className="fa fa-bars" />
+                {' '}
+              </button>
             </span>
 
             <ul className="nav navbar-top-links navbar-right login_dropdown">
@@ -63,7 +77,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
                     <div className="nav-collapse ">
                       <ul className="nav navbar-nav navbar-right">
                         <li className="dropdown">
-                          <Dropdown className="login_dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                          <Dropdown className="login_dropdown" isOpen={dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret className="btn-grad">
                                                   Username_Dashboard
                             </DropdownToggle>
@@ -76,9 +90,9 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
                       </ul>
                       <ul className="nav navbar-nav navbar-right settings_dropdown">
                         <li className="dropdown">
-                          <Dropdown isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
+                          <Dropdown isOpen={dropdownOpen2} toggle={toggle2}>
                             <DropdownToggle className="btn-grad">
-                              <img src={settingsicon} />
+                              <img alt={''} src={settingsicon} />
                             </DropdownToggle>
                             <DropdownMenu>
                               <DropdownItem>auto</DropdownItem>
@@ -101,5 +115,9 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     );
   }
 }
+
+Header.propTypes = {
+  updateParent: PropTypes.func
+};
 
 export default Header;

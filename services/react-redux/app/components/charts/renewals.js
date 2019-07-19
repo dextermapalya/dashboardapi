@@ -25,8 +25,8 @@ const transformData = (payload) => {
     * so it must be cloned and used in highcharts
     * */
   const cOptions = cloneDeep(chartOptions);
-  cOptions.series = []
-  //cOptions.title.text = 'Renewals Hourly';
+  cOptions.series = [];
+  // cOptions.title.text = 'Renewals Hourly';
   cOptions.xAxis.title.text = 'Time';
   cOptions.yAxis[0].title.text = ' Payment Method';
 

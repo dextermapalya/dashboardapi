@@ -1,8 +1,10 @@
+import Highcharts from 'highcharts/highstock';
+
 const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, '22:00', '23:00'];
 const chartOptions = {
 
   title: {
-      text: ''
+    text: ''
   },
 
   yAxis: [{ // left y axis
@@ -19,41 +21,41 @@ const chartOptions = {
     showFirstLabel: false
   }],
   legend: {
-      layout: 'horizontal',
-      verticalAlign: 'top',
-      borderColor: '#CCC',
-      borderWidth: 1,
-      shadow: false,
-      itemMarginTop: 0,
-      itemMarginBottom: 0
+    layout: 'horizontal',
+    verticalAlign: 'top',
+    borderColor: '#CCC',
+    borderWidth: 1,
+    shadow: false,
+    itemMarginTop: 0,
+    itemMarginBottom: 0
   },
 
   plotOptions: {
-      series: {
-          label: {
-              connectorAllowed: true
-          },
-          pointStart: 0
-      }
+    series: {
+      label: {
+        connectorAllowed: true
+      },
+      pointStart: 0
+    }
   },
 
   series: [],
 
   responsive: {
-      rules: [{
-          condition: {
-              maxWidth: 500
-          },
-          chartOptions: {
-              legend: {
-                  layout: 'horizontal',
-                  align: 'center',
-                  verticalAlign: 'top'
-              }
-          }
-      }]
+    rules: [{
+      condition: {
+        maxWidth: 500
+      },
+      chartOptions: {
+        legend: {
+          layout: 'horizontal',
+          align: 'center',
+          verticalAlign: 'top'
+        }
+      }
+    }]
   }
-}
+};
 
 const chartOptionsa = {
   chart: {
@@ -65,9 +67,9 @@ const chartOptionsa = {
     text: ' '
   },
 
-  /*subtitle: {
+  /* subtitle: {
     text: 'Source: SUNNXT API'
-  },*/
+  }, */
 
   xAxisaa: {
     title: {
@@ -100,9 +102,9 @@ const chartOptionsa = {
       x: 3,
       y: 16,
       format: '{value:.,0f}',
-      formatter: function () {
-        return this.value
-      }      
+      formatter() {
+        return this.value;
+      }
     },
     showFirstLabel: false
   }],
@@ -128,7 +130,7 @@ const chartOptionsa = {
       point: {
         events: {
           click(e) {
-            hs.htmlExpand(null, {
+            /* hs.htmlExpand(null, {
               pageOrigin: {
                 x: e.pageX || e.clientX,
                 y: e.pageY || e.clientY
@@ -137,7 +139,7 @@ const chartOptionsa = {
               maincontentText: `${Highcharts.dateFormat('%A, %b %e, %Y', this.x)}:<br/> ${
                 this.y} sessions`,
               width: 200
-            });
+            }); */
           }
         }
       },

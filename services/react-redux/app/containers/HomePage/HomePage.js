@@ -9,11 +9,6 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import { AUTH_LOGIN } from 'config/APIEndPoints';
 import ApiClient from 'utils/ApiClient';
-import Highcharts from 'highcharts';
-import InstallationChart from 'components/highchart/InstallationChart';
-import RegistrationChart from 'components/highchart/RegistrationChart';
-import RenewalChart from 'components/highchart/RenewalChart';
-import SubscriptionChart from 'components/highchart/SubscriptionChart';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -38,12 +33,6 @@ export default class HomePage extends React.PureComponent {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
-
 
   componentDidMount() {
     const { username, onSubmitForm } = this.props;
@@ -52,6 +41,17 @@ export default class HomePage extends React.PureComponent {
     } */
     this.fetchData();
   }
+
+
+  onSetResult = (result, key) => {
+    localStorage.setItem(key, JSON.stringify(result));
+    console.log('result', result);
+    this.setState({
+      userinfo: JSON.parse(JSON.stringify(result)),
+      isLoggedin: true,
+    });
+  };
+
 
   fetchData() {
     const fd = new FormData();
@@ -64,30 +64,16 @@ export default class HomePage extends React.PureComponent {
       .then((result) => this.onSetResult(result, 'userinfo'));
   }
 
-  onSetResult = (result, key) => {
-    localStorage.setItem(key, JSON.stringify(result));
-    console.log('result', result);
+  handleChange(date) {
     this.setState({
-      userinfo: JSON.parse(JSON.stringify(result)),
-      isLoggedin: true,
+      startDate: date
     });
-  };
-
-  convertObject() {
-    if (this.state.userinfo) {
-      return Object.keys(this.state.userinfo).map((key) => (
-        <p>
-          {key} => {this.state.userinfo[key]}
-        </p>
-      ));
-    }
-    return <p>data is not available</p>;
   }
 
 
   render() {
     const self = this;
-    const formatter = function () {
+    const formatter = () => {
       console.log(this);
       // logs an object with properties: points, x, y
     };
@@ -100,7 +86,9 @@ export default class HomePage extends React.PureComponent {
       onChangeUsername,
       onSubmitForm,
     } = this.props;
-    const { isLoggedin, userinfo, name } = this.state;
+    const {
+      isLoggedin, userinfo, name, startDate, handleChange
+    } = this.state;
 
     const reposListProps = {
       loading,
@@ -108,15 +96,6 @@ export default class HomePage extends React.PureComponent {
       repos,
     };
 
-    const plotOptionsa = {
-      column: {
-        stacking: 'normal',
-        dataLabels: {
-          enabled: true,
-          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-        }
-      }
-    };
 
     const plotOptions = {
       column: {
@@ -140,7 +119,10 @@ export default class HomePage extends React.PureComponent {
               <span>Authenticating....</span>
             )}
 
-            <h3>{isLoggedin.toString()}....</h3>
+            <h3>
+              {isLoggedin.toString()}
+....
+            </h3>
             {/* <h4>{Object.keys(userinfo).map(key => (
               <p key={key} details={userinfo[key]} >{userinfo[key]}</p>
             ))}</h4> */}
@@ -153,8 +135,8 @@ export default class HomePage extends React.PureComponent {
 
                 <div className="nav navbar-top-links navbar-right ">
                   <DatePicker
-                    selected={this.state.startDate}
-                    onChange={this.handleChange}
+                    selected={startDate}
+                    onChange={handleChange}
                     placeholderText="Select Date"
                   />
                 </div>
@@ -166,20 +148,22 @@ export default class HomePage extends React.PureComponent {
                       {/* <h4 className="Individual_title">Dashboard</h4> */}
                       <div className="ibox-tools">
                         <a className="collapse-link">
-                          <i className="fa fa-chevron-up uparrow"></i>
+                          <i className="fa fa-chevron-up uparrow" />
                         </a>
 
                         <ul className="dropdown-menu dropdown-user">
-                          <li><a href="#">Config option 1</a>
+                          <li>
+                            <a href="#">Config option 1</a>
                           </li>
-                          <li><a href="#">Config option 2</a>
+                          <li>
+                            <a href="#">Config option 2</a>
                           </li>
                         </ul>
 
                       </div>
                     </div>
                     <div className="ibox-content">
-                      <InstallationChart isLoggedin={isLoggedin} chartname="installation" />
+                      {/* <InstallationChart isLoggedin={isLoggedin} chartname="installation" /> */}
                     </div>
                   </div>
                 </div>
@@ -189,20 +173,22 @@ export default class HomePage extends React.PureComponent {
                       {/* <h4 className="Individual_title">Dashboard</h4> */}
                       <div className="ibox-tools">
                         <a className="collapse-link">
-                          <i className="fa fa-chevron-up uparrow"></i>
+                          <i className="fa fa-chevron-up uparrow" />
                         </a>
 
                         <ul className="dropdown-menu dropdown-user">
-                          <li><a href="#">Config option 1</a>
+                          <li>
+                            <a href="#">Config option 1</a>
                           </li>
-                          <li><a href="#">Config option 2</a>
+                          <li>
+                            <a href="#">Config option 2</a>
                           </li>
                         </ul>
 
                       </div>
                     </div>
                     <div className="ibox-content">
-                      <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" />
+                      {/* <RegistrationChart isLoggedin={isLoggedin} chartname="registrations" /> */}
                     </div>
                   </div>
                 </div>
@@ -212,20 +198,22 @@ export default class HomePage extends React.PureComponent {
                       {/* <h4 className="Individual_title">Dashboard</h4> */}
                       <div className="ibox-tools">
                         <a className="collapse-link">
-                          <i className="fa fa-chevron-up uparrow"></i>
+                          <i className="fa fa-chevron-up uparrow" />
                         </a>
 
                         <ul className="dropdown-menu dropdown-user">
-                          <li><a href="#">Config option 1</a>
+                          <li>
+                            <a href="#">Config option 1</a>
                           </li>
-                          <li><a href="#">Config option 2</a>
+                          <li>
+                            <a href="#">Config option 2</a>
                           </li>
                         </ul>
 
                       </div>
                     </div>
                     <div className="ibox-content">
-                      <RenewalChart isLoggedin={isLoggedin} chartname="renewals" />
+                      {/* <RenewalChart isLoggedin={isLoggedin} chartname="renewals" /> */}
                     </div>
                   </div>
                 </div>
@@ -235,20 +223,22 @@ export default class HomePage extends React.PureComponent {
                       {/* <h4 className="Individual_title">Dashboard</h4> */}
                       <div className="ibox-tools">
                         <a className="collapse-link">
-                          <i className="fa fa-chevron-up uparrow"></i>
+                          <i className="fa fa-chevron-up uparrow" />
                         </a>
 
                         <ul className="dropdown-menu dropdown-user">
-                          <li><a href="#">Config option 1</a>
+                          <li>
+                            <a href="#">Config option 1</a>
                           </li>
-                          <li><a href="#">Config option 2</a>
+                          <li>
+                            <a href="#">Config option 2</a>
                           </li>
                         </ul>
 
                       </div>
                     </div>
                     <div className="ibox-content">
-                      <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" />
+                      {/* <SubscriptionChart isLoggedin={isLoggedin} chartname="subscriptions" /> */}
                     </div>
                   </div>
                 </div>

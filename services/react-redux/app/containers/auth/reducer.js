@@ -23,7 +23,8 @@ import {
 export const initialState = {
   user: { isLoggedIn: false },
   credentials: { username: '', password: '', scope: 'read' },
-  isLoggedIn: false
+  isLoggedIn: false,
+  tokenExpired: false
 };
 
 function authReducer(state = initialState, action) {
@@ -57,9 +58,20 @@ function authReducer(state = initialState, action) {
     }
 
     case AUTH_ERROR: {
-      return {
-        ...state, error: action.error, loading: false, user: { isLoggedIn: false }
+      console.log('AUTH SUCCESS...', action);
+
+      const newState = {
+        ...state,
+        loading: false,
+        isLoggedIn: false,
+        tokenExpired: true
       };
+
+      return newState;
+
+      /* return {
+        ...state, error: action.error, loading: false, user: { isLoggedIn: false }
+      }; */
     }
 
     default:

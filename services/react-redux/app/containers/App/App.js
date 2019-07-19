@@ -7,30 +7,28 @@
  */
 
 import React, { Component } from 'react';
-import {  Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Authenticate from 'containers/auth';
-import ProtectedRoute from "components/auth";
-
+import ProtectedRoute from 'components/auth';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import Home from "components/home";
 import Login from '../../components/Login';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../styles/style_th.scss';
-import '../../styles/custom.scss';
-import '../../styles/animate.scss';
 import Dashboard from 'containers/Dashboard/Dashboard';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'styles/style_th.scss';
+import 'styles/custom.scss';
+import 'styles/animate.scss';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       active: false,
-      isLoggedIn:false,
+      // isLoggedIn: false,
     };
   }
 
@@ -41,13 +39,14 @@ class App extends Component {
       };
 
       render() {
+        const { active } = this.state;
         return (
 
           <div className="app-wrapper wrapper_login">
             <div
               id="wrapper_body"
               className={
-                this.state.active ? 'mini-navbar pace-done' : 'side-navbar pace-done'
+                active ? 'mini-navbar pace-done' : 'side-navbar pace-done'
               }
             >
               <Sidebar />

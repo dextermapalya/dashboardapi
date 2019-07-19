@@ -17,8 +17,8 @@ describe('<App />', () => {
     expect(renderedComponent.find(Route).length).not.toBe(0);
   });
 
-  it('should render the footer', () => {
+  it('should not render the footer', () => {
     const renderedComponent = shallow(<App />);
-    expect(renderedComponent.find(Footer).length).toBe(1);
+    expect(renderedComponent.find(Footer).length).toBe(0);
   });
 });

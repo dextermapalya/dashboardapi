@@ -17,38 +17,6 @@ export default class ChartResource extends React.PureComponent {
       this.fetchData = this.fetchData.bind(this);
     }
 
-    fetchData() {
-      this.setState({ notice: 'Loading please wait...' });
-      const url = this.props.path + this.props.currentDate;
-
-      console.log('&&&&&&3', url, this.props);
-
-      ApiClient.get(url)
-        .then((res) => {
-          //history.push("/")
-
-          this.setState({
-            payload: res.data,
-            loading: false,
-            notice: ''
-          });
-        }).catch((err ) => {
-          //if token has expired fetch a new token
-          console.log('token expired....', err.response, err.response.status)
-         
-          if (err.response.status === 401) {
-            history.push("/")
-            //this.context.router.transitionTo('/');
-            console.log('token expired....', err.response, err.response.status)
-          }
-
-          this.setState({
-            payload: [],
-            loading: false,
-            notice: 'Unable to fetch api data',
-          });
-        });
-    }
 
     componentDidMount() {
       this.setState({ loading: true });
@@ -59,16 +27,52 @@ export default class ChartResource extends React.PureComponent {
 
     componentDidUpdate(prevProps, prevState) {
       console.log(prevProps, this.props, '&&&&&&&&');
-      if (this.props.currentDate != prevProps.currentDate) {
-        this.setState({ currentDate: this.props.currentDate, payload: [] });
+      const { currentDate } = this.props;
+      if (currentDate !== prevProps.currentDate) {
+        // this.setState({ currentDate: currentDate, payload: [] });
         this.fetchData();
       }
+    }
+
+
+    fetchData() {
+      this.setState({ notice: 'Loading please wait...' });
+      const { path, currentDate } = this.props;
+      const url = path + currentDate;
+
+      console.log('&&&&&&3', url, this.props);
+
+      ApiClient.get(url)
+        .then((res) => {
+          // history.push("/")
+
+          this.setState({
+            payload: res.data,
+            loading: false,
+            notice: ''
+          });
+        }).catch((err) => {
+          // if token has expired fetch a new token
+          console.log('token expired....', err.response, err.response.status);
+
+          if (err.response.status === 401) {
+            history.push('/');
+            // this.context.router.transitionTo('/');
+            console.log('token expired....', err.response, err.response.status);
+          }
+
+          this.setState({
+            payload: [],
+            loading: false,
+            notice: 'Unable to fetch api data',
+          });
+        });
     }
 
     render() {
       console.log('&&&&3', this.props);
       const {
-        payload, loading
+        payload, loading, render
       } = this.props;
 
       const chartProps = {
@@ -78,14 +82,16 @@ export default class ChartResource extends React.PureComponent {
 
       // applying the render props technique
       // return <Charts {...chartProps} />
-      return this.props.render(this.state);
+      return render(this.state);
     }
 }
 
 
 ChartResource.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   currentDate: PropTypes.string,
-  path: PropTypes.string
+  path: PropTypes.string,
+  payload: PropTypes.array,
+  render: PropTypes.func
 };

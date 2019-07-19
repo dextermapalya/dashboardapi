@@ -21,7 +21,12 @@ const Sample = () => (
         <div className="sidebar-collapse side_menu">
           <ul className="nav metismenu" id="side-menu">
             <li>
-              <a href="#" className="list_active"><img src={dashicon} /><span className="nav-label list_active">Dashboard</span> </a>
+              <a href="#" className="list_active">
+                <img alt={''} src={dashicon} />
+                <span className="nav-label list_active">Dashboard</span>
+                {' '}
+
+              </a>
             </li>
           </ul>
         </div>
@@ -32,7 +37,7 @@ const Sample = () => (
           <nav className="navbar navbar-static-top">
 
             <span>
-              <img src={logo} className="header_logo" />
+              <img alt={''} src={logo} className="header_logo" />
             </span>
             <ul className="nav navbar-top-links navbar-right login_dropdown">
               <div className="navbar">
@@ -41,7 +46,10 @@ const Sample = () => (
                     <div className="nav-collapse ">
                       <ul className="nav navbar-nav navbar-right">
                         <li className="dropdown">
-                          <a href="#" className=" btn-grad" data-toggle="dropdown" role="button" aria-expanded="false">Username_login_Id<span className="caret"></span></a>
+                          <a href="#" className=" btn-grad" data-toggle="dropdown" role="button" aria-expanded="false">
+Username_login_Id
+                            <span className="caret" />
+                          </a>
 
                           {/* <ul className="dropdown-menu" role="menu">
                                                     <li><a href="#"><i className="fa fa-unlock-alt" aria-hidden="true"></i> Login</a></li>
@@ -52,7 +60,7 @@ const Sample = () => (
                       </ul>
                       <ul className="nav navbar-nav navbar-right settings_dropdown">
                         <li className="dropdown">
-                          <a href="#" className=" btn-grad" data-toggle="dropdown" role="button" aria-expanded="false"><img src={settingsicon} /></a>
+                          <a href="#" className=" btn-grad" data-toggle="dropdown" role="button" aria-expanded="false"><img alt={''} src={settingsicon} /></a>
                           {/* <ul className="dropdown-menu" role="menu">
                                                     <li><a href="#"><i className="fa fa-unlock-alt" aria-hidden="true"></i> Login</a></li>
                                                     <li className="divider"></li>
@@ -105,13 +113,15 @@ const Sample = () => (
                   {/* <h4 className="Individual_title">Dashboard</h4> */}
                   <div className="ibox-tools">
                     <a className="collapse-link">
-                      <i className="fa fa-chevron-up uparrow"></i>
+                      <i className="fa fa-chevron-up uparrow" />
                     </a>
 
                     <ul className="dropdown-menu dropdown-user">
-                      <li><a href="#">Config option 1</a>
+                      <li>
+                        <a href="#">Config option 1</a>
                       </li>
-                      <li><a href="#">Config option 2</a>
+                      <li>
+                        <a href="#">Config option 2</a>
                       </li>
                     </ul>
 

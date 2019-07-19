@@ -12,9 +12,9 @@ import './style.scss';
 export default class Article extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
+    /* this.state = {
       article: { id: '', title: '', content: '' }
-    };
+    } */
     console.log('ARTICLE constructor....');
 
     this.validateForm = this.validateForm.bind(this);
@@ -30,19 +30,15 @@ export default class Article extends React.PureComponent {
 
   validateForm(e) {
     const self = this;
+    const { onSaveArticle, article, title } = this.props;
     e.preventDefault();
-    const { title } = this.props;
-    console.log('VALIDATING', title, this.props.article);
-    this.props.onSaveArticle(e, this.props.article);
+    console.log('VALIDATING', title, article);
+    onSaveArticle(e, article);
   }
 
 
   render() {
     const self = this;
-    const formatter = function () {
-      console.log(this);
-      // logs an object with properties: points, x, y
-    };
 
     const {
       loading,
@@ -82,31 +78,39 @@ export default class Article extends React.PureComponent {
         <section>
           <form onSubmit={this.validateForm}>
             <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                value={title}
-                required
-                onChange={onChangeTitle}
-              />
+              <label htmlFor="title">Title
+                <input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  name="title"
+                  value={title}
+                  required
+                  onChange={onChangeTitle}
+                />
+              </label>
             </div>
 
             <div className="form-group">
-              <label htmlFor="title">Article Title</label>
-              <input
-                type="text"
-                className="form-control"
-                id="title"
-                value={article.title}
-                onChange={onChangeArticleTitle}
-              />
-              <b>{article.content}**</b>
+              <label htmlFor="title1">Article Title
+                <input
+                  type="text"
+                  className="form-control"
+                  id="title1"
+                  name="title1"
+                  value={article.title}
+                  onChange={onChangeArticleTitle}
+                />
+              </label>
+              <b>
+                {article.content}
+**
+              </b>
               <input
                 type="text"
                 className="form-control"
                 id="content"
+                name="content"
                 value={article.content}
                 onChange={onChangeArticleContent}
               />

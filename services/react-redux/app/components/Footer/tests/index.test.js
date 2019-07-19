@@ -8,13 +8,13 @@ describe('<Footer />', () => {
     const renderedComponent = shallow(<Footer />);
     expect(
       renderedComponent.contains(
-        <section>This project is licensed under the MIT license.</section>
+        <section>Copyright Apalya Technologies 2019.</section>
       )
     ).toBe(true);
   });
 
   it('should render the credits', () => {
     const renderedComponent = shallow(<Footer />);
-    expect(renderedComponent.text()).toContain('Dinesh Pandiyan');
+    expect(renderedComponent.text()).toContain('Apalya');
   });
 });

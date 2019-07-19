@@ -16,7 +16,7 @@ export default class DateSelector extends React.PureComponent {
     super(props);
     this.state = {
       startDate: new Date(),
-      currentDate: formatDate(new Date())
+      // currentDate: formatDate(new Date())
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -29,26 +29,23 @@ export default class DateSelector extends React.PureComponent {
   handleChange(date) {
     this.setState({
       startDate: date,
-      currentDate: formatDate(date)
+      // currentDate: formatDate(date)
     });
-    console.log('SELECT DATE changed Dateselector', date)
+    const { onChangeDate } = this.props;
+    console.log('SELECT DATE changed Dateselector', date);
     let e; // do not remove this line, because dispatch function requires the event and value
     // event has already been handled by datepicker
-    this.props.onChangeDate(e, formatDate(date));
+    onChangeDate(e, formatDate(date));
   }
 
   render() {
     const self = this;
-    const formatter = function () {
-      console.log(this);
-      // logs an object with properties: points, x, y
-    };
 
     const {
-      currentDate,
-      onChangeDate,
+      currentDate
     } = this.props;
 
+    const { startDate } = this.state;
 
     console.log('PROPS1', this.props);
 
@@ -56,7 +53,7 @@ export default class DateSelector extends React.PureComponent {
     return (
       <DatePicker
         placeholderText="Select a Date"
-        selected={this.state.startDate}
+        selected={startDate}
         value={currentDate}
         onSelect={this.handleSelect}
         onChange={this.handleChange}

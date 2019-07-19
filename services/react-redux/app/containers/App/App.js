@@ -17,6 +17,7 @@ import ProtectedRoute from "components/auth";
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import Home from "components/home";
+import Login from '../../components/Login';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../styles/style_th.scss';
@@ -42,7 +43,7 @@ class App extends Component {
       render() {
         return (
 
-          <div className="app-wrapper">
+          <div className="app-wrapper wrapper_login">
             <div
               id="wrapper_body"
               className={
@@ -57,7 +58,7 @@ class App extends Component {
                     <ProtectedRoute exact path="/" component={Home} />
                     <ProtectedRoute path="/dashboard" component={Dashboard} />
                     <ProtectedRoute path="/features" component={FeaturePage} />
-                    <Route path="/login" component={Authenticate} />
+                    <Route path="/login" component={Login} />
                     <Route path="/NotFoundPage" component={NotFoundPage} />
                   </Switch>
                 </div>

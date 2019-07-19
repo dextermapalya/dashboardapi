@@ -583,3 +583,27 @@ width: 1%;
 #page-wrapper .home-page .content_area{
     margin: 0;
 }
+.wrapper_login #wrapper_body{
+    background-image:none;
+    background-color: #f3f3f4;
+}
+.wrapper_login #page-wrapper{
+    margin: 0px;
+    min-height: inherit;
+    background-color: transparent;
+}
+.wrapper_login #page-wrapper .header, .wrapper_login .side-navbar .header{
+    display: none;
+}
+.wrapper_login{
+    display: table;
+    width: 100%;
+}
+.wrapper_login #wrapper_body{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100vh;
+}
+.wrapper_login .wrapper-content.wrapper_data{
+    padding: 0;
+}

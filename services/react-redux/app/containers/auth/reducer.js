@@ -19,11 +19,40 @@ import {
   CHANGE_PASSWORD
 } from './constants';
 
+
+/* getUserFromLocalStorage*/
+const getUserFromLocalStorage = ( key, default_value) => {
+  //localStorage.removeItem(key)
+  let userinfo = localStorage.getItem(key);
+  if (userinfo === null) {
+    return default_value
+  }
+  //return default_value;
+  return JSON.parse(userinfo)
+}
+
+// checks if the user is authenticated
+const isAuthenticated = () => {
+  // Check whether the current time is past the
+  // access token's expiry time
+  let auth = false;
+
+  let userinfo = localStorage.getItem('userinfo');
+  userinfo = getUserFromLocalStorage('userinfo', {});
+  if ( userinfo !== null && userinfo ) {
+    auth =  new Date().getTime() < userinfo.expiresAt;
+  }
+  return auth
+}
+
+
+
+
 // The initial state of the App
 export const initialState = {
-  user: { isLoggedIn: false },
+  user: getUserFromLocalStorage('userinfo', {}),
   credentials: { username: '', password: '', scope: 'read' },
-  isLoggedIn: false,
+  isLoggedIn: isAuthenticated(),
   tokenExpired: false
 };
 

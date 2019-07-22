@@ -20,9 +20,9 @@ export function* verifyCredentials() {
   console.log('GET CREDENTIALS....');
   const credentials = yield select(makeSelectCredentials());
   const fd = new FormData();
-  fd.set('username', credentials.username);
-  fd.set('password', credentials.password);
-  fd.set('scope', credentials.scope);
+  fd.append('username', credentials.username);
+  fd.append('password', credentials.password);
+  fd.append('scope', credentials.scope);
   const key = 'userinfo';
 
   try {

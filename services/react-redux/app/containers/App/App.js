@@ -11,7 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Authenticate from 'containers/auth';
+//import Authenticate from 'containers/auth';
 import ProtectedRoute from 'components/auth';
 import Sidebar from 'components/Sidebar';
 import Header from 'components/Header';

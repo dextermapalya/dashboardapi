@@ -18,7 +18,8 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'containers/App';
+//import App from 'containers/App';
+import Template from 'containers/Template/Loadable';
 
 // Load the favicon
 /* eslint-disable import/no-webpack-loader-syntax */
@@ -50,7 +51,8 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App />
+        {/* <App /> */}
+        <Template />
       </ConnectedRouter>
     </Provider>,
     MOUNT_NODE

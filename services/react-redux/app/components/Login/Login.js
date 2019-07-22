@@ -6,6 +6,7 @@ import {
   Button,
 } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
+import history from 'utils/history';
 
 import './Login.scss'
 
@@ -34,8 +35,8 @@ class Login extends Component {
 
     if (user !== prevProps.user && isLoggedIn) {
       console.log('AUTH SUCCESS.....', user);
-
       localStorage.setItem('userinfo', JSON.stringify(user));
+      //history.push('/dashboard')
     }
   }
 
@@ -58,15 +59,15 @@ class Login extends Component {
     * then extract the key for previous route so that user
     * can be redirected to that page
     */
-   console.log('AUTH++++', location)
+   console.log('AUTH++++', location, isLoggedIn)
    var prevRoute;
-   if (location.state )
-     prevRoute = location.state.prevLocation;
+   //if (location && location.state )
+   //  prevRoute = location.state.prevLocation;
    /* when the app grows, there will be several routes in such
    * scenarios use the value of prevRoute until then redirect
    * user to dashboard */
    prevRoute = '/dashboard';
-
+   console.log('AUTH++++___', isLoggedIn)
 
     return (
       <Fragment>
@@ -75,6 +76,8 @@ class Login extends Component {
       }
     
     {!isLoggedIn && (  
+    <div className="app-wrapper wrapper_login">  
+    <div id="wrapper_body" className="mini-navbar pace-done">
     <div className="wrapper_sigin">
     
       <Container>
@@ -117,6 +120,8 @@ class Login extends Component {
       </Container>
     
       </div>
+      </div>
+    </div>  
     )
     } 
     </Fragment>

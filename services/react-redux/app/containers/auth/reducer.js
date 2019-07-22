@@ -9,8 +9,6 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-import { fromJS } from 'immutable';
-import cloneDeep from 'lodash';
 
 import {
   AUTHENTICATE, IS_LOGGED_IN,
@@ -60,7 +58,7 @@ function authReducer(state = initialState, action) {
     }
 
     case AUTH_ERROR: {
-      console.log('AUTH SUCCESS...', action);
+      console.log('AUTH ERROR...', action);
 
       const newState = {
         ...state,

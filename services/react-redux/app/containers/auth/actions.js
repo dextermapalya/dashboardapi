@@ -17,7 +17,8 @@
 
 import {
   AUTHENTICATE, AUTH_SUCCESS, AUTH_ERROR, AUTH_STATE,
-  CHANGE_USERNAME, CHANGE_PASSWORD
+  CHANGE_USERNAME, CHANGE_PASSWORD, USER_LOGIN_SUCCESS,
+  USER_LOGOUT_SUCCESS, USER_VERIFY_SUCCESS, USER_VERIFY_ERROR
 } from './constants';
 
 /**
@@ -58,6 +59,8 @@ export function getAuthState(credentials) {
  * @return {object}  An action object with a type of LOAD_ARTICLES_SUCCESS passing the repos
  */
 export function authComplete(user, username, isLoggedIn) {
+  localStorage.setItem('userinfo', JSON.stringify(user));
+
   return {
     type: AUTH_SUCCESS,
     user,

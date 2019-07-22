@@ -18,6 +18,7 @@ import { authenticateUser } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import Authenticate from './Authenticate';
+//import { UserActions } from './UserActions';
 
 const mapDispatchToProps = (dispatch) => ({
   onLogin: (evt, credentials) => {
@@ -39,7 +40,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'auth', reducer });
-const withSaga = injectSaga({ key: 'auth', saga });
+const withReducer = injectReducer({ key: 'authenticate', reducer });
+const withSaga = injectSaga({ key: 'authenticate', saga });
 export default compose(withReducer, withSaga, withConnect)(Authenticate);
 export { mapDispatchToProps };

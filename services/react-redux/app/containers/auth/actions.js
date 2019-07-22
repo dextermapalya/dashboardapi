@@ -16,7 +16,8 @@
  */
 
 import {
-  AUTHENTICATE, AUTH_SUCCESS, AUTH_ERROR, AUTH_STATE
+  AUTHENTICATE, AUTH_SUCCESS, AUTH_ERROR, AUTH_STATE,
+  CHANGE_USERNAME, CHANGE_PASSWORD
 } from './constants';
 
 /**
@@ -76,5 +77,34 @@ export function authError(error) {
   return {
     type: AUTH_ERROR,
     error,
+  };
+}
+
+
+/**
+ * Changes the input field of the form
+ *
+ * @param  {username} username The new text of the input field
+ *
+ * @return {object}    An action object with a type of CHANGE_USERNAME
+ */
+export function changeUsername(username) {
+  return {
+    type: CHANGE_USERNAME,
+    username
+  };
+}
+
+/**
+ * Changes the input field of the form
+ *
+ * @param  {password} title The new text of the input field
+ *
+ * @return {object}    An action object with a type of CHANGE_PASSWORD
+ */
+export function changePassword(password) {
+  return {
+    type: CHANGE_PASSWORD,
+    password
   };
 }

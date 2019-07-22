@@ -14,3 +14,5 @@ export const AUTHENTICATE = 'AUTHENTICATE';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_STATE = 'AUTH_STATE';
+export const CHANGE_USERNAME = 'CHANGE_USERNAME';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';

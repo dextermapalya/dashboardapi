@@ -16,7 +16,9 @@ import {
   AUTHENTICATE, IS_LOGGED_IN,
   AUTH_ERROR,
   AUTH_SUCCESS,
-  AUTH_STATE
+  AUTH_STATE,
+  CHANGE_USERNAME,
+  CHANGE_PASSWORD
 } from './constants';
 
 // The initial state of the App
@@ -73,6 +75,35 @@ function authReducer(state = initialState, action) {
         ...state, error: action.error, loading: false, user: { isLoggedIn: false }
       }; */
     }
+
+    case CHANGE_USERNAME: {
+      console.log('CHANGING_USERNAME......', action, state);
+      // set any checks or filters here
+      const credentialClone = Object.assign({}, state.credentials);
+      credentialClone.username = action.username;
+      const newState = {
+        ...state,
+        loading: false,
+        credentials: credentialClone,
+      };
+      console.log('CHANGING_USERNAME......', credentialClone);
+      return newState;
+    }
+
+    case CHANGE_PASSWORD: {
+      console.log('CHANGING_PASSWORD......', action, state);
+      // var articleClone = cloneDeep(state.article)
+      const credentialClone = Object.assign({}, state.credentials);
+      credentialClone.password = action.password;
+      const newState = {
+        ...state,
+        loading: false,
+        credentials: credentialClone,
+      };
+      console.log('CHANGING_PASSWORD........', credentialClone);
+      return newState;
+    }
+
 
     default:
       console.log('DEFAULT AUTH STATE', state);

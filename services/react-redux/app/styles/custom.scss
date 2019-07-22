@@ -607,3 +607,16 @@ width: 1%;
 .wrapper_login .wrapper-content.wrapper_data{
     padding: 0;
 }
+.content_area .ibox-tools .collapse-link button{
+    color: #6c757d;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.content_area .ibox-tools .collapse-link button:focus{
+    background-image: none;
+}
+.content_area .ibox-tools .collapse-link .btn.btn-secondary:not(:disabled):not(.disabled):active {
+    background-image: inherit;
+    background-color: #fff;
+    border-color: #fff;
+}

@@ -32,8 +32,6 @@ export default class Template extends React.PureComponent {
         <Switch>
           {_.map(publicRoutes, (route, key) => {
             const { component, path } = route;
-            //console.log('PUBLIC ROUTES.... ', path);
-
             return (
               <Route
                 exact
@@ -51,22 +49,17 @@ export default class Template extends React.PureComponent {
 
           {_.map(privateRoutes, (route, key) => {
             const { component, path } = route;
-            //console.log('PRIVATE ROUTES....', path);
             return (
               <Route
                 exact
                 path={path}
                 key={key}
-                render={() => (isLoggedIn ? (
-                  <PrivateLayout
-                    Component={component}
-                    route={route}
-                    user={user}
-                    isLoggedIn={isLoggedIn}
-                  />
-                ) : (
-                  <PublicLayout Component={Login} route={route} user={user} isLoggedIn={isLoggedIn} />
-                ))
+                render={ (route) =>
+                  isLoggedIn ? (
+                  <PrivateLayout Component={component} route={route} user={user} userActions={this.userActions} />
+                  ) : (
+                  <PublicLayout Component={Login} route={route} user={user}/>
+                  )
                 }
               />
             );
@@ -74,8 +67,6 @@ export default class Template extends React.PureComponent {
 
           {_.map(sessionRoutes, (route, key) => {
             const { component, path } = route;
-            //console.log('SESSION ROUTES.... ', path);
-
             return (
               <Route
                 exact

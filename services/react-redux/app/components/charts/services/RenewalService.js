@@ -19,7 +19,6 @@ const RenewalService = {
     paymentTypes.forEach((item, index) => {
       // filter all items that match keyword
       const data = filter(jsonInput, { payment_method: item });
-      console.log('FILTER', data);
       const hData = [];
       /* The bar chart will display inaccurate results because it expects
         all payment types to contain equal number of values for each of the time slots

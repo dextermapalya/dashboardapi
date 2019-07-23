@@ -22,7 +22,7 @@ import {
 
 /* getUserFromLocalStorage */
 const getUserFromLocalStorage = (key, defaultValue) => {
-   localStorage.removeItem(key)
+  // localStorage.removeItem(key)
   const userinfo = localStorage.getItem(key);
   if (userinfo === null) {
     return defaultValue;

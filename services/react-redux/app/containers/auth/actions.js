@@ -59,7 +59,7 @@ export function getAuthState(credentials) {
  * @return {object}  An action object with a type of LOAD_ARTICLES_SUCCESS passing the repos
  */
 export function authComplete(user, username, isLoggedIn) {
-  const expiresIn = 1; // in minutes * 1000 milli seconds = 1 second
+  const expiresIn = 50; // in minutes * 1000 milli seconds = 1 second
   const expiresAt = (expiresIn * (1000 * 60)) + new Date().getTime();
   user.expiresAt = expiresAt;
   localStorage.setItem('userinfo', JSON.stringify(user));

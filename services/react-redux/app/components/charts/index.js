@@ -9,7 +9,6 @@ import reducer from 'containers/DateSelector/reducer';
 import ChartResource from './ChartResource';
 
 
-console.log('&&&&&&&&&& MAP DISPATCH TO PROPS....');
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeDate: (evt, date) => {

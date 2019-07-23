@@ -20,11 +20,9 @@ export const initialState = {
 };
 
 function dateReducer(state = initialState, action) {
-  console.log('DATE REDUCER', state);
 
   switch (action.type) {
     case CHANGE_DATE: {
-      console.log('CHANGING_DATE......', action);
       // set any checks or filters here
       return { ...state, modified: true, date: formatDate(action.date) };
     }

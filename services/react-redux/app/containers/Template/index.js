@@ -3,28 +3,28 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import {
-    makeSelectUser, makeSelectAuthStatus,
-    makeSelectTokenExpired
+  makeSelectUser, makeSelectAuthStatus,
+  makeSelectTokenExpired
 } from 'containers/auth/selectors';
 
 import {
-    makeSelectLoading,
-    makeSelectError
+  makeSelectLoading,
+  makeSelectError
 } from 'containers/App/selectors';
-  
+
 
 import Template from './Template';
 
 
 const mapStateToProps = createStructuredSelector({
-    user: makeSelectUser(),
-    loading: makeSelectLoading(),
-    error: makeSelectError(),
-    isLoggedIn: makeSelectAuthStatus(),
-    tokenExpired: makeSelectTokenExpired()
+  user: makeSelectUser(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+  isLoggedIn: makeSelectAuthStatus(),
+  tokenExpired: makeSelectTokenExpired()
 });
 
 const withConnect = connect(mapStateToProps);
 
 export default compose(withConnect)(Template);
-//export { mapDispatchToProps };
+// export { mapDispatchToProps };

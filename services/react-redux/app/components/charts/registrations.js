@@ -30,7 +30,6 @@ const transformData = (payload) => {
 
   const series = RegistrationService.transformData(payload.data);
   cOptions.series = series;
-  console.log('&&&&&5', series);
 
   return (
     <div>

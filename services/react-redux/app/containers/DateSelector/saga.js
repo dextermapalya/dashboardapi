@@ -15,13 +15,11 @@ import { makeSelectDate } from './selectors';
  */
 export function* getInstallations() {
   // Select username from store
-  console.log('GET ARTICLES....');
   // const username = yield select(makeSelectTitle());
   // const requestURL = `http://localhost/api/articles/`;
 
   try {
     // Call our request helper (see 'utils/request')
-    console.log('api call to fetch data');
     // const articles = yield call(request, requestURL);
     // yield put(articlesLoaded(articles, 'username'));
   } catch (err) {

@@ -11,11 +11,11 @@ import { Switch, Route } from 'react-router-dom';
 
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-//import Authenticate from 'containers/auth';
+// import Authenticate from 'containers/auth';
 import ProtectedRoute from 'components/auth';
 import Sidebar from 'components/Sidebar';
 import Header from 'components/Header';
-import Home from "components/home";
+import Home from 'components/home';
 import Login from 'components/Login';
 import Dashboard from 'containers/Dashboard/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';

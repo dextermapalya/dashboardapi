@@ -20,16 +20,16 @@ import {
 } from './constants';
 
 
-/* getUserFromLocalStorage*/
-const getUserFromLocalStorage = ( key, default_value) => {
-  //localStorage.removeItem(key)
-  let userinfo = localStorage.getItem(key);
+/* getUserFromLocalStorage */
+const getUserFromLocalStorage = (key, defaultValue) => {
+   localStorage.removeItem(key)
+  const userinfo = localStorage.getItem(key);
   if (userinfo === null) {
-    return default_value
+    return defaultValue;
   }
-  //return default_value;
-  return JSON.parse(userinfo)
-}
+  // return default_value;
+  return JSON.parse(userinfo);
+};
 
 // checks if the user is authenticated
 const isAuthenticated = () => {
@@ -39,13 +39,11 @@ const isAuthenticated = () => {
 
   let userinfo = localStorage.getItem('userinfo');
   userinfo = getUserFromLocalStorage('userinfo', {});
-  if ( userinfo !== null && userinfo ) {
-    auth =  new Date().getTime() < userinfo.expiresAt;
+  if (userinfo !== null && userinfo) {
+    auth = new Date().getTime() < userinfo.expiresAt;
   }
-  return auth
-}
-
-
+  return auth;
+};
 
 
 // The initial state of the App
@@ -59,24 +57,24 @@ export const initialState = {
 function authReducer(state = initialState, action) {
   switch (action.type) {
     case AUTHENTICATE: {
-      console.log('Authenticating a user', action);
+      //console.log('Authenticating a user', action);
       // set any checks or filters here
       return { ...state, loading: false, credentials: action.credentials };
     }
 
     case AUTH_STATE: {
-      console.log('STATE AUTH_STATE', AUTH_STATE);
+     // console.log('STATE AUTH_STATE', AUTH_STATE);
       const newState = {
         ...state,
         loading: true,
         user: action.user,
       };
-      console.log('STATE AUTH_STATE', newState);
+      //console.log('STATE AUTH_STATE', newState);
       return newState;
     }
 
     case AUTH_SUCCESS: {
-      console.log('AUTH SUCCESS...', action);
+     // console.log('AUTH SUCCESS...', action);
       const newState = {
         ...state,
         loading: false,
@@ -87,7 +85,7 @@ function authReducer(state = initialState, action) {
     }
 
     case AUTH_ERROR: {
-      console.log('AUTH ERROR...', action);
+      //console.log('AUTH ERROR...', action);
 
       const newState = {
         ...state,
@@ -104,7 +102,7 @@ function authReducer(state = initialState, action) {
     }
 
     case CHANGE_USERNAME: {
-      console.log('CHANGING_USERNAME......', action, state);
+      //console.log('CHANGING_USERNAME......', action, state);
       // set any checks or filters here
       const credentialClone = Object.assign({}, state.credentials);
       credentialClone.username = action.username;
@@ -113,12 +111,12 @@ function authReducer(state = initialState, action) {
         loading: false,
         credentials: credentialClone,
       };
-      console.log('CHANGING_USERNAME......', credentialClone);
+      //console.log('CHANGING_USERNAME......', credentialClone);
       return newState;
     }
 
     case CHANGE_PASSWORD: {
-      console.log('CHANGING_PASSWORD......', action, state);
+      //console.log('CHANGING_PASSWORD......', action, state);
       // var articleClone = cloneDeep(state.article)
       const credentialClone = Object.assign({}, state.credentials);
       credentialClone.password = action.password;
@@ -127,13 +125,13 @@ function authReducer(state = initialState, action) {
         loading: false,
         credentials: credentialClone,
       };
-      console.log('CHANGING_PASSWORD........', credentialClone);
+      //console.log('CHANGING_PASSWORD........', credentialClone);
       return newState;
     }
 
 
     default:
-      console.log('DEFAULT AUTH STATE', state);
+      //console.log('DEFAULT AUTH STATE', state);
       return state;
   }
 }

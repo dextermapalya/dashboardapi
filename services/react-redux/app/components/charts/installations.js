@@ -27,7 +27,6 @@ const transformData = (payload) => {
   // cOptions.xAxis.categories = getHoursUntilNow()
   const series = InstallationService.transformData(payload.data);
   cOptions.series = series;
-  console.log('&&&&&5', series);
 
   return (
     <div>

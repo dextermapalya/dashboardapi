@@ -5,15 +5,15 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 import {
-    makeSelectUser, makeSelectCredentials, makeSelectAuthStatus,
-    makeSelectTokenExpired
-  } from 'containers/auth/selectors';
+  makeSelectUser, makeSelectCredentials, makeSelectAuthStatus,
+  makeSelectTokenExpired
+} from 'containers/auth/selectors';
 
 import {
-    makeSelectLoading,
-    makeSelectError
+  makeSelectLoading,
+  makeSelectError
 } from 'containers/App/selectors';
-  
+
 import { authenticateUser, changeUsername, changePassword } from 'containers/auth/actions';
 
 import saga from 'containers/auth/saga';
@@ -23,23 +23,21 @@ import Login from './Login';
 
 const mapDispatchToProps = (dispatch) => ({
 
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    onChangePassword: (evt) => dispatch(changePassword(evt.target.value)),
-    onLogin: (evt, credentials) => {
-      console.log('DISPATCHING ACTION LOGIN.....', evt, credentials);
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      console.log('DISPATCHING ACTION LOGIN', credentials);
-      dispatch(authenticateUser(credentials));
-    }
-  });
+  onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+  onChangePassword: (evt) => dispatch(changePassword(evt.target.value)),
+  onLogin: (evt, credentials) => {
+    if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+    dispatch(authenticateUser(credentials));
+  }
+});
 
 const mapStateToProps = createStructuredSelector({
-    user: makeSelectUser(),
-    loading: makeSelectLoading(),
-    error: makeSelectError(),
-    credentials: makeSelectCredentials(),
-    isLoggedIn: makeSelectAuthStatus(),
-    tokenExpired: makeSelectTokenExpired()
+  user: makeSelectUser(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+  credentials: makeSelectCredentials(),
+  isLoggedIn: makeSelectAuthStatus(),
+  tokenExpired: makeSelectTokenExpired()
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

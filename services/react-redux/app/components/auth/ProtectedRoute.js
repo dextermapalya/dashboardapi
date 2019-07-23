@@ -5,8 +5,8 @@ import { Route, Redirect } from 'react-router-dom';
 const ProtectedRoute = ({
   component: Comp, isLoggedIn, path, ...rest
 }) => {
-  console.log('Protected', isLoggedIn);
-  console.log('Protected1', path);
+  //console.log('Protected', isLoggedIn);
+  //console.log('Protected1', path);
 
   return (
     <Route

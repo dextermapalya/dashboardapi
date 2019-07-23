@@ -8,7 +8,6 @@ import { map, cloneDeep } from 'lodash';
 import chartOptions from './chartOptions';
 
 const transformData = (data) => {
-  console.log('&&&&2', data);
   return (
     <h4>Chart 4</h4>
   );

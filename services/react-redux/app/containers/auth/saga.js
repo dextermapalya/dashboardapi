@@ -17,13 +17,14 @@ import { makeSelectCredentials, makeSelectUser } from './selectors';
    */
 export function* verifyCredentials() {
   // Select credentials from store
-  console.log('GET CREDENTIALS....');
+  //console.log('GET CREDENTIALS....');
   const credentials = yield select(makeSelectCredentials());
   const fd = new FormData();
   fd.append('username', credentials.username);
   fd.append('password', credentials.password);
   fd.append('scope', credentials.scope);
   const key = 'userinfo';
+
 
   try {
     // Call our request helper (see 'utils/request')

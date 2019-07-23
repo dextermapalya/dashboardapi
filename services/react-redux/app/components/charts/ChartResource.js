@@ -26,7 +26,7 @@ export default class ChartResource extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState) {
-      console.log(prevProps, this.props, '&&&&&&&&');
+     // console.log(prevProps, this.props, '&&&&&&&&');
       const { currentDate } = this.props;
       if (currentDate !== prevProps.currentDate) {
         // this.setState({ currentDate: currentDate, payload: [] });
@@ -40,7 +40,7 @@ export default class ChartResource extends React.PureComponent {
       const { path, currentDate } = this.props;
       const url = path + currentDate;
 
-      console.log('&&&&&&3', url, this.props);
+      //console.log('&&&&&&3', url, this.props);
 
       ApiClient.get(url)
         .then((res) => {
@@ -53,12 +53,12 @@ export default class ChartResource extends React.PureComponent {
           });
         }).catch((err) => {
           // if token has expired fetch a new token
-          console.log('token expired....', err.response, err.response.status);
+          //console.log('token expired....', err.response, err.response.status);
 
           if (err.response.status === 401) {
             history.push('/');
             // this.context.router.transitionTo('/');
-            console.log('token expired....', err.response, err.response.status);
+            //console.log('token expired....', err.response, err.response.status);
           }
 
           this.setState({
@@ -70,7 +70,6 @@ export default class ChartResource extends React.PureComponent {
     }
 
     render() {
-      console.log('&&&&3', this.props);
       const {
         payload, loading, render
       } = this.props;

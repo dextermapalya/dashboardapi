@@ -7,7 +7,7 @@ import { initialState } from './reducer';
 
 
 const selectAuth = (state) => {
-  console.log('SELECT AUTH', state.auth, initialState);
+  // console.log('SELECT AUTH', state.auth, initialState);
   state.auth = (!state.auth) ? initialState : state.auth;
   /* const data = localStorage.getItem('userinfo');
   const jsonObj = JSON.parse(data);

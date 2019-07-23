@@ -18,7 +18,7 @@ import { authenticateUser } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import Authenticate from './Authenticate';
-//import { UserActions } from './UserActions';
+// import { UserActions } from './UserActions';
 
 const mapDispatchToProps = (dispatch) => ({
   onLogin: (evt, credentials) => {

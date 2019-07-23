@@ -18,7 +18,7 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-//import App from 'containers/App';
+// import App from 'containers/App';
 import Template from 'containers/Template/Loadable';
 
 // Load the favicon

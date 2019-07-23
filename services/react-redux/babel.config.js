@@ -8,7 +8,7 @@ module.exports = {
     ],
     '@babel/preset-react'
   ],
-  plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import'],
+  plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-syntax-dynamic-import', 'js-logger'],
   env: {
     production: {
       only: ['app'],

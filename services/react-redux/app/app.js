@@ -16,10 +16,12 @@ import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
-
+import Log from 'logger-init';
+import Logger from 'log-init';
 // Import root app
 // import App from 'containers/App';
 import Template from 'containers/Template/Loadable';
+
 
 // Load the favicon
 /* eslint-disable import/no-webpack-loader-syntax */
@@ -46,8 +48,8 @@ openSansObserver.load().then(() => {
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
-
 const render = () => {
+  Log.debug("Initialised logger");
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>

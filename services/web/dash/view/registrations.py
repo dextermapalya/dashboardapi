@@ -40,8 +40,8 @@ def get_registrationquery(dt = None):
             GROUP BY 1    
         """
     query = """
-            select hour(um.created_on),count(um.user_id),count(ue.user_id) from 
-            (select convert_tz(u.created_on,'+00:00','+05:30') as created_on,u.id, m.user_id 
+            select hour(um.created_on) HR, count(um.user_id) Mobile_Reg, count(ue.user_id) email_Reg
+            from (select convert_tz(u.created_on,'+00:00','+05:30') as created_on,u.id, m.user_id 
             from myplex_service.myplex_user_user u left join myplex_service.myplex_user_usermobile m 
             on u.id=m.user_id where convert_tz(u.created_on,'+00:00','+05:30') between 
             DATE_FORMAT({0},'%Y-%m-%d 00:00:00') and DATE_FORMAT({0},'%Y-%m-%d 23:59:59')) um 

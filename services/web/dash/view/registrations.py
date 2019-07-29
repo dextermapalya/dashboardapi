@@ -49,7 +49,7 @@ def get_registrationquery(dt = None):
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 35) #cache for 35 minutes
+@cache_page(60 * 1) #cache for 35 minutes
 def activeregistrations(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable

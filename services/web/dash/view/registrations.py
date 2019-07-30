@@ -158,7 +158,7 @@ def activeregistrations(request, dt_query ):
                     #data = [dict((cursor.description[i][0], value) \
                     #for i, value in enumerate( row) ) for row in cursor.fetchall()]
                     #cursor.connection.close()
-                    cache.set(dt_query + "_registration", data, cache_time) #store the response in cache
+                    cache.set(dt_query + "_registration", data, 1) #store the response in cache
 
                     #jsondata = jsonifysubscriptions (  cursor.fetchall() )
                 duration = stop_timer( start_time )    

@@ -23,3 +23,5 @@ django-rest-auth
 python-memcached
 gevent
 django-background-tasks
+line_profiler
+ipython

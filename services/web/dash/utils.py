@@ -52,3 +52,32 @@ def date_is_identical(dt = None):
         pass
     finally:
         return is_identical                
+
+###
+#  jsonify queryset
+#  argument resultset
+#  return array
+###
+def jsonifyqueryset( resultset, **kwargs):
+        items = []
+
+        if len(kwargs) <= 0:
+           raise Exception("Invalid db keys")     
+
+        #resultset = kwargs.get('resultset')
+        #keys = kwargs.get('keys')
+        keys = kwargs.keys()
+        print(keys)
+
+        if len(resultset) > 0:
+            for item in resultset:
+                #print(item[0])
+                #lambda function to build a row in one line of code using comprehension
+                row = {key: item[kwargs.get(key)] for key in keys}
+                # lambda function using dictionary map
+                #row = dict( map( (lambda x: (x, keys[x]) if x in keys else (x,None)), keys)
+                #items.append({'current_date':item[0],'active_subscriptions':item[1]})
+                items.append(row)
+                #print(items)
+            print(items)
+        return items     

@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Python Quick reference</title>
+<body>
+<table>
+<tr>    
+<th colspan=2>Python Quick Reference</th>    
+</tr>
+
+<tr>
+<td>
+    <h3>Lambda function simplified using comprehension</h3>
+    <pre>
+            >>> lookup = {'A': 'aaa', 'B': 'bbb', 'C': 'ccc'}
+            >>> keys = ['A', 'B', 'Z']
+            >>> result = {key:lookup.get(key) for key in keys}
+            >>> result
+            {'Z': None, 'A': 'aaa', 'B': 'bbb'}        
+    </pre>
+
+</td>
+<td>
+    <h3>Lambda function simplified using dictionary map</h3>
+    <pre>
+            >>> lookup = {'A': 'aaa', 'B': 'bbb', 'C': 'ccc'}
+            >>> keys = ['A', 'B', 'Z']
+            >>> result = dict((lambda x: (x,lookup[x]) if x in lookup else (x,None))(key) for key in keys)
+    </pre>
+    <h4>Same result using map</h4>
+    <pre>
+        result = dict(map((lambda x: (x, lookup[x]) if x in lookup else (x,None)), keys))
+    </pre>
+</td>
+</tr>
+</table>

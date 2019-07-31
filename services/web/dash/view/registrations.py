@@ -136,11 +136,11 @@ def activeregistrations(request, dt_query ):
                     #data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'mobile':2, 'users':3} )                    
                     #stdlogger.info("@@@@@@@@@@#### {0}".format(data))
 
-                    #data = [dict((cursor.description[i][0], value) \
-                    #for i, value in enumerate( row) ) for row in cursor.fetchall()]
-                    #cursor.connection.close()
-                    data = [dict(zip([key[0] for key in cursor.description], row)) for row in cursor.fetchall()]
+                    data = [dict((cursor.description[i][0], value) \
+                    for i, value in enumerate( row) ) for row in cursor.fetchall()]
                     cursor.connection.close()
+                    #data = [dict(zip([key[0] for key in cursor.description], row)) for row in cursor.fetchall()]
+                    #cursor.connection.close()
                     stdlogger.info("@@@@@@@@@@####!!!!!!!! {0}".format(data))
 
                     cache.set(dt_query + "_registration", data, cache_time) #store the response in cache

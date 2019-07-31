@@ -30,6 +30,12 @@ const RegistrationService = {
     const series = [];
     // const dt = formatDate(new Date());
     let dt = jsonInput.dt_query;
+    if (jsonInput.data) {
+      Log.debug('REGISTRATIONS TOTAL:', jsonInput.data.length);
+      jsonInput.data  = filter(jsonInput.data, { 'DATE': dt });
+      Log.debug('REGISTRATIONS TOTAL::::', jsonInput.data.length);
+    }
+
     const deviceTypes = uniq(map(jsonInput.data, 'mobile'));
     const deviceData = [];
     deviceTypes.forEach((item, index) => {

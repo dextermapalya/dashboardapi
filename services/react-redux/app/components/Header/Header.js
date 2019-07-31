@@ -3,6 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 import {
   Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { authLogout } from 'containers/auth/actions';
 
 import './style.scss';
 import settingsicon from 'assets/images/settings_icon.png';
@@ -10,12 +12,14 @@ import logo from 'assets/images/logo.png';
 // import Banner from './images/banner.jpg';
 import PropTypes from 'prop-types';
 
-class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+export default class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
     this.toggle2 = this.toggle2.bind(this);
+    this.logout = this.logout.bind(this);
     this.state = {
       dropdownOpen: false,
       dropdownOpen2: false,
@@ -51,10 +55,18 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     }));
   }
 
+  logout() {
+    console.log('clearning localstorage...!!!');
+    let e;
+    localStorage.clear();
+    const { onLogout } = this.props
+    onLogout(e, false); //set isLoggedIn as false
+  }
+
 
   render() {
     const {
-      toggle, dropdownOpen, dropdownOpen2, toggle2, togglebutton
+      toggle, dropdownOpen, dropdownOpen2, toggle2, togglebutton, logout
     } = this.state;
     return (
 
@@ -83,7 +95,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
                             </DropdownToggle>
                             <DropdownMenu>
                               <DropdownItem>Login</DropdownItem>
-                              <DropdownItem>LogOut</DropdownItem>
+                              <DropdownItem onClick={this.logout}>Logout</DropdownItem>
                             </DropdownMenu>
                           </Dropdown>
                         </li>
@@ -117,7 +129,9 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
 }
 
 Header.propTypes = {
-  updateParent: PropTypes.func
+  updateParent: PropTypes.func,
+  onLogout: PropTypes.func,
 };
 
-export default Header;
+// export default connect(null, mapDispatchToProps)(Header);
+//export default Header;

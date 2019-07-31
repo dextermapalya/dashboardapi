@@ -17,9 +17,15 @@ import { makeSelectCredentials, makeSelectUser } from './selectors';
    */
 export function* verifyCredentials() {
   // Select credentials from store
-  //console.log('GET CREDENTIALS....');
+  // console.log('GET CREDENTIALS....');
   const credentials = yield select(makeSelectCredentials());
+
+  const emailCheck = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
+
   const fd = new FormData();
+  if (emailCheck.test(credentials.username) && credentials.username.indexOf('@') > 0) {
+    fd.append('email', credentials.username);
+  }
   fd.append('username', credentials.username);
   fd.append('password', credentials.password);
   fd.append('scope', credentials.scope);

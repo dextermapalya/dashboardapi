@@ -17,7 +17,7 @@ import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 import Log from 'logger-init';
-import Logger from 'log-init';
+// import Logger from 'log-init';
 // Import root app
 // import App from 'containers/App';
 import Template from 'containers/Template/Loadable';

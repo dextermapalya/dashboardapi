@@ -139,7 +139,7 @@ def activeregistrations(request, dt_query ):
                     data = cache.get(dt_query + "_registration") # returns None if no key-value pair
                 if data:
                     stdlogger.info("Fetching from CACHE\n\n\n\n")
-
+                data = None            
                 if not data:
                     db_conn = get_db_connection()
                     stdlogger.info("GETTING DB SOURCE {0}".format(db_conn))
@@ -152,7 +152,7 @@ def activeregistrations(request, dt_query ):
                     
                     #cursor.execute( "select * from myplex_user_device")
                     #query the db and jsonify the results
-                    data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'HOUR':1, 'Mobile':2, 'users':3} )                    
+                    data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'Mobile':2, 'users':3} )                    
                     cursor.connection.close()
 
                     #data = [dict((cursor.description[i][0], value) \

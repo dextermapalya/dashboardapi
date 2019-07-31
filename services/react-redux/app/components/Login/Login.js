@@ -13,6 +13,7 @@ import './Login.scss';
 class Login extends Component {
   constructor(props) {
     super(props);
+    console.log('LOGINNNNN', props)
     this.validateForm = this.validateForm.bind(this);
   }
 
@@ -121,7 +122,7 @@ class Login extends Component {
 }
 
 
-Login.propTypes = {
+/*Login.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   credentials: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
@@ -132,5 +133,5 @@ Login.propTypes = {
   onChangePassword: PropTypes.func,
   location: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
-
+*/
 export default Login;

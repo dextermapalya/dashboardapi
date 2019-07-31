@@ -12,7 +12,7 @@ from .serializers import InstallationSerializer
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache #for memcache
 
-from dash.utils import get_env_variable, get_db_connection, date_is_identical
+from dash.utils import get_env_variable, get_db_connection, date_is_identical, jsonifyqueryset
 from dash.logutils import start_timer, stop_timer
 
 from datetime import date
@@ -25,10 +25,18 @@ def get_installationsquery(dt = None):
         myplex_service.myplex_user_device WHERE DATE(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) = {0} GROUP BY 1,2,3) a 
         GROUP BY 1,2;        
         """
+    query = """
+        SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) dt, 
+        HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) hr, os, COUNT(id) 
+        install_cnt FROM (SELECT id,created_on,os FROM myplex_service.myplex_user_device 
+        WHERE DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) = '{0}' 
+        AND created_on between '{0}' - interval 1 day and '{0}') 
+        a GROUP BY 1,2,3;
+        """        
     if dt is None:
-        query = query.format( ' CURRENT_DATE() ')    
+        query = query.format( ' NOW() ')    
     else:
-        query = query.format( "DATE('" + dt + "')" )    
+        query = query.format( dt )    
 
     stdlogger.info(query)
     return query    
@@ -36,7 +44,7 @@ def get_installationsquery(dt = None):
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 35) #cache for 35 minutes
+@cache_page(1 * 1) #cache for 35 minutes
 def activeinstallations(request,  dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
@@ -66,12 +74,15 @@ def activeinstallations(request,  dt_query ):
                 cursor.execute( get_installationsquery( dt_query ) )
                 #cursor.execute( "select * from myplex_user_device")
                 #query the db and jsonify the results
-                data = [dict((cursor.description[i][0], value) \
-                    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                ##data = [dict((cursor.description[i][0], value) \
+                ##    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                ##cursor.connection.close()
+                data = jsonifyqueryset ( cursor.fetchall(), **{'dt':0, 'hr':1, 'os':2, 'install_cnt':3} )                    
                 cursor.connection.close()
+
                 if ( date_is_identical(dt_query) == False ):
                     stdlogger.info("#### STORING IN MEMCACHE...")
-                    cache.set(dt_query + "_install", data, cache_time) #store the response in cache
+                    cache.set(dt_query + "_install", data, 1) #store the response in cache
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
             duration = stop_timer( start_time )    

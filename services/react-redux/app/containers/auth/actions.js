@@ -18,7 +18,8 @@
 import {
   AUTHENTICATE, AUTH_SUCCESS, AUTH_ERROR, AUTH_STATE,
   CHANGE_USERNAME, CHANGE_PASSWORD, USER_LOGIN_SUCCESS,
-  USER_LOGOUT_SUCCESS, USER_VERIFY_SUCCESS, USER_VERIFY_ERROR
+  USER_LOGOUT_SUCCESS, USER_VERIFY_SUCCESS, USER_VERIFY_ERROR,
+  USER_LOGOUT
 } from './constants';
 
 /**
@@ -112,5 +113,33 @@ export function changePassword(password) {
   return {
     type: CHANGE_PASSWORD,
     password
+  };
+}
+
+/**
+ * Changes the input field of the form
+ *
+ * @param  {password} title The new text of the input field
+ *
+ * @return {object}    An action object with a type of CHANGE_PASSWORD
+ */
+export function logout() {
+  return {
+    type: USER_LOGOUT_SUCCESS,
+    password
+  };
+}
+/**
+ * Dispatched when the user clicks the logout button
+ *
+ * @param  {isLoggedIn} boolean set isLoggedIn false
+ *
+ * @return {object}  An action object with a type of LOAD_ARTICLES_SUCCESS passing the repos
+ */
+export function authLogout(isLoggedIn) {
+  localStorage.clear();
+  return {
+    type: USER_LOGOUT,
+    isLoggedIn
   };
 }

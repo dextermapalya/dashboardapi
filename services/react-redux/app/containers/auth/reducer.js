@@ -16,7 +16,8 @@ import {
   AUTH_SUCCESS,
   AUTH_STATE,
   CHANGE_USERNAME,
-  CHANGE_PASSWORD
+  CHANGE_PASSWORD,
+  USER_LOGOUT,
 } from './constants';
 
 
@@ -129,6 +130,17 @@ function authReducer(state = initialState, action) {
       return newState;
     }
 
+    case USER_LOGOUT: {
+      localStorage.clear();
+      const newState = {
+        ...state,
+        loading: false,
+        isLoggedIn: isAuthenticated(),
+        tokenExpired: true
+      };
+
+      return newState;
+    }
 
     default:
       //console.log('DEFAULT AUTH STATE', state);

@@ -23,10 +23,9 @@ const transformData = (payload) => {
     * will display the graph using one of the api's data
     * so it must be cloned and used in highcharts
     * */
-   console.log("REGISTRATION payload", payload);
   const cOptions = cloneDeep(chartOptions);
   // cOptions.title.text = 'Registrations Hourly';
-  // cOptions.xAxis.title.text = 'Time';
+  cOptions.xAxis.title.text = 'Time';
   cOptions.yAxis[0].title.text = ' Device Type';
 
   const series = RegistrationService.transformData(payload);

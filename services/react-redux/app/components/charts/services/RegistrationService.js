@@ -10,8 +10,9 @@ const RegistrationService = {
     const tmp = filter(json, {
       DATE: dt,
       Mobile: key,
-      HOUR: h
+      hour: h
     });
+
     if (tmp.length === 0) {
       return { DATE: dt, HOUR: h, Mobile: key, users: 0 }
     } else {

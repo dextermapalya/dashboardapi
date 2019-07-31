@@ -72,12 +72,12 @@ def get_registrationquery(dt = None):
             GROUP BY 1    
         """
     query = """
-            SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) DATE, 
+            SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) dt, 
             HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) as hour, 'mobile',
             COUNT(user_id) users FROM myplex_service.myplex_user_usermobile WHERE 
             user_id IN (SELECT id FROM myplex_user_user WHERE created_on 
             BETWEEN '{0}' - INTERVAL 1 DAY AND NOW()) GROUP BY 1,2,3
-            UNION ALL SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) DATE, 
+            UNION ALL SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) dt, 
             HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) hour, 'email', COUNT(user_id) users
             FROM myplex_service.myplex_user_useremail WHERE user_id IN 
             (SELECT id FROM myplex_user_user WHERE 
@@ -137,11 +137,12 @@ def activeregistrations(request, dt_query ):
                     #data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'mobile':2, 'users':3} )                    
                     #stdlogger.info("@@@@@@@@@@#### {0}".format(data))
 
-                    data = [dict((cursor.description[i][0], value) \
-                    for i, value in enumerate( row) ) for row in cursor.fetchall()]
-                    cursor.connection.close()
-                    #data = [dict(zip([key[0] for key in cursor.description], row)) for row in cursor.fetchall()]
+                    #data = [dict((cursor.description[i][0], value) \
+                    #for i, value in enumerate( row) ) for row in cursor.fetchall()]
                     #cursor.connection.close()
+                    #unicode(s).encode("utf-8") for s in row
+                    data = [dict(zip([key[0] for key in cursor.description], row ))  for row in cursor.fetchall()]
+                    cursor.connection.close()
                     stdlogger.info("@@@@@@@@@@####!!!!!!!! {0}".format(data))
 
                     cache.set(dt_query + "_registration", data, cache_time) #store the response in cache

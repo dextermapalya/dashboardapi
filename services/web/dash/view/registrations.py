@@ -135,7 +135,7 @@ def activeregistrations(request, dt_query ):
                     #query the db and jsonify the results
                     data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'mobile':2, 'users':3} )                    
                     cursor.connection.close()
-                    stdlogger.info("@@@@@@@@@@####", data)
+                    stdlogger.info("@@@@@@@@@@#### {0}".format(data))
 
                     #data = [dict((cursor.description[i][0], value) \
                     #for i, value in enumerate( row) ) for row in cursor.fetchall()]

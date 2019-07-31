@@ -93,7 +93,7 @@ def get_registrationquery(dt = None):
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 35) #cache for 35 minutes
+#@cache_page(60 * 35) #cache for 35 minutes
 def activeregistrations(request, dt_query ):
         try:
 
@@ -135,6 +135,7 @@ def activeregistrations(request, dt_query ):
                     #query the db and jsonify the results
                     data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'mobile':2, 'users':3} )                    
                     cursor.connection.close()
+                    stdlogger.info("@@@@@@@@@@####", data)
 
                     #data = [dict((cursor.description[i][0], value) \
                     #for i, value in enumerate( row) ) for row in cursor.fetchall()]

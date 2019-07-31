@@ -90,29 +90,10 @@ def get_registrationquery(dt = None):
     stdlogger.info(query)
     return query    
 
-####
-# merge mobile and email resultset 
-# into one array
-# arguments array, array
-# return array
-####
-def merge_data(mobiledata, emaildata):
-    data = []
-    try:
-       stdlogger.info(mobiledata) 
-       stdlogger.info(emaildata) 
-
-       print(mobiledata)
-       print(emaildata)
-    except Exception as e:
-        raise
-    else:
-        return data       
-
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 1) #cache for 35 minutes
+@cache_page(60 * 35) #cache for 35 minutes
 def activeregistrations(request, dt_query ):
         try:
 
@@ -158,7 +139,7 @@ def activeregistrations(request, dt_query ):
                     #data = [dict((cursor.description[i][0], value) \
                     #for i, value in enumerate( row) ) for row in cursor.fetchall()]
                     #cursor.connection.close()
-                    cache.set(dt_query + "_registration", data, 1) #store the response in cache
+                    cache.set(dt_query + "_registration", data, cache_time) #store the response in cache
 
                     #jsondata = jsonifysubscriptions (  cursor.fetchall() )
                 duration = stop_timer( start_time )    

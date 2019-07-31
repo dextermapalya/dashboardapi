@@ -10,7 +10,7 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from .serializers import SubscriptionSerializer
 from django.views.decorators.cache import cache_page
-from dash.utils import get_env_variable, get_db_connection, date_is_identical
+from dash.utils import get_env_variable, get_db_connection, date_is_identical, jsonifyqueryset
 from dash.logutils import start_timer, stop_timer
 from django.core.cache import cache #for memcache
 
@@ -29,10 +29,22 @@ def get_subscriptionsquery(dt = None):
         'GMT','Asia/Kolkata')) = {0} AND last_payment_channel IS NOT NULL
         GROUP BY 1,2
         """
+    query = """
+            SELECT DATE(CONVERT_TZ(trans_date,'GMT','Asia/Kolkata')) as "dt", 'Paytm' AS 
+            payment_method, HOUR(CONVERT_TZ(trans_date,'GMT','Asia/Kolkata')) as hr, 
+            COUNT(user_id) subs FROM myplex_service.myplex_paytm_subscription WHERE trans_date 
+            between '{0}' - interval 1 day and '{0}' AND request_type='SUBSCRIBE' 
+            AND STATUS='TXN_SUCCESS' AND trans_id IS NOT NULL GROUP BY 1,2,3 UNION ALL SELECT 
+            DATE(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) as "date", last_payment_channel AS 
+            payment_method, HOUR(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) as hr, 
+            COUNT(order_id) subs FROM myplex_service.evergent_evergentstatus WHERE 
+            created_on between '{0}' - interval 1 day and '{0}' AND 
+            last_payment_channel IS NOT NULL GROUP BY 1,2,3 ORDER BY 1,3;    
+        """    
     if dt is None:
-        query = query.format( ' CURRENT_DATE() ')    
+        query = query.format( ' NOW() ')    
     else:
-        query = query.format( "DATE('" + dt + "')" )    
+        query = query.format( dt )    
 
     stdlogger.info(query)
     return query    
@@ -59,7 +71,7 @@ def activesubscriptions(request, dt_query ):
             if ( date_is_identical(dt_query) == False ):
                 data = cache.get(dt_query + "_subscription") # returns None if no key-value pair
             if data:
-                    stdlogger.info("Fetching from CACHE\n\n\n\n")
+                stdlogger.info("Fetching from CACHE\n\n\n\n")
 
 
             if not data:
@@ -71,9 +83,12 @@ def activesubscriptions(request, dt_query ):
                 cursor.execute( get_subscriptionsquery( dt_query ) )
                 #cursor.execute( "select * from myplex_user_device")
                 #query the db and jsonify the results
-                data = [dict((cursor.description[i][0], value) \
-                    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                ###data = [dict((cursor.description[i][0], value) \
+                ###    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                ###cursor.connection.close()
+                data = jsonifyqueryset ( cursor.fetchall(), **{'dt':0, 'payment_method':1, 'hr':2, 'subs':3} )                    
                 cursor.connection.close()
+
                 if ( date_is_identical(dt_query) == False ):
                     cache.set(dt_query + "_subscription", data, cache_time) #store the response in cache
 

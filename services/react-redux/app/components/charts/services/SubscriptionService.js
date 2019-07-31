@@ -1,7 +1,8 @@
 import {
-  filter, map, uniq, maxBy
+  filter, map, uniq, maxBy, remove
 } from 'lodash';
 import { getHoursUntilNow } from 'utils/DateFunctions';
+import Log from 'logger-init';
 
 const SubscriptionService = {
 
@@ -40,18 +41,24 @@ const SubscriptionService = {
       hours.forEach((h, idx) => {
         const tmp = filter(jsonInput, {
           payment_method: item,
-          HOUR: h
+          hr: h
         });
+        // remove this matching row so that the next iteration will be faster
         if (tmp.length === 0) {
-          hData.push({ payment_method: item, HOUR: h, subs: 0 });
+          hData.push({ payment_method: item, hr: h, subs: 0 });
         } else {
           // the above filter returns an array so extract the 0th element
           hData.push(tmp[0]);
+          remove(jsonInput, { hr: tmp[0].hr, payment_method: tmp[0].payment_method });
         }
       });
+      
       const hourlyData = map(hData, 'subs');
+      Log.debug('SUBSCRIPTIONS +++', item, hourlyData)
       series.push({ name: item, data: hourlyData });
     });
+    Log.debug('SUBSCRIPTIONS +++', series)
+
     return { series, hours };
     // inspect the value
   },

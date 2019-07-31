@@ -1,4 +1,4 @@
-import { filter, map, uniq, maxBy } from 'lodash';
+import { filter, map, uniq, maxBy , remove } from 'lodash';
 import { getHoursUntilNow } from 'utils/DateFunctions';
 import { formatDate } from 'utils/DateFunctions';
 import Log from 'logger-init';
@@ -27,35 +27,45 @@ const RegistrationService = {
     let maxH = maxBy(jsonInput, 'HOUR');
     maxH = (maxH === undefined) ? 23 : maxH.HOUR;
     const hours = getHoursUntilNow(maxH);
+    const series = [];
     // const dt = formatDate(new Date());
     let dt = jsonInput.dt_query;
-    // console.log('REGISTRATION hours', hours, maxH, dt, jsonInput);
-
-    const categories = ['mobile', 'email'];
-    //let data = filter(jsonInput.data, { DATE: dt, Mobile: 'mobile' });
-    let mdata = [];
-    let edata = [];
-    let mobile = [];
-    let email = [];
-    hours.forEach((h, idx) => {
-      mdata.push( this.filterData(jsonInput.data, h, dt, 'mobile') ); 
-      edata.push( this.filterData(jsonInput.data, h, dt, 'email') ); 
+    const deviceTypes = uniq(map(jsonInput.data, 'Mobile'));
+    const deviceData = [];
+    deviceTypes.forEach((item, index) => {
+      deviceData[item] = []; // init a multi dimensional array for every OS
     });
 
-    Log.debug('REGISTRATION Mobile', mdata, edata);
-    // console.log('REGISTRATION data', data);
-    mobile = map(mdata, 'users'); // [12, 14, 16, 18]
-    email = map(edata, 'users');
-    ///data = filter(jsonInput.data, { DATE: dt, Mobile: 'email' });
-    ///const email = map(data, 'users'); // [12, 14, 16, 18]
-    Log.debug('REGISTRATION email', mobile, email);
+    let tmpObj = {};
 
-    // const others = map(jsonInput, 'email_Reg');
-    const series = [];
-    series.push({ name: 'Mobile', data: mobile });
-    series.push({ name: 'Others', data: email });
-    return series;
-    // inspect the value
+    // console.log('REGISTRATION hours', hours, maxH, dt, jsonInput);
+    deviceTypes.forEach((item, index) => {
+      const hData = [];
+
+      hours.forEach((h, idx) => {
+        const tmp = filter(jsonInput.data, {
+          DATE: dt,
+          Mobile: item,
+          hour: h
+        });
+        // remove this matching row so that the next iteration will be faster
+        if (tmp.length === 0) {
+          hData.push({ DATE: dt, hr: h, users: 0, Mobile: item });
+        } else {
+          // the above filter returns an array so extract the 0th element
+          hData.push(tmp[0]);
+          remove(jsonInput.data, { hr: tmp[0].hr, Mobile: tmp[0].Mobile });
+        }
+      });
+
+      const hourlyData = map(hData, 'users');
+      Log.debug('REGISTRATIONS +++', item, hourlyData)
+      series.push({ name: item, data: hourlyData });
+      Log.debug('REGISTRATIONS ___', series);
+  })
+
+  return series;
+
   },
 
 };

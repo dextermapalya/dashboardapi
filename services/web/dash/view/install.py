@@ -44,7 +44,7 @@ def get_installationsquery(dt = None):
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(1 * 1) #cache for 35 minutes
+@cache_page(60 * 35) #cache for 35 minutes
 def activeinstallations(request,  dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
@@ -82,7 +82,7 @@ def activeinstallations(request,  dt_query ):
 
                 if ( date_is_identical(dt_query) == False ):
                     stdlogger.info("#### STORING IN MEMCACHE...")
-                    cache.set(dt_query + "_install", data, 1) #store the response in cache
+                    cache.set(dt_query + "_install", data, cache_time) #store the response in cache
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
             duration = stop_timer( start_time )    

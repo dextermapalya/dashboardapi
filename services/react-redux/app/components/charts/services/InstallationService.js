@@ -15,7 +15,7 @@ const InstallationService = {
     if (tmp.length === 0) {
       return { hr: h, os: key, install_cnt: 0 };
     }
-    
+
     // the above filter returns an array so extract the 0th element
     return tmp[0];
   },
@@ -40,11 +40,6 @@ const InstallationService = {
         tmpObj = this.filterData(jsonInput, h, item);
         // remove this matching row so that the next iteration will be faster
         remove(jsonInput, { hr: tmpObj.hr, os: tmpObj.os });
-
-        /* remove(jsonInput, (e) => 
-          return e.hr === tmpObj.hr && e.os === tmpObj.os
-        ); */
-    
         // jsonInput.remove(e => e === tmpObj);
         osData[item].push(tmpObj);
       });

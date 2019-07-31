@@ -4,7 +4,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 // import { createStructuredSelector } from 'reselect';
-// import injectReducer from 'utils/injectReducer';
+import injectReducer from 'utils/injectReducer';
 // import saga from 'containers/auth/saga';
 
 import { authLogout } from 'containers/auth/actions';
@@ -21,9 +21,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const withConnect = connect(null, mapDispatchToProps);
-// const withReducer = injectReducer({ key: 'auth', reducer });
+const withReducer = injectReducer({ key: 'auth', reducer });
 
-export default compose(withConnect)(Header);
+export default compose(withReducer, withConnect)(Header);
 
 // export default compose(withConnect)(Header);
 export { mapDispatchToProps };

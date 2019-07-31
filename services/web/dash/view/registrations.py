@@ -151,6 +151,8 @@ def activeregistrations(request, dt_query ):
             #return an exception
             status_code = 303
             response = {'code':status_code, 'error' : str(e) , 'data':[]}
+            stdlogger.info("@@@@@@ Error!!!!!! {0}".format( str(e) ) )
+
             pass
         finally:
             #sample json format

@@ -129,17 +129,19 @@ def activeregistrations(request, dt_query ):
                     #cursor = connections['myplex_service'].cursor() #this is for multiple databases
                     cursor = connections[db_conn].cursor() #this is for multiple databases
                     #cursor =  connection.cursor() #this is for default database
-                    cursor.execute( get_registrationquery(dt_query) )
+                    result = cursor.execute( get_registrationquery(dt_query) )
                     
                     #cursor.execute( "select * from myplex_user_device")
                     #query the db and jsonify the results
-                    data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'mobile':2, 'users':3} )                    
-                    cursor.connection.close()
-                    stdlogger.info("@@@@@@@@@@#### {0}".format(data))
+                    #data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'mobile':2, 'users':3} )                    
+                    #stdlogger.info("@@@@@@@@@@#### {0}".format(data))
 
                     #data = [dict((cursor.description[i][0], value) \
                     #for i, value in enumerate( row) ) for row in cursor.fetchall()]
                     #cursor.connection.close()
+                    data = [dict(zip([key[0] for key in cursor.description], row)) for row in cursor.fetchall()]
+                    cursor.connection.close()
+
                     cache.set(dt_query + "_registration", data, cache_time) #store the response in cache
 
                     #jsondata = jsonifysubscriptions (  cursor.fetchall() )

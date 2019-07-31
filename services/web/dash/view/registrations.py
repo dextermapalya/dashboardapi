@@ -141,6 +141,7 @@ def activeregistrations(request, dt_query ):
                     #cursor.connection.close()
                     data = [dict(zip([key[0] for key in cursor.description], row)) for row in cursor.fetchall()]
                     cursor.connection.close()
+                    stdlogger.info("@@@@@@@@@@####!!!!!!!! {0}".format(data))
 
                     cache.set(dt_query + "_registration", data, cache_time) #store the response in cache
 

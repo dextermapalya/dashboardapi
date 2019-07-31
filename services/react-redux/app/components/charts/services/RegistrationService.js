@@ -9,12 +9,12 @@ const RegistrationService = {
     let data = [];
     const tmp = filter(json, {
       DATE: dt,
-      Mobile: key,
+      mobile: key,
       hour: h
     });
 
     if (tmp.length === 0) {
-      return { DATE: dt, HOUR: h, Mobile: key, users: 0 }
+      return { DATE: dt, hour: h, mobile: key, users: 0 }
     } else {
       // the above filter returns an array so extract the 0th element
       return tmp[0];
@@ -30,7 +30,7 @@ const RegistrationService = {
     const series = [];
     // const dt = formatDate(new Date());
     let dt = jsonInput.dt_query;
-    const deviceTypes = uniq(map(jsonInput.data, 'Mobile'));
+    const deviceTypes = uniq(map(jsonInput.data, 'mobile'));
     const deviceData = [];
     deviceTypes.forEach((item, index) => {
       deviceData[item] = []; // init a multi dimensional array for every OS
@@ -45,16 +45,16 @@ const RegistrationService = {
       hours.forEach((h, idx) => {
         const tmp = filter(jsonInput.data, {
           DATE: dt,
-          Mobile: item,
+          mobile: item,
           hour: h
         });
         // remove this matching row so that the next iteration will be faster
         if (tmp.length === 0) {
-          hData.push({ DATE: dt, hr: h, users: 0, Mobile: item });
+          hData.push({ DATE: dt, hr: h, users: 0, mobile: item });
         } else {
           // the above filter returns an array so extract the 0th element
           hData.push(tmp[0]);
-          remove(jsonInput.data, { hr: tmp[0].hr, Mobile: tmp[0].Mobile });
+          remove(jsonInput.data, { hr: tmp[0].hr, mobile: tmp[0].mobile });
         }
       });
 

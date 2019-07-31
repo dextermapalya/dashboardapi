@@ -133,7 +133,7 @@ def activeregistrations(request, dt_query ):
                     
                     #cursor.execute( "select * from myplex_user_device")
                     #query the db and jsonify the results
-                    data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'Mobile':2, 'users':3} )                    
+                    data = jsonifyqueryset ( cursor.fetchall(), **{'DATE':0, 'hour':1, 'mobile':2, 'users':3} )                    
                     cursor.connection.close()
 
                     #data = [dict((cursor.description[i][0], value) \

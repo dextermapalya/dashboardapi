@@ -44,7 +44,7 @@ def get_installationsquery(dt = None):
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 35) #cache for 35 minutes
+@cache_page(60 * 25) #cache for 25 minutes
 def activeinstallations(request,  dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable

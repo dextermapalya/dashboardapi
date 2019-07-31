@@ -24,12 +24,15 @@ const transformData = (payload) => {
     * so it must be cloned and used in highcharts
     * */
   const cOptions = cloneDeep(chartOptions);
+  const tempPayload = cloneDeep(payload);
+
   // cOptions.title.text = 'Registrations Hourly';
   cOptions.xAxis.title.text = 'Time';
   cOptions.yAxis[0].title.text = ' Device Type';
 
-  const series = RegistrationService.transformData(payload);
-  cOptions.series = series;
+  const data = RegistrationService.transformData(tempPayload);
+  cOptions.series = data.series;
+  cOptions.xAxis.categories = data.hours;
 
   return (
     <div>

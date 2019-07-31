@@ -64,7 +64,7 @@ const RegistrationService = {
       Log.debug('REGISTRATIONS ___', series);
   })
 
-  return series;
+  return { series, hours };
 
   },
 

@@ -1,10 +1,10 @@
 import {
-  filter, map, uniq, maxBy
+  filter, map, uniq, maxBy, remove
 } from 'lodash';
 import { getHoursUntilNow } from 'utils/DateFunctions';
 
 const RenewalService = {
-
+  
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
     // first extract all unique keys ex that way hardcoding is avoided
@@ -18,7 +18,7 @@ const RenewalService = {
 
     paymentTypes.forEach((item, index) => {
       // filter all items that match keyword
-      const data = filter(jsonInput, { payment_method: item });
+      // const data = filter(jsonInput, { payment_method: item });
       const hData = [];
       /* The bar chart will display inaccurate results because it expects
         all payment types to contain equal number of values for each of the time slots
@@ -39,16 +39,17 @@ const RenewalService = {
       hours.forEach((h, idx) => {
         const tmp = filter(jsonInput, {
           payment_method: item,
-          HOUR: h
+          hour: h
         });
         if (tmp.length === 0) {
-          hData.push({ payment_method: item, HOUR: h, Renewals: 0 });
+          hData.push({ payment_method: item, hour: h, renewals: 0 });
         } else {
           // the above filter returns an array so extract the 0th element
           hData.push(tmp[0]);
+          remove(jsonInput, { hour: tmp[0].hour, payment_method: tmp[0].payment_method });
         }
       });
-      const hourlyData = map(hData, 'Renewals');
+      const hourlyData = map(hData, 'renewals');
       series.push({ name: item, data: hourlyData });
     });
 

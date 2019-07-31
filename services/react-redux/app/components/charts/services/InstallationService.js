@@ -50,7 +50,8 @@ const InstallationService = {
       series.push({ name: item, data: tmp });
     });
 
-    return series;
+    return { series, hours };
+
   },
 
 };

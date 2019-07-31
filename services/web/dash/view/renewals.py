@@ -42,10 +42,25 @@ def get_renewalsquery(dt = None):
         AND DATE(p.received_date)={0}
         GROUP BY 1,2;
     """
+    query = """
+        SELECT date, payment_method, hour, renewals FROM (
+        SELECT DATE_FORMAT(trans_date, '%Y-%m-%d') DATE, 'Paytm' AS payment_method, 
+        HOUR(trans_date) hour, COUNT(user_id) renewals FROM 
+        myplex_service.myplex_paytm_subscription
+        WHERE trans_date BETWEEN '{0} 00:00:00' AND '{0} 23:59:59' AND 
+        request_type='RENEW_SUBSCRIPTION' AND STATUS='TXN_SUCCESS' AND trans_id IS NOT NULL 
+        GROUP BY 1,2,3 UNION ALL SELECT DATE(received_date) DATE, payment_method, 
+        HOUR(received_date) HOUR,COUNT(cp_customer_id) renewals 
+        FROM SUNNXT_CHARGING_DB.payment WHERE received_date BETWEEN 
+        '{0} 00:00:00' AND '{0} 23:59:59' AND posting_status='Posted' 
+        AND payment_type IN('Renewal') GROUP BY 1,2,3 ) a
+        ORDER BY 1,3;
+    """
+
     if dt is None:
-        query = query.format( ' CURRENT_DATE() ')    
+        query = query.format( ' now() ')    
     else:
-        query = query.format( "DATE('" + dt + "')" )    
+        query = query.format( dt  )    
 
     stdlogger.info(query)
     return query    
@@ -53,7 +68,7 @@ def get_renewalsquery(dt = None):
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated,))
-@cache_page(60 * 35) #cache for 35 minutes
+@cache_page(60 * 25) #cache for 25 minutes
 def activerenewals(request, dt_query ):
         try:
             response = {'code':303, 'data':[]} #init variable
@@ -83,9 +98,13 @@ def activerenewals(request, dt_query ):
                 cursor.execute( get_renewalsquery( dt_query ) )
                 #cursor.execute( "select * from myplex_user_device")
                 #query the db and jsonify the results
-                data = [dict((cursor.description[i][0], value) \
-                    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                #data = [dict((cursor.description[i][0], value) \
+                #    for i, value in enumerate(row)) for row in cursor.fetchall()]
+                #cursor.connection.close()
+                data = [dict(zip([key[0] for key in cursor.description], row ))  for row in cursor.fetchall()]
                 cursor.connection.close()
+                stdlogger.info("@@@@@@@@@@####!!!!!!!! {0}".format(data))
+
                 if ( date_is_identical(dt_query) == False ):
                     cache.set(dt_query + "_renewal", data, cache_time) #store the response in cache
 

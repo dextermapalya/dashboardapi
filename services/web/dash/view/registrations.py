@@ -72,12 +72,12 @@ def get_registrationquery(dt = None):
             GROUP BY 1    
         """
     query = """
-            SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) dt, 
+            SELECT  DATE_FORMAT(CONVERT_TZ(created_on,'+00:00','+05:30'), '%Y-%m-%d')  DATE, 
             HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) as hour, 'mobile',
             COUNT(user_id) users FROM myplex_service.myplex_user_usermobile WHERE 
             user_id IN (SELECT id FROM myplex_user_user WHERE created_on 
             BETWEEN '{0}' - INTERVAL 1 DAY AND NOW()) GROUP BY 1,2,3
-            UNION ALL SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) dt, 
+            UNION ALL SELECT DATE_FORMAT(CONVERT_TZ(created_on,'+00:00','+05:30'), '%Y-%m-%d') dt, 
             HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) hour, 'email', COUNT(user_id) users
             FROM myplex_service.myplex_user_useremail WHERE user_id IN 
             (SELECT id FROM myplex_user_user WHERE 

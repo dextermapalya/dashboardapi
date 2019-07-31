@@ -144,6 +144,10 @@ DATABASES = {
         'PASSWORD': 'SunDas!br@82',
         'HOST': '10.10.9.44',
         'PORT': 3306,
+        'OPTIONS': {
+                    'charset': 'latin1',
+                    'use_unicode': True, 
+        },        
     }
 }
 

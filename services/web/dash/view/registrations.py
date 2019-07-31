@@ -128,6 +128,7 @@ def activeregistrations(request, dt_query ):
                     #from IPython import embed; embed()
                     #cursor = connections['myplex_service'].cursor() #this is for multiple databases
                     cursor = connections[db_conn].cursor() #this is for multiple databases
+                    #db_conn.set_character_encoding('utf8')
                     #cursor =  connection.cursor() #this is for default database
                     result = cursor.execute( get_registrationquery(dt_query) )
                     

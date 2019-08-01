@@ -19,8 +19,8 @@ const RenewalService = {
     // first extract all unique keys ex that way hardcoding is avoided
     const paymentTypes = uniq(map(jsonInput.data, 'payment_method'));
     const series = [];
-    let maxH = maxBy(jsonInput.data, 'HOUR');
-    maxH = (maxH === undefined) ? 23 : maxH.HOUR;
+    let maxH = maxBy(jsonInput.data, 'hour');
+    maxH = (maxH === undefined) ? 23 : maxH.hour;
     const hours = getHoursUntilNow(maxH);
 
     // const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,23];

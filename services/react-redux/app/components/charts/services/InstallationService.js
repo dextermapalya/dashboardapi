@@ -9,11 +9,11 @@ const InstallationService = {
     let data = [];
     const tmp = filter(json, {
       os: key,
-      hr: h
+      hour: h
     });
 
     if (tmp.length === 0) {
-      return { hr: h, os: key, install_cnt: 0 };
+      return { hour: h, os: key, install_cnt: 0 };
     }
 
     // the above filter returns an array so extract the 0th element
@@ -30,8 +30,8 @@ const InstallationService = {
       Log.debug('INSTALLATION TOTAL::::', jsonInput.data.length);
     }
 
-    let maxH = maxBy(jsonInput.data, 'hr');
-    maxH = (maxH === undefined) ? 23 : maxH.HOUR;
+    let maxH = maxBy(jsonInput.data, 'hour');
+    maxH = (maxH === undefined) ? 23 : maxH.hour;
     const hours = getHoursUntilNow(maxH);
     // first extract all unique keys ex that way hardcoding is avoided
     const osTypes = uniq(map(jsonInput.data, 'os'));
@@ -47,7 +47,7 @@ const InstallationService = {
       hours.forEach((h, idx) => {
         tmpObj = this.filterData(jsonInput.data, h, item);
         // remove this matching row so that the next iteration will be faster
-        remove(jsonInput, { hr: tmpObj.hr, os: tmpObj.os });
+        remove(jsonInput, { hour: tmpObj.hour, os: tmpObj.os });
         // jsonInput.remove(e => e === tmpObj);
         osData[item].push(tmpObj);
       });

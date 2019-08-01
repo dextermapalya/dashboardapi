@@ -24,7 +24,7 @@ const RegistrationService = {
 
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
-    
+
     let dt = jsonInput.dt_query;
     if (jsonInput.data) {
       Log.debug('REGISTRATIONS TOTAL:', jsonInput.data.length);
@@ -32,8 +32,8 @@ const RegistrationService = {
       Log.debug('REGISTRATIONS TOTAL::::', jsonInput.data.length);
     }
 
-    let maxH = maxBy(jsonInput, 'HOUR');
-    maxH = (maxH === undefined) ? 23 : maxH.HOUR;
+    let maxH = maxBy(jsonInput, 'hour');
+    maxH = (maxH === undefined) ? 23 : maxH.hour;
     const hours = getHoursUntilNow(maxH);
     const series = [];
     // const dt = formatDate(new Date());

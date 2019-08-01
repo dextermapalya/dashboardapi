@@ -31,12 +31,12 @@ def get_subscriptionsquery(dt = None):
         """
     query = """
             SELECT DATE(CONVERT_TZ(trans_date,'GMT','Asia/Kolkata')) as "dt", 'Paytm' AS 
-            payment_method, HOUR(CONVERT_TZ(trans_date,'GMT','Asia/Kolkata')) as hr, 
+            payment_method, HOUR(CONVERT_TZ(trans_date,'GMT','Asia/Kolkata')) as hour, 
             COUNT(user_id) subs FROM myplex_service.myplex_paytm_subscription WHERE trans_date 
             between '{0} 00:00:00' - interval 1 day and '{0} 23:59:59' AND request_type='SUBSCRIBE' 
             AND STATUS='TXN_SUCCESS' AND trans_id IS NOT NULL GROUP BY 1,2,3 UNION ALL SELECT 
             DATE(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) as "date", last_payment_channel AS 
-            payment_method, HOUR(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) as hr, 
+            payment_method, HOUR(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) as hour, 
             COUNT(order_id) subs FROM myplex_service.evergent_evergentstatus WHERE 
             created_on between '{0} 00:00:00' - interval 1 day and '{0} 23:59:59' AND 
             last_payment_channel IS NOT NULL GROUP BY 1,2,3 ORDER BY 1,3;    

@@ -20,8 +20,8 @@ const SubscriptionService = {
     const paymentTypes = uniq(map(jsonInput.data, 'payment_method'));
     const series = [];
     // iterate through each osType and generate hourly data
-    let maxH = maxBy(jsonInput.data, 'HOUR');
-    maxH = (maxH === undefined) ? 23 : maxH.HOUR;
+    let maxH = maxBy(jsonInput.data, 'hour');
+    maxH = (maxH === undefined) ? 23 : maxH.hour;
     const hours = getHoursUntilNow(maxH);
 
     // const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,23];
@@ -49,15 +49,15 @@ const SubscriptionService = {
       hours.forEach((h, idx) => {
         const tmp = filter(jsonInput.data, {
           payment_method: item,
-          hr: h
+          hour: h
         });
         // remove this matching row so that the next iteration will be faster
         if (tmp.length === 0) {
-          hData.push({ payment_method: item, hr: h, subs: 0 });
+          hData.push({ payment_method: item, hour: h, subs: 0 });
         } else {
           // the above filter returns an array so extract the 0th element
           hData.push(tmp[0]);
-          remove(jsonInput.data, { hr: tmp[0].hr, payment_method: tmp[0].payment_method });
+          remove(jsonInput.data, { hour: tmp[0].hour, payment_method: tmp[0].payment_method });
         }
       });
       

@@ -28,7 +28,8 @@ def get_installationsquery(dt = None):
     query = """
         SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) dt, 
         HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) 
-        hour, os, COUNT(id) install_cnt FROM (SELECT id, created_on,os FROM 
+        hour, CASE WHEN os='android' THEN 'Android' ELSE os END 
+        AS os, COUNT(id) install_cnt FROM (SELECT id, created_on,os FROM 
         myplex_service.myplex_user_device  WHERE  created_on between 
         '{0} 00:00:00' - interval 1 day and '{0} 23:59:59') a GROUP BY 1,2,3
         """        

@@ -32,7 +32,7 @@ const RegistrationService = {
       Log.debug('REGISTRATIONS TOTAL::::', jsonInput.data.length);
     }
 
-    let maxH = maxBy(jsonInput, 'hour');
+    let maxH = maxBy(jsonInput.data, 'hour');
     maxH = (maxH === undefined) ? 23 : maxH.hour;
     const hours = getHoursUntilNow(maxH);
     const series = [];

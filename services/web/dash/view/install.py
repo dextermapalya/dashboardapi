@@ -27,11 +27,10 @@ def get_installationsquery(dt = None):
         """
     query = """
         SELECT DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) dt, 
-        HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) hr, os, COUNT(id) 
-        install_cnt FROM (SELECT id,created_on,os FROM myplex_service.myplex_user_device 
-        WHERE DATE(CONVERT_TZ(created_on,'+00:00','+05:30')) = '{0}' 
-        AND created_on between '{0}' - interval 1 day and '{0}') 
-        a GROUP BY 1,2,3;
+        HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) 
+        hr, os, COUNT(id) install_cnt FROM (SELECT id, created_on,os FROM 
+        myplex_service.myplex_user_device  WHERE  created_on between 
+        '{0} 00:00:00' - interval 1 day and '{0} 23:59:59') a GROUP BY 1,2,3
         """        
     if dt is None:
         query = query.format( ' NOW() ')    
@@ -86,7 +85,7 @@ def activeinstallations(request,  dt_query ):
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
             duration = stop_timer( start_time )    
-            response = {"code": status_code, "data": data, "duration":duration }
+            response = {"code": status_code, "data": data, "dt_query": dt_query, "duration":duration }
             stdlogger.info("@@@@@@ INSTALLATION QUERY consumed {0}".format(duration) )
                 
         except Exception as e:

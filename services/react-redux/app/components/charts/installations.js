@@ -27,7 +27,7 @@ const transformData = (payload) => {
 
   cOptions.yAxis[0].title.text = ' Device Type';
   // cOptions.xAxis.categories = getHoursUntilNow()
-  const data = InstallationService.transformData(tempPayload.data);
+  const data = InstallationService.transformData(tempPayload);
   cOptions.series = data.series;
   cOptions.xAxis.categories = data.hours;
 

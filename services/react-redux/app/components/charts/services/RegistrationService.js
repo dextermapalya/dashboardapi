@@ -24,17 +24,19 @@ const RegistrationService = {
 
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
-    let maxH = maxBy(jsonInput, 'HOUR');
-    maxH = (maxH === undefined) ? 23 : maxH.HOUR;
-    const hours = getHoursUntilNow(maxH);
-    const series = [];
-    // const dt = formatDate(new Date());
+    
     let dt = jsonInput.dt_query;
     if (jsonInput.data) {
       Log.debug('REGISTRATIONS TOTAL:', jsonInput.data.length);
       jsonInput.data  = filter(jsonInput.data, { 'DATE': dt });
       Log.debug('REGISTRATIONS TOTAL::::', jsonInput.data.length);
     }
+
+    let maxH = maxBy(jsonInput, 'HOUR');
+    maxH = (maxH === undefined) ? 23 : maxH.HOUR;
+    const hours = getHoursUntilNow(maxH);
+    const series = [];
+    // const dt = formatDate(new Date());
 
     const deviceTypes = uniq(map(jsonInput.data, 'mobile'));
     const deviceData = [];

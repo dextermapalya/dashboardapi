@@ -30,7 +30,7 @@ const transformData = (payload) => {
   cOptions.xAxis.title.text = 'Time';
   cOptions.yAxis[0].title.text = ' Payment Method';
 
-  const data = SubscriptionService.transformData(tempPayload.data);
+  const data = SubscriptionService.transformData(tempPayload);
   cOptions.series = data.series;
   cOptions.categories = data.hours;
 

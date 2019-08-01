@@ -76,12 +76,12 @@ def get_registrationquery(dt = None):
             HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) as hour, 'mobile',
             COUNT(user_id) users FROM myplex_service.myplex_user_usermobile WHERE 
             user_id IN (SELECT id FROM myplex_user_user WHERE created_on 
-            BETWEEN '{0}' - INTERVAL 1 DAY AND NOW()) GROUP BY 1,2,3
+            BETWEEN '{0}' - INTERVAL 1 DAY AND '{0} 23:59:59') GROUP BY 1,2,3
             UNION ALL SELECT DATE_FORMAT(CONVERT_TZ(created_on,'+00:00','+05:30'), '%Y-%m-%d') dt, 
             HOUR(CONVERT_TZ(created_on,'+00:00','+05:30')) hour, 'email', COUNT(user_id) users
             FROM myplex_service.myplex_user_useremail WHERE user_id IN 
             (SELECT id FROM myplex_user_user WHERE 
-            created_on BETWEEN '{0}' - INTERVAL 1 DAY AND NOW()) GROUP BY 1,2,3;
+            created_on BETWEEN '{0} 00:00:00' - INTERVAL 1 DAY AND '{0} 23:59:59') GROUP BY 1,2,3;
         """
     if dt is None:
         query = query.format( ' NOW() ')    

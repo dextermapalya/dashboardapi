@@ -33,12 +33,12 @@ def get_subscriptionsquery(dt = None):
             SELECT DATE(CONVERT_TZ(trans_date,'GMT','Asia/Kolkata')) as "dt", 'Paytm' AS 
             payment_method, HOUR(CONVERT_TZ(trans_date,'GMT','Asia/Kolkata')) as hr, 
             COUNT(user_id) subs FROM myplex_service.myplex_paytm_subscription WHERE trans_date 
-            between '{0}' - interval 1 day and '{0}' AND request_type='SUBSCRIBE' 
+            between '{0} 00:00:00' - interval 1 day and '{0} 23:59:59' AND request_type='SUBSCRIBE' 
             AND STATUS='TXN_SUCCESS' AND trans_id IS NOT NULL GROUP BY 1,2,3 UNION ALL SELECT 
             DATE(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) as "date", last_payment_channel AS 
             payment_method, HOUR(CONVERT_TZ(created_on,'GMT','Asia/Kolkata')) as hr, 
             COUNT(order_id) subs FROM myplex_service.evergent_evergentstatus WHERE 
-            created_on between '{0}' - interval 1 day and '{0}' AND 
+            created_on between '{0} 00:00:00' - interval 1 day and '{0} 23:59:59' AND 
             last_payment_channel IS NOT NULL GROUP BY 1,2,3 ORDER BY 1,3;    
         """    
     if dt is None:
@@ -95,7 +95,7 @@ def activesubscriptions(request, dt_query ):
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
             duration = stop_timer( start_time )    
 
-            response = {"code": status_code, "data": data, "duration":duration }
+            response = {"code": status_code, "data": data, "dt_query": dt_query, "duration":duration }
             stdlogger.info("@@@@@@ SUBSCRIPTIONS QUERY consumed {0}".format(duration) )
 
         except Exception as e:

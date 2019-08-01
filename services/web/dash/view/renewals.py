@@ -111,7 +111,7 @@ def activerenewals(request, dt_query ):
 
             #jsondata = jsonifysubscriptions (  cursor.fetchall() )
             duration = stop_timer( start_time )    
-            response = {"code": status_code, "data": data, "duration":duration }
+            response = {"code": status_code, "data": data, "dt_query": dt_query, "duration":duration }
             stdlogger.info("@@@@@@ RENEWALS QUERY consumed {0}".format(duration) )
                 
         except Exception as e:

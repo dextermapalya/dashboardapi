@@ -2,15 +2,24 @@ import {
   filter, map, uniq, maxBy, remove
 } from 'lodash';
 import { getHoursUntilNow } from 'utils/DateFunctions';
+import Log from 'logger-init';
 
 const RenewalService = {
   
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
+
+    let dt = jsonInput.dt_query;
+    if (jsonInput.data) {
+      Log.debug('RENEWAL TOTAL:', jsonInput.data.length);
+      jsonInput.data  = filter(jsonInput.data, { 'date': dt });
+      Log.debug('RENEWAL TOTAL::::', jsonInput.data.length);
+    }
+
     // first extract all unique keys ex that way hardcoding is avoided
-    const paymentTypes = uniq(map(jsonInput, 'payment_method'));
+    const paymentTypes = uniq(map(jsonInput.data, 'payment_method'));
     const series = [];
-    let maxH = maxBy(jsonInput, 'HOUR');
+    let maxH = maxBy(jsonInput.data, 'HOUR');
     maxH = (maxH === undefined) ? 23 : maxH.HOUR;
     const hours = getHoursUntilNow(maxH);
 
@@ -37,7 +46,7 @@ const RenewalService = {
       /* iterate through each hour from 0 to 23 hours and check if there is any data
         otherwise insert a zero */
       hours.forEach((h, idx) => {
-        const tmp = filter(jsonInput, {
+        const tmp = filter(jsonInput.data, {
           payment_method: item,
           hour: h
         });
@@ -46,7 +55,7 @@ const RenewalService = {
         } else {
           // the above filter returns an array so extract the 0th element
           hData.push(tmp[0]);
-          remove(jsonInput, { hour: tmp[0].hour, payment_method: tmp[0].payment_method });
+          remove(jsonInput.data, { hour: tmp[0].hour, payment_method: tmp[0].payment_method });
         }
       });
       const hourlyData = map(hData, 'renewals');

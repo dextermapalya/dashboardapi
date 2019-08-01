@@ -86,7 +86,7 @@ def activesubscriptions(request, dt_query ):
                 ###data = [dict((cursor.description[i][0], value) \
                 ###    for i, value in enumerate(row)) for row in cursor.fetchall()]
                 ###cursor.connection.close()
-                data = jsonifyqueryset ( cursor.fetchall(), **{'dt':0, 'payment_method':1, 'hr':2, 'subs':3} )                    
+                data = jsonifyqueryset ( cursor.fetchall(), **{'dt':0, 'payment_method':1, 'hour':2, 'subs':3} )                    
                 cursor.connection.close()
 
                 if ( date_is_identical(dt_query) == False ):

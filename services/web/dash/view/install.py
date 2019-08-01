@@ -76,7 +76,7 @@ def activeinstallations(request,  dt_query ):
                 ##data = [dict((cursor.description[i][0], value) \
                 ##    for i, value in enumerate(row)) for row in cursor.fetchall()]
                 ##cursor.connection.close()
-                data = jsonifyqueryset ( cursor.fetchall(), **{'dt':0, 'hr':1, 'os':2, 'install_cnt':3} )                    
+                data = jsonifyqueryset ( cursor.fetchall(), **{'dt':0, 'hour':1, 'os':2, 'install_cnt':3} )                    
                 cursor.connection.close()
 
                 if ( date_is_identical(dt_query) == False ):

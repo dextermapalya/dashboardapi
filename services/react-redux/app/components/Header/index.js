@@ -14,7 +14,6 @@ import Header from './Header';
 
 const mapDispatchToProps = (dispatch) => ({
   onLogout: (evt, isLoggedIn) => {
-    console.log('ONLOGOUT .....', dispatch);
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     dispatch(authLogout(isLoggedIn));
   }

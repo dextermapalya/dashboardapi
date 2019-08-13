@@ -17,6 +17,8 @@ import InstallChart from 'components/charts/installations';
 import RegistrationChart from 'components/charts/registrations';
 import RenewalChart from 'components/charts/renewals';
 import SubscriptionChart from 'components/charts/subscriptions';
+import ApperrorsChart from 'components/charts/apperrors';
+
 
 class Dashboard extends Component {
   state = {
@@ -27,7 +29,8 @@ class Dashboard extends Component {
     installChart: true,
     registrationChart: true,
     renewalChart: true,
-    subscriptionChart: true
+    subscriptionChart: true,
+    apperrorsChart: true,
   };
 
   constructor(props) {
@@ -39,7 +42,8 @@ class Dashboard extends Component {
     e.preventDefault();
     const {
       installChart, registrationChart,
-      renewalChart, subscriptionChart
+      renewalChart, subscriptionChart,
+      apperrorsChart
     } = this.state;
 
     switch (e.target.id) {
@@ -55,6 +59,10 @@ class Dashboard extends Component {
       case 'subscriptionChart':
         this.setState({ subscriptionChart: !subscriptionChart });
         break;
+      case 'apperrorsChart':
+        this.setState({ apperrorsChart: !apperrorsChart });
+        break;
+  
       default:
     }
   }
@@ -71,13 +79,15 @@ class Dashboard extends Component {
       installChart,
       registrationChart,
       renewalChart,
-      subscriptionChart
+      subscriptionChart,
+      apperrorsChart,
     } = this.state;
 
     const installArrow = installChart ? upArrow : downArrow;
     const registrationArrow = registrationChart ? upArrow : downArrow;
     const renewalArrow = renewalChart ? upArrow : downArrow;
     const subscriptionArrow = subscriptionChart ? upArrow : downArrow;
+    const apperrorsArrow = apperrorsChart ? upArrow : downArrow;
 
     return (
       <article>
@@ -148,6 +158,8 @@ class Dashboard extends Component {
                   </Collapse>
                 </div>
               </div>
+
+
               <div className="col-lg-6">
                 <div className="ibox float-e-margins">
                   <div className="ibox-title">
@@ -200,6 +212,37 @@ class Dashboard extends Component {
                   </Collapse>
                 </div>
               </div>
+
+              {/* App Errors Chart begin */}
+              <div className="col-lg-6">
+                <div className="ibox float-e-margins">
+                  <div className="ibox-title">
+                    <h5 className="Individual_title">App Errors</h5>
+                    <div className="ibox-tools">
+                      <a className="collapse-link">
+                        <Button id="apperrorsChart" className={`fa ${apperrorsArrow}`} onClick={this.toggle} />
+                      </a>
+
+                      <ul className="dropdown-menu dropdown-user">
+                        <li>
+                          <a href="#">Config option 1</a>
+                        </li>
+                        <li>
+                          <a href="#">Config option 2</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <Collapse isOpen={apperrorsChart}>
+                    <div className="ibox-content">
+                      <ApperrorsChart />
+                    </div>
+                  </Collapse>
+                </div>
+              </div>
+              {/* App Errors Chart end */}
+
+
             </div>
           </section>
         </div>

@@ -4,6 +4,7 @@ import { getCurrentDate } from 'utils/DateFunctions';
 import PropTypes from 'prop-types';
 // import Charts from './Charts'
 import history from 'utils/history';
+import Log from 'logger-init';
 
 export default class ChartResource extends React.PureComponent {
     state = {
@@ -52,13 +53,15 @@ export default class ChartResource extends React.PureComponent {
             notice: ''
           });
         }).catch((err) => {
+           history.push('/');
+           Log.info('Chart Error1', url, err);
           // if token has expired fetch a new token
           //console.log('token expired....', err.response, err.response.status);
 
-          if (err.response.status === 401) {
+          if (err.response && err.response.status === 401) {
+            Log.info()
             history.push('/');
             // this.context.router.transitionTo('/');
-            //console.log('token expired....', err.response, err.response.status);
           }
 
           this.setState({

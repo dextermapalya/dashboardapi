@@ -37,3 +37,10 @@ POST_QUERY = { 'query':{
     }
   }
 }
+
+query_errors = [{"key": "sign_in_up", "search_terms": ["Sign in", "Sign up"]  },
+   {"key":"forgot_password", "search_terms": ["Forgotten Password"] },
+   {"key":"subscription", "search_terms": ["Not able to subscribe"] },
+   {"key":"playback", "search_terms": ["Playback Error"] },
+   {"key":"applaunch", "search_terms": ["App launch issue"]},
+]

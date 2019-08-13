@@ -17,6 +17,7 @@ from dash.utils import get_env_variable, jsonifyqueryset, date_in_epoch, date_is
 from dash.logutils import start_timer, stop_timer
 from elk.elastic import connect_elasticsearch, get_query_count
 from dash.view.elasticutils import build_query_date_range_phrase
+from elk import query_errors
 
 import logging
 stdlogger = logging.getLogger(__name__)
@@ -51,11 +52,6 @@ def app_event_errors(request, dt_query ):
                 stdlogger.info(" #### fetching epoch date" )
                 epoch = date_in_epoch(dt_query)
                 es_client = connect_elasticsearch()
-                query_errors = [{"key": "sign_in_up", "search_terms": ["Sign in", "Sign up"]  },
-                                {"key":"forgot_password", "search_terms": ["Forgotten Password"] },
-                                {"key":"subscription", "search_terms": ["Not able to subscribe"] },
-                                {"key":"playback", "search_terms": ["Playback Error"] },
-                                ]            
                      
                 data = {}
                 for item in query_errors:

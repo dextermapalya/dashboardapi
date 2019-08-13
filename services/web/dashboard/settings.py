@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'api', # <-- add this module name created using python manage.py startapp api
     'dash', # <-- add this module name created using python manage.py startapp dash
     'scheduler', # <-- add this module name created using python manage.py startapp scheduler
+    'elk', # <-- add this module name created using python manage.py startapp elk
 ]
 
 MIDDLEWARE = [

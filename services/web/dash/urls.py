@@ -4,12 +4,14 @@ from dash.view import install
 from dash.view import subscriptions
 from dash.view import renewals
 from dash.view import registrations
+from dash.view import apperrors
 
 urlpatterns = [
     path('activeregistrations/<slug:dt_query>', registrations.activeregistrations, ),
     path('activeinstallations/<slug:dt_query>', install.activeinstallations, ),
     path('activesubscriptions/<slug:dt_query>', subscriptions.activesubscriptions, ),
     path('activerenewals/<slug:dt_query>', renewals.activerenewals, ),
+    path('apperrors/<slug:dt_query>', apperrors.app_event_errors, ),
     path('articles/', views.articles ),
 
 ]

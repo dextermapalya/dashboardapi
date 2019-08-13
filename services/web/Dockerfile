@@ -3,7 +3,8 @@
 ###########
 
 # Base Image
-FROM python:3.6 as builder
+####FROM python:3.6 as builder
+FROM pypy:3.6-7
 
 #########
 # FINAL #

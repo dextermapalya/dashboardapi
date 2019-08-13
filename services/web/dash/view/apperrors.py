@@ -51,12 +51,16 @@ def app_event_errors(request, dt_query ):
             if not data:
                 stdlogger.info(" #### fetching epoch date" )
                 epoch = date_in_epoch(dt_query)
-                es_client = connect_elasticsearch()
+                es_client = connect_elasticsearch() #get an instance of elasticsearch client
                      
                 data = {}
+                # (n) number of api requests must be made to elasti server, this depends on the number of keywords 
+                # that must be processed 
                 for item in query_errors:
+                    #generate a json object based on the keywords and epoch time
                     query = build_query_date_range_phrase(item["search_terms"], epoch)
                     stdlogger.info(" ELASTIC QUERY BUILDER {0}".format( query ) )
+                    #make the api call to elasticserver to get the count
                     data[item["key"]] = get_query_count( es_client, "events", query)
 
                 cache.set(dt_query + "_app_event_errors", data, cache_time) #store the response in cache

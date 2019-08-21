@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import Log from 'logger-init';
 
 const PublicLayout = (props) => {
   /* eslint-disable no-shadow */
   const {
     Component, route, user, isLoggedIn
   } = props;
+
+  Log.info('Public Layout....');
 
   return (
 

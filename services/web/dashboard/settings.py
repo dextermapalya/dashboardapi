@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'background_task', # <-- add this 3rd party module
     'rest_framework.authtoken', # Add this line for JWT
     'rest_auth',                # Add this line for JWT
+    'rolepermissions', #Add this line for role based permissions pip install django-role-permissions
 
     'users', # <-- add this module name created using python manage.py startapp users
     'api', # <-- add this module name created using python manage.py startapp api
@@ -116,7 +117,7 @@ DATABASE_APPS_MAPPING = {'db2':'sample'}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dashboard',
+        'NAME': 'myplex_service',
         'USER': 'django',
         'PASSWORD': 'djangosEcrEt',
         'HOST': 'mysqldb',
@@ -332,3 +333,7 @@ CACHES = {
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+
+#ROLE BASED PERMISSIONS
+ROLEPERMISSIONS_MODULE = 'dashboard.roles'
+ROLEPERMISSIONS_REGISTER_ADMIN = True

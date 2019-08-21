@@ -5,14 +5,12 @@ import { getHoursUntilNow } from 'utils/DateFunctions';
 import Log from 'logger-init';
 
 const RenewalService = {
-  
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
-
-    let dt = jsonInput.dt_query;
+    const dt = jsonInput.dt_query;
     if (jsonInput.data) {
       Log.debug('RENEWAL TOTAL:', jsonInput.data.length);
-      jsonInput.data  = filter(jsonInput.data, { 'date': dt });
+      jsonInput.data = filter(jsonInput.data, { date: dt });
       Log.debug('RENEWAL TOTAL::::', jsonInput.data.length);
     }
 

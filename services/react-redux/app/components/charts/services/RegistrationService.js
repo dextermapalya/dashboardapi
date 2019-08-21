@@ -1,34 +1,37 @@
-import { filter, map, uniq, maxBy , remove } from 'lodash';
-import { getHoursUntilNow } from 'utils/DateFunctions';
-import { formatDate } from 'utils/DateFunctions';
+import
+{
+  filter, map, uniq, maxBy, remove
+} from 'lodash';
+
+import { getHoursUntilNow, formatDate } from 'utils/DateFunctions';
 import Log from 'logger-init';
 
 const RegistrationService = {
 
-  filterData(json, h, dt, key) {
-    let data = [];
-    const tmp = filter(json, {
-      DATE: dt,
-      mobile: key,
-      hour: h
-    });
+  // filterData(json, h, dt, key) {
+  //   const data = [];
+  //   const tmp = filter(json, {
+  //     DATE: dt,
+  //     mobile: key,
+  //     hour: h
+  //   });
 
-    if (tmp.length === 0) {
-      return { DATE: dt, hour: h, mobile: key, users: 0 }
-    } else {
-      // the above filter returns an array so extract the 0th element
-      return tmp[0];
-    }
+  //   if (tmp.length === 0) {
+  //     return
+  //     {DATE: dt, hour: h, mobile: key, users: 0 };
+  //   } else {
+  //     // the above filter returns an array so extract the 0th element
+  //     return tmp[0];
+  //   }
 
-  },
+  // },
 
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
-
-    let dt = jsonInput.dt_query;
+    const dt = jsonInput.dt_query;
     if (jsonInput.data) {
       Log.debug('REGISTRATIONS TOTAL:', jsonInput.data.length);
-      jsonInput.data  = filter(jsonInput.data, { 'DATE': dt });
+      jsonInput.data = filter(jsonInput.data, { DATE: dt });
       Log.debug('REGISTRATIONS TOTAL::::', jsonInput.data.length);
     }
 
@@ -44,7 +47,7 @@ const RegistrationService = {
       deviceData[item] = []; // init a multi dimensional array for every OS
     });
 
-    let tmpObj = {};
+    // const tmpObj = {};
 
     // console.log('REGISTRATION hours', hours, maxH, dt, jsonInput);
     deviceTypes.forEach((item, index) => {
@@ -58,7 +61,9 @@ const RegistrationService = {
         });
         // remove this matching row so that the next iteration will be faster
         if (tmp.length === 0) {
-          hData.push({ DATE: dt, hr: h, users: 0, mobile: item });
+          hData.push({
+            DATE: dt, hr: h, users: 0, mobile: item
+          });
         } else {
           // the above filter returns an array so extract the 0th element
           hData.push(tmp[0]);
@@ -67,13 +72,12 @@ const RegistrationService = {
       });
 
       const hourlyData = map(hData, 'users');
-      Log.debug('REGISTRATIONS +++', item, hourlyData)
+      Log.debug('REGISTRATIONS +++', item, hourlyData);
       series.push({ name: item, data: hourlyData });
       Log.debug('REGISTRATIONS ___', series);
-  })
+    });
 
-  return { series, hours };
-
+    return { series, hours };
   },
 
 };

@@ -6,9 +6,9 @@ import { cloneDeep } from 'lodash';
 import ApperrorService from 'components/charts/services/ApperrorService';
 import { AUTH_APPERRORS } from 'shared/constants';
 import PropTypes from 'prop-types';
-import ChartResource from './Loadable';
-import chartOptions from './piechartOptions';
 import Log from 'logger-init';
+import chartOptions from './piechartOptions';
+import ChartResource from './Loadable';
 
 
 /**
@@ -52,7 +52,7 @@ const transformData = (payload) => {
 
 /**
  * AppErrors
- * Displays the pie chart related to app errors 
+ * Displays the pie chart related to app errors
  * This calls a reusable React component ChartResource by passing the api link
  * ex: v1/apperrors/2019-08-12
  * The render function exists in ChartResource component

@@ -1,4 +1,6 @@
-import { filter, map, uniq, remove, maxBy } from 'lodash';
+import {
+  filter, map, uniq, remove, maxBy
+} from 'lodash';
 import { getHoursUntilNow } from 'utils/DateFunctions';
 import Log from 'logger-init';
 
@@ -6,7 +8,7 @@ const InstallationService = {
 
 
   filterData(json, h, key) {
-    let data = [];
+    // let data = [];
     const tmp = filter(json, {
       os: key,
       hour: h
@@ -22,11 +24,10 @@ const InstallationService = {
 
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
-
-    let dt = jsonInput.dt_query;
+    const dt = jsonInput.dt_query;
     if (jsonInput.data) {
       Log.debug('INSTALLATION TOTAL:', jsonInput.data.length, dt);
-      jsonInput.data  = filter(jsonInput.data, { 'dt': dt });
+      jsonInput.data = filter(jsonInput.data, { dt: dt });
       Log.debug('INSTALLATION TOTAL::::', jsonInput.data.length);
     }
 
@@ -59,7 +60,6 @@ const InstallationService = {
     });
 
     return { series, hours };
-
   },
 
 };

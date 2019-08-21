@@ -26,3 +26,4 @@ django-background-tasks
 line_profiler
 ipython
 elasticsearch-dsl>=7.0.0,<8.0.0
+django-role-permissions

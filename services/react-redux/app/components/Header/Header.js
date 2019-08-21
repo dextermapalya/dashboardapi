@@ -59,8 +59,8 @@ export default class Header extends React.PureComponent { // eslint-disable-line
     console.log('clearning localstorage...!!!');
     let e;
     localStorage.clear();
-    const { onLogout } = this.props
-    onLogout(e, false); //set isLoggedIn as false
+    const { onLogout } = this.props;
+    onLogout(e, false); // set isLoggedIn as false
   }
 
 
@@ -134,4 +134,4 @@ Header.propTypes = {
 };
 
 // export default connect(null, mapDispatchToProps)(Header);
-//export default Header;
+// export default Header;

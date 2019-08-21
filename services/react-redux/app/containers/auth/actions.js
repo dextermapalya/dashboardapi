@@ -125,8 +125,7 @@ export function changePassword(password) {
  */
 export function logout() {
   return {
-    type: USER_LOGOUT_SUCCESS,
-    password
+    type: USER_LOGOUT_SUCCESS
   };
 }
 /**

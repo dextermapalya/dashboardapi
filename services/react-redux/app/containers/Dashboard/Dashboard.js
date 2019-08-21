@@ -62,7 +62,6 @@ class Dashboard extends Component {
       case 'apperrorsChart':
         this.setState({ apperrorsChart: !apperrorsChart });
         break;
-  
       default:
     }
   }

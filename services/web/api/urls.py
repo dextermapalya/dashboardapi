@@ -7,7 +7,7 @@ from users.api.viewsets import ProfileViewSet, UserViewSet
 #from dash.api.viewsets import  ActiveSubscriptionViewset
 #from dash.viewset import TestViewSet, SubscriptionViewSet
 from dash import urls as dashboard_urls
-
+from api.views import CustomLoginView 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
 router.register('profile', ProfileViewSet)
@@ -19,5 +19,6 @@ urlpatterns = [
     path('v1111/', include(router.urls)),
     path('admin/', include('rest_framework.urls')),
     path('auth/', include('rest_auth.urls')),
+    url(r'custom/login/', CustomLoginView.as_view(), name='my_custom_login'),
     path('v1/', include(dashboard_urls)),
 ]

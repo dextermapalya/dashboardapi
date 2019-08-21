@@ -12,3 +12,6 @@ config
 
 # Logs
 yarn-error.log
+#/react/app/utils/Logger.js
+*Logger.js
+*Template.js

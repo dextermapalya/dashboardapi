@@ -14,6 +14,7 @@ import sessionRoutes from 'routes/sessionRoutes';
 
 import Login from 'components/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Log from 'logger-init';
 import PublicLayout from './public';
 import PrivateLayout from './private';
 
@@ -32,6 +33,7 @@ export default class Template extends React.PureComponent {
         <Switch>
           {_.map(publicRoutes, (route, key) => {
             const { component, path } = route;
+            Log.info('public route', path);
             return (
               <Route
                 exact
@@ -49,6 +51,8 @@ export default class Template extends React.PureComponent {
 
           {_.map(privateRoutes, (route, key) => {
             const { component, path } = route;
+            Log.info('private route', path);
+
             return (
               <Route
                 exact
@@ -67,6 +71,8 @@ export default class Template extends React.PureComponent {
 
           {_.map(sessionRoutes, (route, key) => {
             const { component, path } = route;
+            Log.info('session route', path);
+
             return (
               <Route
                 exact

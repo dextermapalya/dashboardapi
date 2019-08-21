@@ -8,8 +8,6 @@ import { makeSelectDate } from 'containers/DateSelector/selectors';
 import reducer from 'containers/DateSelector/reducer';
 import ChartResource from './ChartResource';
 
-
-
 const mapDispatchToProps = (dispatch) => ({
   onChangeDate: (evt, date) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();

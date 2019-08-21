@@ -16,6 +16,12 @@ module.exports = {
   },
   coverageReporters: ['json', 'lcov', 'text-summary'],
   moduleDirectories: ['react', 'node_modules', 'app'],
+  /* testPathIgnorePatterns: [''],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/app/utils/Logger.js',
+    '/react/app/utils/Logger.js',
+    'app/utils/Logger.js'
+  ], */
   transform: {
     '^.+\\.(js|jsx)$': '<rootDir>/../node_modules/babel-jest',
   },

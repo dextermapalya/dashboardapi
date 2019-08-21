@@ -20,7 +20,6 @@ export const initialState = {
 };
 
 function dateReducer(state = initialState, action) {
-
   switch (action.type) {
     case CHANGE_DATE: {
       // set any checks or filters here

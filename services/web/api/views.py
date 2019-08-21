@@ -10,6 +10,10 @@ from rest_framework import generics, permissions, viewsets
 from rest_framework.decorators import api_view, permission_classes
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from rest_auth.views import LoginView
+from django.contrib.auth.models import User
+#from rolepermissions.roles import get_user_roles
+from rolepermissions.checkers import has_role
 
 catchall = TemplateView.as_view(template_name='index.html')
 
@@ -98,3 +102,26 @@ def activesubscriptions(request, id=-1):
        else: 
         res = {'id': id}
         return JsonResponse({"message": "Got some data!", "data": res})
+
+
+
+#####
+# Override rest_auth api/auth/login view
+# this view appends custom data to the default json response 
+#  api end point is /api/custom/login
+#####
+#https://stackoverflow.com/questions/52110466/is-there-any-way-to-change-view-of-django-rest-auth-of-login/57587779#57587779
+class CustomLoginView(LoginView):
+    def get_response(self):
+        orginal_response = super().get_response()
+        #get the logged in user
+        id = orginal_response.data['user']['pk']
+        user = User.objects.get(id = id)
+        roles = ['tech', 'business', 'management']
+        for role in roles:
+            if not has_role(user, role):
+                roles.remove(role)
+          
+        mydata = {"roles": roles}
+        orginal_response.data.update(mydata)
+        return orginal_response

@@ -8,11 +8,10 @@ const SubscriptionService = {
 
   /* transform json object into data that can be consumed by highcharts */
   transformData(jsonInput) {
-
-    let dt = jsonInput.dt_query;
+    const dt = jsonInput.dt_query;
     if (jsonInput.data) {
       Log.debug('SUBSCRIPTION TOTAL:', jsonInput.data.length, dt);
-      jsonInput.data  = filter(jsonInput.data, { 'dt': dt });
+      jsonInput.data = filter(jsonInput.data, { dt: dt });
       Log.debug('SUBSCRIPTION TOTAL::::', jsonInput.data.length);
     }
 
@@ -60,12 +59,11 @@ const SubscriptionService = {
           remove(jsonInput.data, { hour: tmp[0].hour, payment_method: tmp[0].payment_method });
         }
       });
-      
       const hourlyData = map(hData, 'subs');
-      Log.debug('SUBSCRIPTIONS +++', item, hourlyData)
+      Log.debug('SUBSCRIPTIONS +++', item, hourlyData);
       series.push({ name: item, data: hourlyData });
     });
-    Log.debug('SUBSCRIPTIONS +++', series)
+    Log.debug('SUBSCRIPTIONS +++', series);
 
     return { series, hours };
     // inspect the value

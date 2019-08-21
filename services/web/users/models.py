@@ -10,6 +10,22 @@ class Profile(models.Model):
     lname = models.CharField(max_length=255, blank=True, null=True)
     dob = models.DateField(null=True, blank=True)
 
+    TECHROLE = 'TR'
+    BDMROLE = 'BR'
+    MGMTROLE = 'MR'
+
+    ROLE_CHOICES = [
+        (TECHROLE, 'TECH'),
+        (BDMROLE, 'BUSINESS'),
+        (MGMTROLE, 'MANAGEMENT'),
+    ]
+
+    # user_role = models.CharField(
+    #     max_length=2,
+    #     choices=ROLE_CHOICES,
+    #     default=TECHROLE,
+    # )
+
     @property
     def fullname(self):
         return self.fname + ' ' + self.lname

@@ -15,6 +15,7 @@ from dash.cache import registration_key #import the name of the key for cache th
 from django.views.decorators.cache import cache_page
 from dash.utils import get_env_variable, get_db_connection, date_is_identical, jsonifyqueryset
 from dash.logutils import start_timer, stop_timer
+from rolepermissions.decorators import has_permission_decorator
 
 import logging
 stdlogger = logging.getLogger(__name__)
@@ -94,6 +95,7 @@ def get_registrationquery(dt = None):
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
 @cache_page(60 * 25) #cache for 25 minutes
+@has_permission_decorator('view_apperrors1')
 def activeregistrations(request, dt_query ):
         try:
 

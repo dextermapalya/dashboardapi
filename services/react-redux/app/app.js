@@ -20,7 +20,7 @@ import Log from 'logger-init';
 // import Logger from 'log-init';
 // Import root app
 // import App from 'containers/App';
-import Template from 'containers/Template/Loadable';
+import Template from 'containers/Template';
 
 
 // Load the favicon
@@ -49,7 +49,7 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 const render = () => {
-  Log.debug("Initialised logger");
+  Log.debug('Initialised logger');
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
@@ -65,7 +65,7 @@ if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['containers/App'], () => {
+  module.hot.accept(['containers/Template'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });

@@ -7,13 +7,11 @@ import {
 } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import history from 'utils/history';
-
 import './Login.scss';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    console.log('LOGINNNNN', props);
     this.validateForm = this.validateForm.bind(this);
   }
 
@@ -22,7 +20,7 @@ class Login extends Component {
     const { user, isLoggedIn } = this.props;
 
     if (user !== prevProps.user && isLoggedIn) {
-      localStorage.setItem('userinfo', JSON.stringify(user));
+      // localStorage.setItem('userinfo', JSON.stringify(user));
       // history.push('/dashboard')
     }
   }
@@ -44,6 +42,7 @@ class Login extends Component {
       error,
       isLoggedIn,
       location,
+      user,
       credentials,
       onChangeUsername,
       onChangePassword
@@ -64,7 +63,7 @@ class Login extends Component {
     return (
       <Fragment>
         {isLoggedIn
-        && <Redirect to={prevRoute} />
+        && <Redirect user={user} to={prevRoute} />
         }
 
         {!isLoggedIn && (

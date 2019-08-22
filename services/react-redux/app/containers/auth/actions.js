@@ -14,13 +14,14 @@
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
-
+import Log from 'logger-init';
+import authService from 'utils/authService';
 import {
   AUTHENTICATE, AUTH_SUCCESS, AUTH_ERROR, AUTH_STATE,
-  CHANGE_USERNAME, CHANGE_PASSWORD, USER_LOGIN_SUCCESS,
-  USER_LOGOUT_SUCCESS, USER_VERIFY_SUCCESS, USER_VERIFY_ERROR,
-  USER_LOGOUT
+  CHANGE_USERNAME, CHANGE_PASSWORD,
+  USER_LOGOUT,
 } from './constants';
+import {TOKEN_EXPIRY_MINUTES} from 'shared/constants';
 
 /**
  * Authenticates a user with given credentials
@@ -52,7 +53,7 @@ export function getAuthState(credentials) {
 
 
 /**
- * Dispatched when the articles are loaded by the request saga
+ * Dispatched when the user is succesfully authenticated by api endpoint initiated by the request saga
  *
  * @param  {array} articles The repository data
  * @param  {string} username The current username
@@ -60,10 +61,12 @@ export function getAuthState(credentials) {
  * @return {object}  An action object with a type of LOAD_ARTICLES_SUCCESS passing the repos
  */
 export function authComplete(user, username, isLoggedIn) {
-  const expiresIn = 50; // in minutes * 1000 milli seconds = 1 second
+  Log.info('$$$$$$%%%', user);
+  const expiresIn = TOKEN_EXPIRY_MINUTES; // in minutes * 1000 milli seconds = 1 second
   const expiresAt = (expiresIn * (1000 * 60)) + new Date().getTime();
   user.expiresAt = expiresAt;
-  localStorage.setItem('userinfo', JSON.stringify(user));
+  authService.setToken(user);
+  // localStorage.setItem('userinfo', JSON.stringify(user));
   return {
     type: AUTH_SUCCESS,
     user,
@@ -116,18 +119,6 @@ export function changePassword(password) {
   };
 }
 
-/**
- * Changes the input field of the form
- *
- * @param  {password} title The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_PASSWORD
- */
-export function logout() {
-  return {
-    type: USER_LOGOUT_SUCCESS
-  };
-}
 /**
  * Dispatched when the user clicks the logout button
  *

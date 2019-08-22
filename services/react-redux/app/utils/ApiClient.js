@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { LOCAL_BASE_URL, PRODUCTION_BASE_URL } from 'shared/constants';
-
+import {
+  filter, map, uniq, remove, maxBy
+} from 'lodash';
 /* logic to determin which api endpoint to interact with */
 const getBaseURL = () => {
   console.log('APICLIENT fetching baseurl.....');
@@ -30,7 +32,7 @@ const ApiClient = () => {
 
   // Set the AUTH token for any request
   instance.interceptors.request.use((config) => {
-    const nonApi = ['auth/login/'];
+    const nonApi = ['custom/login/'];
     // for non api requests use header without authorization token
     if (nonApi.indexOf(config.url) >= 0) {
       config.headers = {

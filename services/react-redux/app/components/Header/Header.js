@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {
   Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
-import { connect } from 'react-redux';
-import { authLogout } from 'containers/auth/actions';
-
+import Log from 'logger-init';
 import './style.scss';
 import settingsicon from 'assets/images/settings_icon.png';
 import logo from 'assets/images/logo.png';
@@ -27,7 +25,6 @@ export default class Header extends React.PureComponent { // eslint-disable-line
       // defaultValue: 1
     };
   }
-
 
   togglebutton = (e) => {
     e.preventDefault();
@@ -58,9 +55,11 @@ export default class Header extends React.PureComponent { // eslint-disable-line
   logout() {
     console.log('clearning localstorage...!!!');
     let e;
-    localStorage.clear();
+    // localStorage.clear();
     const { onLogout } = this.props;
     onLogout(e, false); // set isLoggedIn as false
+    window.location.reload();
+    // return ( <Redirect to="/" />)
   }
 
 
@@ -68,6 +67,9 @@ export default class Header extends React.PureComponent { // eslint-disable-line
     const {
       toggle, dropdownOpen, dropdownOpen2, toggle2, togglebutton, logout
     } = this.state;
+    const { user, isLoggedIn } = this.props;
+    const strUser = (user.user.first_name === '') ? user.user.username : user.user.first_name + ' ' + user.user.last_name
+    Log.info('USER', user);
     return (
 
       <div className="header">
@@ -94,8 +96,12 @@ export default class Header extends React.PureComponent { // eslint-disable-line
                                                   Username_Dashboard
                             </DropdownToggle>
                             <DropdownMenu>
-                              <DropdownItem>Login</DropdownItem>
-                              <DropdownItem onClick={this.logout}>Logout</DropdownItem>
+                              <DropdownItem>
+                                Welcome {strUser}
+                              </DropdownItem>
+                              <DropdownItem onClick={this.logout}>
+                                Logout
+                              </DropdownItem>
                             </DropdownMenu>
                           </Dropdown>
                         </li>
@@ -129,6 +135,8 @@ export default class Header extends React.PureComponent { // eslint-disable-line
 }
 
 Header.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  user: PropTypes.object,
   updateParent: PropTypes.func,
   onLogout: PropTypes.func,
 };

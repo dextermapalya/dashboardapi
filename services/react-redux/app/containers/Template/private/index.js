@@ -14,51 +14,47 @@ export default class PrivateLayout extends Component {
     this.updateValue = this.updateValue.bind(this);
   }
 
-    updateValue = (value) => {
-      this.setState({
-        active: value
-      });
-    };
+  updateValue = (value) => {
+    this.setState({
+      active: value,
+    });
+  };
 
-    render() {
-      /* eslint-disable no-shadow */
-      const {
-        Component, route, user, isLoggedIn
-      } = this.props;
+  render() {
+    /* eslint-disable no-shadow */
+    const {
+      Component, route, user, isLoggedIn
+    } = this.props;
 
-      const { active } = this.state;
+    const { active } = this.state;
 
-      /* const Component = this.props.component;
+    /* const Component = this.props.component;
         const route = this.props.route;
         const user = this.props.user;
         const userActions = this.props.userActions; */
-      return (
-        <div className="app-wrapper ">
-          <div
-            id="wrapper_body"
-            className={
-              active ? 'mini-navbar pace-done' : 'side-navbar pace-done'
-            }
-          >
-            <Sidebar />
-            <div id="page-wrapper" className="gray-bg">
-              <Header updateParent={this.updateValue} />
-              <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
-
-                <Component route={route} />
-              </div>
+    return (
+      <div className="app-wrapper ">
+        <div
+          id="wrapper_body"
+          className={active ? 'mini-navbar pace-done' : 'side-navbar pace-done'}
+        >
+        <Sidebar />
+          <div id="page-wrapper" className="gray-bg">
+            <Header updateParent={this.updateValue} />
+            <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
+              <Component user={user} isLoggedIn={isLoggedIn} route={route} />
             </div>
           </div>
         </div>
-      );
-    }
+      </div>
+    );
+  }
 }
-
 
 PrivateLayout.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   isLoggedIn: PropTypes.bool,
   route: PropTypes.object,
-  Component: PropTypes.any
+  Component: PropTypes.any,
   // location: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };

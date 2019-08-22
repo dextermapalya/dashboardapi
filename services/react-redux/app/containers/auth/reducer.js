@@ -10,8 +10,10 @@
  *   return state.set('yourStateVariable', true);
  */
 
+import authService from 'utils/authService';
+import Log from 'logger-init';
 import {
-  AUTHENTICATE, IS_LOGGED_IN,
+  AUTHENTICATE,
   AUTH_ERROR,
   AUTH_SUCCESS,
   AUTH_STATE,
@@ -20,44 +22,18 @@ import {
   USER_LOGOUT,
 } from './constants';
 
-
-/* getUserFromLocalStorage */
-const getUserFromLocalStorage = (key, defaultValue) => {
-  // localStorage.removeItem(key)
-  const userinfo = localStorage.getItem(key);
-  if (userinfo === null) {
-    return defaultValue;
-  }
-  // return default_value;
-  return JSON.parse(userinfo);
-};
-
-// checks if the user is authenticated
-const isAuthenticated = () => {
-  // Check whether the current time is past the
-  // access token's expiry time
-  let auth = false;
-
-  let userinfo = localStorage.getItem('userinfo');
-  userinfo = getUserFromLocalStorage('userinfo', {});
-  if (userinfo !== null && userinfo) {
-    auth = new Date().getTime() < userinfo.expiresAt;
-  }
-  return auth;
-};
-
-
 // The initial state of the App
 export const initialState = {
-  user: getUserFromLocalStorage('userinfo', {}),
+  user: authService.getUser({}),
   credentials: { username: '', password: '', scope: 'read' },
-  isLoggedIn: isAuthenticated(),
+  isLoggedIn: authService.isAuthenticated(),
   tokenExpired: false
 };
 
 function authReducer(state = initialState, action) {
   switch (action.type) {
     case AUTHENTICATE: {
+      Log.info('Authenticate.....++');
       // console.log('Authenticating a user', action);
       // set any checks or filters here
       return { ...state, loading: false, credentials: action.credentials };
@@ -112,7 +88,6 @@ function authReducer(state = initialState, action) {
         loading: false,
         credentials: credentialClone,
       };
-      // console.log('CHANGING_USERNAME......', credentialClone);
       return newState;
     }
 
@@ -131,11 +106,11 @@ function authReducer(state = initialState, action) {
     }
 
     case USER_LOGOUT: {
-      localStorage.clear();
+      authService.logout();
       const newState = {
         ...state,
         loading: false,
-        isLoggedIn: isAuthenticated(),
+        isLoggedIn: authService.isAuthenticated(),
         tokenExpired: true
       };
 

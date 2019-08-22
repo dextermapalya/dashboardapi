@@ -47,7 +47,7 @@ export default class PrivateLayout extends Component {
           <div id="page-wrapper" className="gray-bg">
             <Header updateParent={this.updateValue} />
             <div className="wrapper wrapper-content wrapper_data animated fadeInRight">
-              <Component user={user} isLoggedIn={isLoggedIn} route={route} />
+              <Component user={user} isLoggedIn={isLoggedIn} />
             </div>
           </div>
         </div>

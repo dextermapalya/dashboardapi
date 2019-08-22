@@ -82,8 +82,7 @@ class Dashboard extends Component {
     /* user object is nested within the props route 
     * and passed in via redirect from the Home component
     */
-    const { route } = this.props;
-    const user = (route.location.state.user) ? route.location.state.user : null;
+    const { user, isLoggedIn } = this.props;
     /* if user object cannot be retrieved then user cannot view any chart*/
     if (!user) {
       return [];      
@@ -124,11 +123,11 @@ class Dashboard extends Component {
   render() {
     const upArrow = 'fa-chevron-up uparrow';
     const downArrow = 'fa-chevron-down downarrow';
+    Log.info('!!!!!', this.props);
     /* get list of charts user can view */
-    const { route } = this.props;
-    const isLoggedIn = (route.location.state.isLoggedIn) ? route.location.state.isLoggedIn : null;
+    const { user, isLoggedIn } = this.props;
+    // const isLoggedIn = (route.location.state.isLoggedIn) ? route.location.state.isLoggedIn : null;
     const charts = this.getUserCharts();
-    Log.info('*****', charts);
     /* ChartList allows to convert string to Component */
     const ChartList = {
     	InstallChart: InstallChart,
@@ -138,23 +137,6 @@ class Dashboard extends Component {
       ApperrorsChart: ApperrorsChart
     };
 
-    const {
-      showInstallChart,
-      showRegistrationChart,
-      showRenewalChart,
-      showSubscriptionChart,
-      installChart,
-      registrationChart,
-      renewalChart,
-      subscriptionChart,
-      apperrorsChart,
-    } = this.state;
-
-    const installArrow = installChart ? upArrow : downArrow;
-    const registrationArrow = registrationChart ? upArrow : downArrow;
-    const renewalArrow = renewalChart ? upArrow : downArrow;
-    const subscriptionArrow = subscriptionChart ? upArrow : downArrow;
-    const apperrorsArrow = apperrorsChart ? upArrow : downArrow;
     if (!isLoggedIn) {
       return <Redirect to="/" />;
     }
@@ -177,9 +159,8 @@ class Dashboard extends Component {
                 const Control = ChartList[data.graph_type];
                 return (
                   <Chart data={data.props} key={data.graph_type} component={ChartList[data.graph_type]} />
-                )
+                );
               })}
-
 
             </div>
           </section>

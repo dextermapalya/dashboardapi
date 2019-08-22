@@ -9,7 +9,7 @@ const PublicLayout = (props) => {
     Component, route, user, isLoggedIn
   } = props;
   return (
-    <Component user={user} isLoggedIn={isLoggedIn} route={route} />
+    <Component user={user} isLoggedIn={isLoggedIn} />
   );
 };
 

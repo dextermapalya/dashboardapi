@@ -39,14 +39,12 @@ const Template = ({ isLoggedIn, user }) => {
                   isLoggedIn ? (
                     <PublicLayout
                       Component={component}
-                      route={route}
                       user={user}
                       isLoggedIn={isLoggedIn}
                     />
                   ) : (
                     <PublicLayout
                       Component={Login}
-                      route={route}
                       user={user}
                       isLoggedIn={isLoggedIn}
                     />
@@ -68,12 +66,11 @@ const Template = ({ isLoggedIn, user }) => {
                   isLoggedIn ? (
                     <PrivateLayout
                       Component={component}
-                      route={route}
                       user={user}
                       isLoggedIn={isLoggedIn}
                     />
                   ) : (
-                    <PublicLayout Component={Login} route={route} user={user} isLoggedIn={isLoggedIn} />
+                    <PublicLayout Component={Login} user={user} isLoggedIn={isLoggedIn} />
                   )
                 }
               />
@@ -92,14 +89,12 @@ const Template = ({ isLoggedIn, user }) => {
                   isLoggedIn ? (
                     <PublicLayout
                       Component={component}
-                      route={route}
                       user={user}
                       isLoggedIn={isLoggedIn}
                     />                    
                   ) : (
                     <PublicLayout
                       Component={component}
-                      route={route}
                       user={user}
                       isLoggedIn={isLoggedIn}
                     />

@@ -5,13 +5,11 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Collapse, Button, CardBody, Card
-} from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { map, remove, includes } from 'lodash';
 import Log from 'logger-init';
+import Chart from 'components/Chart';
 import './style.scss';
 import { ROLES } from 'shared/constants';
 import _ from 'lodash';
@@ -178,35 +176,8 @@ class Dashboard extends Component {
                 Log.info('*********', data);
                 const Control = ChartList[data.graph_type];
                 return (
-                  <div className="col-lg-6" key={index}>
-                  <div className="ibox float-e-margins">
-                    <div className="ibox-title">
-                      <h5 className="Individual_title">{data.props.title} Hourly</h5>
-                      <div className="ibox-tools">
-                        <a className="collapse-link">
-                          <Button id="installChart" className={`fa ${installArrow}`} onClick={this.toggle} />
-                        </a>
-  
-                        <ul className="dropdown-menu dropdown-user">
-                          <li>
-                            <a href="#">Config option 1</a>
-                          </li>
-                          <li>
-                            <a href="#">Config option 2</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <Collapse isOpen={installChart}>
-  
-                      <div className="ibox-content">
-                        <Control />
-                      </div>
-  
-                    </Collapse>
-                  </div>
-                </div>
-                  )
+                  <Chart data={data.props} key={data.graph_type} component={ChartList[data.graph_type]} />
+                )
               })}
 
 

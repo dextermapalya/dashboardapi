@@ -14,6 +14,7 @@ import { authLogout } from 'containers/auth/actions';
 import {
   makeSelectUser, makeSelectAuthStatus,
 } from 'containers/auth/selectors';
+import history from 'utils/history';
 import Header from './Header';
 
 const mapStateToProps = createStructuredSelector({
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
   onLogout: (evt, isLoggedIn) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     dispatch(authLogout(isLoggedIn));
+    history.push('/');
   }
 });
 

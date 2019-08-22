@@ -106,11 +106,12 @@ function authReducer(state = initialState, action) {
     }
 
     case USER_LOGOUT: {
-      authService.logout();
+      Log.info('LOGOUT', authService.isAuthenticated());
       const newState = {
         ...state,
         loading: false,
-        isLoggedIn: authService.isAuthenticated(),
+        isLoggedIn: action.isLoggedIn,
+        user: authService.getUser({}),
         tokenExpired: true
       };
 

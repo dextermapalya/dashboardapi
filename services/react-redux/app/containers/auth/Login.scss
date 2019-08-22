@@ -1,0 +1,38 @@
+
+.wrapper_sigin .login_area {
+    width: 500px;
+    margin: 0 auto;
+    // background-color: #ddd;
+    padding: 20px 15px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 4px;
+}
+.wrapper_sigin .login_area h2{
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.wrapper_sigin .login_area label{
+   font-size: 14px;
+   font-weight: 700;
+}
+.wrapper_sigin .btn-secondary{
+    background-color: #1ab394;
+    border-color: #1ab394;
+    color: #FFFFFF;
+    padding: 6px 20px;
+}
+.wrapper_sigin .btn-secondary.focus, .wrapper_sigin .btn-secondary:focus, .btn.btn-secondary:not(:disabled):not(.disabled):active{
+    background-image:inherit;
+    background-color: #099a7d;
+    border-color: #099a7d;
+}
+.wrapper_sigin .btn-secondary:hover{
+    background-color: #099a7d;
+    border-color: #099a7d;
+    color: #FFFFFF;
+}
+
+.wrapper_sigin .login_area .form-group input{
+    border-radius: 4px;
+}

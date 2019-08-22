@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Sidebar from 'components/Sidebar';
 import Header from 'components/Header';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import Log from 'logger-init';
 
 export default class PrivateLayout extends Component {
   constructor(props) {
@@ -25,7 +27,10 @@ export default class PrivateLayout extends Component {
     const {
       Component, route, user, isLoggedIn
     } = this.props;
-
+    Log.info('IS LOGGEDIN !!!', isLoggedIn);
+    if (!isLoggedIn) {
+      return (<Redirect to="/" />);
+    }
     const { active } = this.state;
 
     /* const Component = this.props.component;

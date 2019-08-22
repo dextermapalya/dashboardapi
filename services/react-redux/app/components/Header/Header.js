@@ -9,6 +9,7 @@ import settingsicon from 'assets/images/settings_icon.png';
 import logo from 'assets/images/logo.png';
 // import Banner from './images/banner.jpg';
 import PropTypes from 'prop-types';
+import history from 'utils/history';
 
 
 export default class Header extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -53,13 +54,16 @@ export default class Header extends React.PureComponent { // eslint-disable-line
   }
 
   logout() {
-    console.log('clearning localstorage...!!!');
+    console.log('clearning localstorage...!!!', this.props);
     let e;
     // localStorage.clear();
-    const { onLogout } = this.props;
-    onLogout(e, false); // set isLoggedIn as false
+    const { onLogout, history } = this.props;
+    // set isLoggedIn as false
+    onLogout(e, false);
+    console.log('clearning localstorage...!!!');
+    // history.push('/');
     window.location.reload();
-    // return ( <Redirect to="/" />)
+
   }
 
 
@@ -69,7 +73,11 @@ export default class Header extends React.PureComponent { // eslint-disable-line
     } = this.state;
     const { user, isLoggedIn } = this.props;
     const strUser = (user.user.first_name === '') ? user.user.username : user.user.first_name + ' ' + user.user.last_name
-    Log.info('USER', user);
+    if (!isLoggedIn) {
+      Log.info('NOT LOGGED IN!!!!');
+      return (<Redirect to="/" />);
+    }
+
     return (
 
       <div className="header">

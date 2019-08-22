@@ -127,7 +127,7 @@ export function changePassword(password) {
  * @return {object}  An action object with a type of LOAD_ARTICLES_SUCCESS passing the repos
  */
 export function authLogout(isLoggedIn) {
-  localStorage.clear();
+  authService.logout();
   return {
     type: USER_LOGOUT,
     isLoggedIn

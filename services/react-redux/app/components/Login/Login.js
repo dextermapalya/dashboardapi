@@ -15,7 +15,6 @@ class Login extends Component {
     this.validateForm = this.validateForm.bind(this);
   }
 
-
   componentDidUpdate(prevProps, prevState) {
     const { user, isLoggedIn } = this.props;
 
@@ -61,7 +60,7 @@ class Login extends Component {
     prevRoute = '/dashboard';
 
     return (
-      <Fragment>
+      <div>
         {isLoggedIn
         && <Redirect user={user} to={prevRoute} />
         }
@@ -115,7 +114,7 @@ class Login extends Component {
           </div>
         )
         }
-      </Fragment>
+      </div>
     );
   }
 }

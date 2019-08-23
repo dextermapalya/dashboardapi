@@ -21,7 +21,7 @@ const Chart = ({ component, index, data }) => {
     <div className="col-lg-6">
     <div className="ibox float-e-margins">
       <div className="ibox-title">
-        <h5 className="Individual_title">{data.title} Hourly</h5>
+        <h5 className="Individual_title">{data.title}</h5>
         <div className="ibox-tools">
           <a className="collapse-link">
             <Button id="chart-{index}" className={`fa ${PointerIcon}`} onClick={toggle} />

@@ -26,10 +26,11 @@ const authService = {
     // access token's expiry time
     let auth = false;
 
-    const userinfo = localStorage.getItem(LOCAL_STORAGE_USERINFO_KEY);
-    Log.info('USERINFO', userinfo);
+    const userinfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_USERINFO_KEY));
+    Log.info('USERINFO', userinfo, userinfo.expiresAt);
     // userinfo = getUserFromLocalStorage( LOCAL_STORAGE_USERINFO_KEY, {});
     if (userinfo !== null && userinfo) {
+      Log.info('USERINFO..', new Date().getTime(), userinfo.expiresAt);
       auth = new Date().getTime() < userinfo.expiresAt;
     }
     Log.info('IS AUTHENTICATED....', auth);
@@ -50,6 +51,7 @@ const authService = {
   },
   /* store the token received into cookie using localstorage */
   setToken: (response) => {
+    Log.info('USERINFO...', response);
     localStorage.setItem(LOCAL_STORAGE_USERINFO_KEY, JSON.stringify(response));
   }
 };

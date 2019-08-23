@@ -95,7 +95,7 @@ def get_registrationquery(dt = None):
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.IsAuthenticated,))
 @cache_page(60 * 25) #cache for 25 minutes
-@has_permission_decorator('view_apperrors1')
+@has_permission_decorator('view_dashboard_registrations')
 def activeregistrations(request, dt_query ):
         try:
 

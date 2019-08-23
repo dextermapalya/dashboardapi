@@ -16,4 +16,4 @@ export const ROLES = [
   { graph_type: 'RenewalChart', props: { title: 'Renewals Hourly' }, roles: ['tech', 'business'] },
   { graph_type: 'ApperrorsChart', props: { title: 'App Errors' }, roles: ['tech', 'management'] },
 ];
-export const TOKEN_EXPIRY_MINUTES = 1;
+export const TOKEN_EXPIRY_MINUTES = 15;

@@ -90,31 +90,22 @@ class Dashboard extends Component {
 
     /* extract all the charts defined in ROLES in shared/consants */
     // const charts = map(ROLES, 'graph_type'); // [subscriptions, registrations, renewals,etc]
-    const charts = [...ROLES];
-    map(ROLES, (item) => {
-      /* remove charts for which the user does not have permission */
-      remove(charts, (ch) => {
-        let mustRemove = true;
-        Log.info('***', item.roles, user.roles, charts);
-        /* iterate through each role assigned to logged in user */
-        /* for a given chart user should possess atleast one of the roles assigned to a chart 
+    const charts = [];
+    map(ROLES, (item, idx) => {
+      /* iterate through each role assigned to logged in user */
+      /* for a given chart user should possess atleast one of the roles assigned to a chart 
         * scenario 1 if chart subscriptions can be viewed by roles tech, management, business
         * and user is assigned to role tech then the chart can be viewed
         * scenario 2 if chart subscriptions can be viewed by roles tech, management 
         * and user is assigned to role business then user cannot view the chart user does not possess
         * desired role
         */
-
-        for (let i = 0; i < user.roles.length; i++) {
-          // check if role exists for the given chart
-          if (includes(item.roles, user.roles[i])) {
-            mustRemove = false;
-            // if one of the role matches no need to check the rest
-            break;
-          }
+      for (let i = 0; i < user.roles.length; i++) {
+        if (item.roles.indexOf(user.roles[i]) >= 0) {
+          charts.push(item);
+          break;
         }
-        return mustRemove;
-      });
+      }
     });
     Log.info('!!!!!!!', charts);
     return charts;

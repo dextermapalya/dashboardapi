@@ -101,12 +101,9 @@ export default class Header extends React.PureComponent { // eslint-disable-line
                         <li className="dropdown">
                           <Dropdown className="login_dropdown" isOpen={dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret className="btn-grad">
-                                                  Username_Dashboard
+                                                  Welcome {strUser}
                             </DropdownToggle>
                             <DropdownMenu>
-                              <DropdownItem>
-                                Welcome {strUser}
-                              </DropdownItem>
                               <DropdownItem onClick={this.logout}>
                                 Logout
                               </DropdownItem>

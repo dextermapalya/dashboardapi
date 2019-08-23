@@ -14,6 +14,8 @@ from rest_auth.views import LoginView
 from django.contrib.auth.models import User
 #from rolepermissions.roles import get_user_roles
 from rolepermissions.checkers import has_role
+import logging
+stdlogger = logging.getLogger(__name__)
 
 catchall = TemplateView.as_view(template_name='index.html')
 
@@ -118,10 +120,10 @@ class CustomLoginView(LoginView):
         id = orginal_response.data['user']['pk']
         user = User.objects.get(id = id)
         roles = ['tech', 'business', 'management']
+        user_roles = []
         for role in roles:
-            if not has_role(user, role):
-                roles.remove(role)
-          
-        mydata = {"roles": roles}
+            if has_role(user, [role]):
+                user_roles.append(role)
+        mydata = {"roles": user_roles}
         orginal_response.data.update(mydata)
         return orginal_response

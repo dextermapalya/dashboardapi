@@ -6,3 +6,6 @@ Ex: skip app/utils/Logger.js
 
 *Logger.js
 
+WORKFLOW OF COMPONENTS OR COMPONENT HIERARCHY
+
+Template is the Root Component

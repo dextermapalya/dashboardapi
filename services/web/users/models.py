@@ -45,7 +45,7 @@ class Profile(models.Model):
             return today.year - self.dob.year
 
     def __str__(self):
-        return "{} - {}".format(self.username, self.email, self.dob, self.calculate_age)
+        return "{} - {}".format(self.user.username, self.user.email, self.dob, self.calculate_age)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
